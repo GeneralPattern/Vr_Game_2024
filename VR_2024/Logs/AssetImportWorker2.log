@@ -227,3 +227,95 @@ Received Import Request.
 Start importing Assets/Renderer using Guid(d5258428ff9ca354fa6c06d50ff04056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '475c911d1be9dae10fed1a5b5911d8ee') in 0.000417 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 186.461353 seconds.
+  path: Assets/XR Assets
+  artifactKey: Guid(7f8132c7fdcd3224ba461546942b18d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/XR Assets using Guid(7f8132c7fdcd3224ba461546942b18d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18ab0ec494bfc90c37591736544c7d8f') in 0.000469 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.614 seconds
+Refreshing native plugins compatible for Editor in 12.74 ms, found 9 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.503 seconds
+Domain Reload Profiling: 2114ms
+	BeginReloadAssembly (197ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (56ms)
+	RebuildCommonClasses (36ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (326ms)
+		LoadAssemblies (356ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (69ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (1ms)
+			ScanForSourceGeneratedMonoScriptInfo (39ms)
+			ResolveRequiredComponents (15ms)
+	FinalizeReload (1504ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (668ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (36ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (111ms)
+			ProcessInitializeOnLoadAttributes (396ms)
+			ProcessInitializeOnLoadMethodAttributes (112ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (19ms)
+Refreshing native plugins compatible for Editor in 10.44 ms, found 9 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5944 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 76 unused Assets / (337.6 KB). Loaded Objects now: 6573.
+Memory consumption went from 209.2 MB to 208.9 MB.
+Total: 3.836000 ms (FindLiveObjects: 0.467400 ms CreateObjectMapping: 0.519500 ms MarkObjects: 2.714200 ms  DeleteObjects: 0.134000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/XRLever.cs: 31c13320dad94f06012915bb44617af1 -> b05fedf9ff8c82ba69ec570ea1d850ed
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/XRSlider.cs: 390b20ce8c97eb2474b158738e9b03dd -> 4fbb94b2b73a966c241fe97d34ec2aea
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:scripting/monoscript/fileName/XRKnob.cs: cb37f10468c46e9a8eabb3acb1aeb0a3 -> acfc33761e65f6b20c8148133e07fabe
+  custom:scripting/monoscript/fileName/XRPushButton.cs: 4f69621b410df9f5d05a0af60ca797ef -> 2454961ad70f6eab0edcf7501160360c
+  custom:scripting/monoscript/fileName/FlippyDoor.cs: 5f32acd383a10bbb849fe57c85725f47 -> 71d7e29143d8cca061f31ccf25e1f2f9
+  custom:scripting/monoscript/fileName/ClawMachine.cs: 77550b886c9fdc5e95736399779a5ea7 -> ef73ce36d0d4fef09d059980c346fe23
+  custom:scripting/monoscript/fileName/UfoAbductionForce.cs: 00c292b9af458a4fd60a0e81a1367e63 -> bb48d4fac7531d16c826675d9461be33
+  custom:CustomObjectIndexerAttribute: 4d1d7186bcbbfe361de5f0ad951e585c -> 
+  custom:scripting/monoscript/fileName/Readme.cs: d224ae3d547135c42971b15162f90d4d -> 0243834a66c4d02c43eccfe3f1926748
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/ReadmeEditor.cs: 56f6dbf78c2756041ad3480a7e14a138 -> f90a78a692f36537585f0ffe30196b53
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:scripting/monoscript/fileName/AnimateHandOnInput.cs: 9d3270f74018f296ee3ec8cc5bca3857 -> 2347f16e4197806653c368677bde2015
+  custom:scripting/monoscript/fileName/XRGripButton.cs: fd8450f63332d76d629e154d3ceccbfb -> 3adc3570cbb5aee9e59b936ee1108acb
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/XRJoystick.cs: afd6fa7fe9a0e56f8502a8b6bc89451b -> ebf70ffa4919c3edf922e0d18794110b
