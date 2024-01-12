@@ -3,7 +3,45 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-Assets/AssetStoreTools*
+
+# Coding App settings
+.idea/
+*.idea
+
+# User settings that will cause conflicts for all team members
+*/EditorUserSettings.asset
+
+# Unity logs to ignore
+*/AssetImportWorker*.log
+*/shadercompiler-AssetImportWorker*.log
+*/shadercompiler-UnityShaderCompiler.exe*.log
+
+# Unnecessary bulk
+Assets/Plugin/*
+Assets/AssetStoreTools/*
+Assets/TextMesh Pro/Examples & Extras/Textures/*
+Assets/TextMesh Pro/Examples & Extras/Sprites/*
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.meta
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.unitypackage
+
+# MacOS Desktop Services Store
+*.DS_Store
+
+# Houdini HDA's and bin files
+*.hdanc
+*.hda
+*.hipnc
+*.hip
 
 # Visual Studio cache directory
 .vs/
@@ -24,15 +62,14 @@ ExportedObj/
 *.pdb
 *.opendb
 
-# Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
+VR_2024/Logs/AssetImportWorker0.log
 
-# Unity3D Generated File On Crash Reports
-sysinfo.txt
+VR_2024/Logs/AssetImportWorker1.log
 
-# Builds
-*.apk
-*.unitypackage
+VR_2024/Logs/shadercompiler-AssetImportWorker0.log
 
-*.DS_Store
+VR_2024/Logs/shadercompiler-UnityShaderCompiler.exe0.log
+
+VR_2024/Logs/shadercompiler-UnityShaderCompiler.exe1.log
+
+VR_2024/Logs/shadercompiler-UnityShaderCompiler.exe2.log
