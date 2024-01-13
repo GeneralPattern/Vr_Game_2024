@@ -12,9 +12,11 @@
 */EditorUserSettings.asset
 
 # Unity logs to ignore
-*/AssetImportWorker*.log
-*/shadercompiler-AssetImportWorker*.log
-*/shadercompiler-UnityShaderCompiler.exe*.log
+Logs/AssetImportWorker*.log
+Logs/*-prev.log
+Logs/shadercompiler-AssetImportWorker*.log
+Logs/shadercompiler-UnityShaderCompiler.exe*.log
+
 
 # Unnecessary bulk
 Assets/Plugin/*
@@ -62,14 +64,4 @@ ExportedObj/
 *.pdb
 *.opendb
 
-VR_2024/Logs/AssetImportWorker0.log
-
-VR_2024/Logs/AssetImportWorker1.log
-
-VR_2024/Logs/shadercompiler-AssetImportWorker0.log
-
-VR_2024/Logs/shadercompiler-UnityShaderCompiler.exe0.log
-
-VR_2024/Logs/shadercompiler-UnityShaderCompiler.exe1.log
-
-VR_2024/Logs/shadercompiler-UnityShaderCompiler.exe2.log
+*.dwlt
