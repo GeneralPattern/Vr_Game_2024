@@ -4,21 +4,24 @@
 [Bb]uild/
 [Bb]uilds/
 
-# Coding App settings
+# Unnecessary Coding App settings
 .idea/
 *.idea
 
 # User settings that will cause conflicts for all team members
 */EditorUserSettings.asset
 
+# Unity Editor Setups That cause conflicts when working in a team
+*/UserSettings/Layouts/*.dwlt
+
 # Unity logs to ignore
-Logs/AssetImportWorker*.log
-Logs/*-prev.log
-Logs/shadercompiler-AssetImportWorker*.log
-Logs/shadercompiler-UnityShaderCompiler.exe*.log
+*/Logs/AssetImportWorker*.log
+*/Logs/*-prev.log
+*/Logs/shadercompiler-AssetImportWorker*.log
+*/Logs/shadercompiler-UnityShaderCompiler.exe*.log
 
 
-# Unnecessary bulk
+# Large Bulk in Unity not necessary to commit
 Assets/Plugin/*
 Assets/AssetStoreTools/*
 Assets/TextMesh Pro/Examples & Extras/Textures/*
@@ -63,5 +66,3 @@ ExportedObj/
 *.svd
 *.pdb
 *.opendb
-
-*.dwlt
