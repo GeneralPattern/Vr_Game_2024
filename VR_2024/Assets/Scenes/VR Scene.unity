@@ -904,8 +904,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &1073600237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1190,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> GeneralPattern/main
 --- !u!1001 &1098021403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1283,11 +1280,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8df9b56cfe8b1624e8879a94e7283d7f,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< HEAD
-      value: -6.1
-=======
       value: -8
->>>>>>> GeneralPattern/main
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8df9b56cfe8b1624e8879a94e7283d7f,
         type: 3}
@@ -1861,4 +1854,5 @@ SceneRoots:
   - {fileID: 915091936}
   - {fileID: 1765236115}
   - {fileID: 663851990}
+  - {fileID: 1073600243}
   - {fileID: 1233657590}
