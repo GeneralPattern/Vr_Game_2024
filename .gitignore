@@ -15,13 +15,6 @@
 # Unity Editor Setups That cause conflicts when working in a team
 */UserSettings/Layouts/*.dwlt
 
-# Unity logs to ignore
-*/Logs/AssetImportWorker*.log
-*/Logs/*-prev.log
-*/Logs/shadercompiler-AssetImportWorker*.log
-*/Logs/shadercompiler-UnityShaderCompiler.exe*.log
-
-
 # Large Bulk in Unity not necessary to commit
 Assets/Plugin/*
 Assets/AssetStoreTools/*
