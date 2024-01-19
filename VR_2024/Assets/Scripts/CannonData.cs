@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CannonData : ScriptableObject
@@ -8,7 +9,18 @@ public class CannonData : ScriptableObject
     public BoolData canFire;
     public GameObject cannonBallPrefab;
     public Transform cannonBallSpawnPoint;
-    
+
+    private void Awake()
+    {
+        if (ammo == null) ammo = CreateInstance<IntData>();
+        if (fireDirection == null) fireDirection = CreateInstance<Vector3Data>();
+        if (fireForce == null) fireForce = CreateInstance<FloatData>();
+        if (reloadTime == null) reloadTime = CreateInstance<FloatData>();
+        if (defaultReloadTime == null) defaultReloadTime = CreateInstance<FloatData>();
+        if (canFire == null) canFire = CreateInstance<BoolData>();
+        
+    }
+
     public void Fire()
     {
         if (ammo.value > 0 && canFire.value)
