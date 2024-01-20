@@ -36,6 +36,13 @@
 [Aa]ssets/[Ss]treamingAssets/aa.meta
 [Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Unity logs to ignore
+*/Logs/AssetImportWorker*.log
+*/Logs/*-prev.log
+*/Logs/shadercompiler-AssetImportWorker*.log
+*/Logs/shadercompiler-UnityShaderCompiler.exe*.log
+
+
 # Visual Studio cache directory
 .vs/
 
