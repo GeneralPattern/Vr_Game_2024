@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5205379159137288752}
   - component: {fileID: 8596837145433627448}
   m_Layer: 10
-  m_Name: Cannonball Placeholder
+  m_Name: Cannonball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,9 +33,9 @@ Transform:
   m_GameObject: {fileID: 7281101536470286139}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.65, y: 0.45, z: 2.3}
-  m_LocalScale: {x: 0.3922321, y: 0.3922321, z: 0.3922321}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -3.6590002, y: 0.039000005, z: -0.648}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -340,6 +340,48 @@ MonoBehaviour:
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+            type: 3}
+          m_TargetAssemblyTypeName: CannonManager, Assembly-CSharp
+          m_MethodName: SetSpawnAvailability
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 7281101536470286139}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - nameIdObj: {fileID: 11400000, guid: 9f5ff81a699609342b5b360edd1a0b78, type: 2}
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+            type: 3}
+          m_TargetAssemblyTypeName: CannonManager, Assembly-CSharp
+          m_MethodName: SetSpawnAvailability
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 7281101536470286139}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive

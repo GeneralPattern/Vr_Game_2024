@@ -21,17 +21,17 @@ PrefabInstance:
     - target: {fileID: 4943384161548336669, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.709
       objectReference: {fileID: 0}
     - target: {fileID: 4943384161548336669, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.399
       objectReference: {fileID: 0}
     - target: {fileID: 4943384161548336669, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.072
       objectReference: {fileID: 0}
     - target: {fileID: 4943384161548336669, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
@@ -70,8 +70,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
+      propertyPath: cannonData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a49d966e828b0643b4e96eb1af460a8,
+        type: 2}
+    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: ammoRespawn
+      value: 
+      objectReference: {fileID: 4365383895443135671}
+    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
       propertyPath: fireDirection.x
-      value: 1
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: fireDirection.y
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
@@ -79,6 +95,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7281101536470286139, guid: c7f0cdd8601014a469748ed08d9c0f0e,
         type: 3}
+    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: ammoSocketManager
+      value: 
+      objectReference: {fileID: 3367762507177374068}
+    - target: {fileID: 7737261705006760154, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737261705006760154, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8844611002536459372}
+    - target: {fileID: 7737261705006760154, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737261705006760154, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CannonManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7771519555260221140, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,3 +135,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd71d34adeacb304384e49f9f9b42e0d, type: 3}
+--- !u!1 &3367762507177374068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1321144442172238580, guid: dd71d34adeacb304384e49f9f9b42e0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4389065661146979200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4365383895443135671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 35433345984661303, guid: dd71d34adeacb304384e49f9f9b42e0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4389065661146979200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8844611002536459372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4389065661146979200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c2ec1520ccf4846a56ab30c80349f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
