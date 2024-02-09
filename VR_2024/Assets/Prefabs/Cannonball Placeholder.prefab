@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1655934223155502546}
   - component: {fileID: 5205379159137288752}
   - component: {fileID: 8596837145433627448}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cannonball Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,12 +150,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 804245472879242767}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
