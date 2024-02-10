@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 8386240886312617786, guid: c7f0cdd8601014a469748ed08d9c0f0e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000011205673
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8386240886312617786, guid: c7f0cdd8601014a469748ed08d9c0f0e,
         type: 3}
@@ -250,7 +250,7 @@ Transform:
   m_GameObject: {fileID: 211065469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.424, y: 0.044, z: 1.123}
+  m_LocalPosition: {x: -3.355, y: 0.044, z: 1.123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1018,16 +1018,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8596837145433627448, guid: c7f0cdd8601014a469748ed08d9c0f0e,
-        type: 3}
-      propertyPath: triggerEnterMatches.Array.data[0].triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1606518997}
-    - target: {fileID: 8596837145433627448, guid: c7f0cdd8601014a469748ed08d9c0f0e,
-        type: 3}
-      propertyPath: triggerEnterMatches.Array.data[1].triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1606518997}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2650,60 +2640,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: spawnRate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: spawnDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1606518997}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetSpawnAvailability
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CannonManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009938511490445052, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5645571032279805914, guid: 8b5b544d640aa994690e7fdac09baf22,
         type: 3}
       propertyPath: m_Name
       value: Cannon Placeholder Right Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307662294749715290, guid: 8b5b544d640aa994690e7fdac09baf22,
-        type: 3}
-      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8679415334079735197, guid: 8b5b544d640aa994690e7fdac09baf22,
         type: 3}
@@ -2901,7 +2841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777061742}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2910,7 +2850,7 @@ Transform:
   - {fileID: 651769957}
   - {fileID: 1039667231}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &1968151465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8386240886312617786, guid: c7f0cdd8601014a469748ed08d9c0f0e,

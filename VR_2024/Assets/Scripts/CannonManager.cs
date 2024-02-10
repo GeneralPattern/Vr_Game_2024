@@ -4,62 +4,87 @@ using UnityEngine;
 
 public class CannonManager : MonoBehaviour
 {
-    [HideInInspector] public CannonData cannonData;
+    private WaitForFixedUpdate _wffu; 
+    
+    public bool canFire;
+    [ReadOnly] public int ammo;
+    [ReadOnly] public float reloadTime = 0.0f;
+    public float defaultReloadTime, fireForce;
     public Vector3 fireDirection;
     public Transform firePoint;
-    public GameObject ammoSocketManager;
     public GameObject ammoRespawn;
-    
-    private SocketMatchInteractor _ammoSocket;
+    public SocketMatchInteractor ammoSocket;
     private SpawnManager _ammoSpawner;
     private bool _respawnAvailable;
 
+    private Coroutine _addForceCoroutine; 
+
     private void Awake()
     {
-        cannonData = ScriptableObject.CreateInstance<CannonData>();
-        cannonData.ammo = 0;
-        cannonData.outputSpawnPoint = firePoint;
-        _ammoSocket = ammoSocketManager.GetComponent<SocketMatchInteractor>();
+        _wffu = new WaitForFixedUpdate();
+        ammo = 0;
         _ammoSpawner = ammoRespawn.GetComponent<SpawnManager>();
         _respawnAvailable = true;
+        _addForceCoroutine = null;
     }
-
-    // private void Start()
-    // {
-    //     StartCoroutine(waitForSetup());
-    // }
-    //
-    // private IEnumerator waitForSetup()
-    // {
-    //     yield return new WaitForSeconds(1);
-    //     RespawnAmmo();
-    // }
 
     public void Fire()
     {
-        Debug.Log(_ammoSocket.GetSocketedObject());
-        cannonData.Fire(_ammoSocket.GetSocketedObject());
+        var ammoObj = ammoSocket.RemoveAndMoveSocketObject(firePoint.position, firePoint.rotation);
+        if(ammoObj == null) {Debug.LogWarning("NO AMMO IN CANNON " + gameObject.name); return;}
+        var ammoRb = ammoObj.GetComponent<Rigidbody>();
+        // if (!canFire || ammo < 1) return; // canFire will be implemented with reload mechanic
+        
+        if (ammo < 1) {Debug.LogWarning("Ammo Count: " + ammo); return;}
+        if (_addForceCoroutine != null){ return;}
+        Debug.Log(fireDirection + "*" + fireForce + " = " + fireDirection * fireForce);
+        _addForceCoroutine = StartCoroutine(AddForceToAmmo(ammoRb));
+        DecrementAmmo();
     }
-
-    public void Reload()
+    
+    private IEnumerator AddForceToAmmo(Rigidbody ammoRb)
     {
-        cannonData.Reload();
+        ammoRb.isKinematic = false;
+        yield return _wffu;
+        yield return _wffu;
+        yield return _wffu;
+        yield return null;
+        Debug.Log("Adding force to ammo");
+        ammoRb.AddForce(fireDirection * fireForce, ForceMode.Impulse);
+        _addForceCoroutine = null; 
+    }
+    
+    private IEnumerator RespawnAmmo()
+    {
+        yield return _wffu;
+        _ammoSpawner.StartSpawn(1);
     }
 
     public void IncrementAmmo()
     {
-        cannonData.IncrementAmmo();
+        ammo++;
     }
-    
-    public void RespawnAmmo()
+
+    public void DecrementAmmo()
     {
-        if (!_respawnAvailable) return;
-        _ammoSpawner.StartSpawn(1);
-        _respawnAvailable = false;
+        ammo--;
     }
     
     public void SetSpawnAvailability(bool value)
     {
         _respawnAvailable = value;
+    }
+    
+    public void Reload()
+    {
+        // if (!canFire)
+        // {
+        //     reloadTime.value -= Time.deltaTime;
+        //     if (reloadTime <= 0)
+        //     {
+        //         canFire = true;
+        //         reloadTime = defaultReloadTime.value;
+        //     }
+        // }
     }
 }

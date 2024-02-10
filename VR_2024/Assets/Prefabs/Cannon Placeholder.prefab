@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928212648418425731}
-  - component: {fileID: 814938374535918972}
+  - component: {fileID: 1123580560357298524}
   m_Layer: 0
   m_Name: Cannonball Spawn Position
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4943384161548336669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &814938374535918972
+--- !u!114 &1123580560357298524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,21 +41,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 35433345984661303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3ad9abca77917d41b657c853e2f2b24, type: 3}
+  m_Script: {fileID: 11500000, guid: 56cd28e0a55121e48827166219c4c69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onSpawn:
     m_PersistentCalls:
       m_Calls: []
-  spawnerData: {fileID: 0}
+  spawnerData: {fileID: 11400000, guid: 5a5261123171ea245867ff833e80ae53, type: 2}
   usePriority: 0
   activeCount: 0
   numToSpawn: 1
   poolSize: 1
   spawnRate: 0.01
   spawnDelay: 0
-  activeInt: {fileID: 0}
-  ammoObj: {fileID: 7281101536470286139, guid: c7f0cdd8601014a469748ed08d9c0f0e, type: 3}
 --- !u!1 &1321144442172238580
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +81,7 @@ Transform:
   m_GameObject: {fileID: 1321144442172238580}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,6 +171,24 @@ MonoBehaviour:
   m_TargetBoundsSize: {x: 1, y: 1, z: 1}
   triggerID:
   - nameIdObj: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
+  onObjectSocketed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5068600369596442604}
+        m_TargetAssemblyTypeName: CannonManager, Assembly-CSharp
+        m_MethodName: IncrementAmmo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onObjectUnsocketed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3702277246217215908
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 3702277246217215908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -326,11 +342,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c2ec1520ccf4846a56ab30c80349f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonData: {fileID: 0}
-  fireDirection: {x: 0, y: 0, z: 0}
+  canFire: 0
+  ammo: 0
+  reloadTime: 1
+  defaultReloadTime: 1
+  fireForce: 25
+  fireDirection: {x: -1, y: 0.2, z: 0}
   firePoint: {fileID: 1273239090810611194}
-  ammoSocketManager: {fileID: 1321144442172238580}
   ammoRespawn: {fileID: 35433345984661303}
+  ammoSocket: {fileID: 3292306630701406386}
 --- !u!1001 &3158732078575002555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,17 +362,17 @@ PrefabInstance:
     - target: {fileID: 4616165200164398447, guid: 76f3439a0ae796e4b81bee3f91f888ee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4616165200164398447, guid: 76f3439a0ae796e4b81bee3f91f888ee,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6666667
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4616165200164398447, guid: 76f3439a0ae796e4b81bee3f91f888ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.018750133
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4616165200164398447, guid: 76f3439a0ae796e4b81bee3f91f888ee,
         type: 3}
@@ -403,7 +423,17 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3292306630701406386}
+      objectReference: {fileID: 5068600369596442604}
+    - target: {fileID: 8240108449446691616, guid: 76f3439a0ae796e4b81bee3f91f888ee,
+        type: 3}
+      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240108449446691616, guid: 76f3439a0ae796e4b81bee3f91f888ee,
+        type: 3}
+      propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CannonManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
