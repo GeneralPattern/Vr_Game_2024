@@ -13,7 +13,7 @@ public class CannonManager : MonoBehaviour
     public Transform firePoint;
     public GameObject ammoRespawn;
     public SocketMatchInteractor ammoSocket;
-    private SpawnManager _ammoSpawner;
+    // private SpawnManager _ammoSpawner;
     private bool _respawnAvailable;
 
     private Coroutine _addForceCoroutine; 
@@ -22,7 +22,7 @@ public class CannonManager : MonoBehaviour
     {
         _wffu = new WaitForFixedUpdate();
         ammo = 0;
-        _ammoSpawner = ammoRespawn.GetComponent<SpawnManager>();
+        // _ammoSpawner = ammoRespawn.GetComponent<SpawnManager>();
         _respawnAvailable = true;
         _addForceCoroutine = null;
     }
@@ -36,7 +36,7 @@ public class CannonManager : MonoBehaviour
         
         if (ammo < 1) {Debug.LogWarning("Ammo Count: " + ammo); return;}
         if (_addForceCoroutine != null){ return;}
-        Debug.Log(fireDirection + "*" + fireForce + " = " + fireDirection * fireForce);
+        // Debug.Log(fireDirection + "*" + fireForce + " = " + fireDirection * fireForce);
         _addForceCoroutine = StartCoroutine(AddForceToAmmo(ammoRb));
         DecrementAmmo();
     }
@@ -48,7 +48,7 @@ public class CannonManager : MonoBehaviour
         yield return _wffu;
         yield return _wffu;
         yield return null;
-        Debug.Log("Adding force to ammo");
+        // Debug.Log("Adding force to ammo");
         ammoRb.AddForce(fireDirection * fireForce, ForceMode.Impulse);
         _addForceCoroutine = null; 
     }
@@ -56,7 +56,7 @@ public class CannonManager : MonoBehaviour
     private IEnumerator RespawnAmmo()
     {
         yield return _wffu;
-        _ammoSpawner.StartSpawn(1);
+        // _ammoSpawner.StartSpawn(1);
     }
 
     public void IncrementAmmo()
