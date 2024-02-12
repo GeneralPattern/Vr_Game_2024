@@ -113,7 +113,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Foam_Amount: 4.79
+    - _Foam_Amount: 5.91
     - _Foam_Cutoff: 1
     - _Foam_Scale: 35.02
     - _Foam_Speed: 1
@@ -136,7 +136,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Water_Depth: 5
+    - _Water_Depth: 3.52
     - _Wave_Speed: 1
     - _Wave_amplitude: 0.1
     - _WorkflowMode: 1
@@ -144,7 +144,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.003921569, g: 0.054901868, b: 0.57647055, a: 0.53333336}
+    - _Deep_Color: {r: 0, g: 0.18741083, b: 1, a: 0.53333336}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Refraction_Scale: {r: 0, g: 0, b: 0, a: 0}
