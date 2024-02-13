@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1655934223155502546}
   - component: {fileID: 5205379159137288752}
   - component: {fileID: 8596837145433627448}
+  - component: {fileID: 7023567510724138398}
   m_Layer: 10
   m_Name: Cannonball
   m_TagString: Untagged
@@ -340,11 +341,22 @@ MonoBehaviour:
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
-            type: 3}
-          m_TargetAssemblyTypeName: CannonManager, Assembly-CSharp
-          m_MethodName: SetSpawnAvailability
-          m_Mode: 6
+        - m_Target: {fileID: 7023567510724138398}
+          m_TargetAssemblyTypeName: SpawnedObjectBehavior, Assembly-CSharp
+          m_MethodName: SetSpawnTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7023567510724138398}
+          m_TargetAssemblyTypeName: SpawnedObjectBehavior, Assembly-CSharp
+          m_MethodName: TriggerRespawn
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -369,19 +381,6 @@ MonoBehaviour:
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
-            type: 3}
-          m_TargetAssemblyTypeName: CannonManager, Assembly-CSharp
-          m_MethodName: SetSpawnAvailability
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
         - m_Target: {fileID: 7281101536470286139}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -394,3 +393,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &7023567510724138398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281101536470286139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de0a280a8dcd874a9ab022f3c4388b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoRespawnTime: 3

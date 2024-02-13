@@ -51,6 +51,7 @@ public class CharacterDataEditor : Editor
         builtInFoldout = EditorGUILayout.Foldout(builtInFoldout, "Built-in Elements", true);
         if (builtInFoldout)
         {
+            characterData.spawnPosition = EditorGUILayout.Vector3Field("Spawn Position", characterData.spawnPosition);
             characterData.knockBackPower = EditorGUILayout.FloatField("Knock Back Power", characterData.knockBackPower);
             characterData.knockBackResistance = EditorGUILayout.FloatField("Knock Back Resistance", characterData.knockBackResistance);
         }

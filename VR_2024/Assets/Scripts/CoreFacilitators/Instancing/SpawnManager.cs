@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour, INeedButton
 {
@@ -9,28 +10,52 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     public SpawnerData spawnerData;
 
-    public bool usePriority;
+    public bool usePriority, spawnOnStart, setTransformToThisTransform;
 
-    [SerializeField] [ReadOnly] private int _activeCount;
+    [SerializeField] [ReadOnly] private int activeCount;
     
     public int numToSpawn = 10, poolSize = 10;
-    public float spawnRate = 0.3f, spawnDelay = 1.0f;
-
+    public float poolCreationDelay = 1.0f, spawnDelay = 1.0f, spawnRate = 0.3f;
+    
     private int _spawnedCount;
 
-    private WaitForSeconds _waitForSpawnRate, _waitForSpawnDelay, _wfs;
+    private WaitForSeconds _waitForSpawnRate, _waitForSpawnDelay, _waitForPoolDelay;
+    private WaitForFixedUpdate _wffu;
     private PrefabDataList _prefabSet;
     private List<GameObject> _pooledObjects;
 
-    private void Start()
+    public void SetSpawnDelay(float newDelay) 
+    { 
+        spawnDelay = newDelay;
+        _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
+    }
+    public float GetSpawnDelay() { return spawnDelay; }
+    
+    public void SetPoolSize(int newSize) { poolSize = newSize; }
+    public int GetPoolSize() { return poolSize; }
+
+    public void SetSpawnRate(float newRate)
     {
-        _activeCount = 0;
+        spawnRate = newRate;
+        _waitForSpawnRate = new WaitForSeconds(spawnRate);
+    }
+    public float GetSpawnRate() { return spawnRate; }
+    
+    private void Awake()
+    {
+        activeCount = 0;
         _waitForSpawnRate = new WaitForSeconds(spawnRate);
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
-        _wfs = new WaitForSeconds(1);
+        _waitForPoolDelay = new WaitForSeconds(poolCreationDelay);
+        _wffu = new WaitForFixedUpdate();
         spawnerData.ResetSpawner();
         _prefabSet = spawnerData.prefabDataList;
         StartCoroutine(DelayPoolCreation());
+    }
+
+    private void Start()
+    {
+        if (spawnOnStart) StartSpawn(numToSpawn);
     }
 
     public void StartSpawn(int amount)
@@ -41,16 +66,16 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     private IEnumerator DelayPoolCreation()
     {
-        yield return _wfs;
+        yield return _waitForPoolDelay;
         CreatePool();
     }
 
     private IEnumerator DelaySpawn()
     {
+        yield return _wffu;
         yield return _waitForSpawnDelay;
         StartCoroutine(Spawner());
     }
-    
     
     private void CreatePool()
     {
@@ -80,7 +105,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
         _spawnedCount = 0;
         while (_spawnedCount < numToSpawn)
         {
-            _activeCount =  spawnerData.GetAliveCount();
+            activeCount =  spawnerData.GetAliveCount();
             var spawnObj = FetchFromPool();
             if (spawnObj) Spawn(spawnObj);
             else IncreasePoolAndSpawn();
@@ -104,9 +129,30 @@ public class SpawnManager : MonoBehaviour, INeedButton
     protected virtual void Spawn(GameObject obj)
     {
         if (!obj) return;
-        if (obj.GetComponent<Rigidbody>()) obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        obj.transform.position = transform.position;
-        obj.transform.rotation = Quaternion.identity;
+
+        var rb = obj.GetComponent<Rigidbody>();
+        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
+
+        if (rb) rb.velocity = Vector3.zero;
+
+        if (spawnObj)
+        {
+            spawnObj.SetSpawnManager(this);
+            if (setTransformToThisTransform)
+            {
+                if (spawnObj.GetSpawnPosition() == Vector3.zero) spawnObj.SetSpawnPosition(transform.position);
+                if (spawnObj.GetSpawnRotation() == Quaternion.identity) spawnObj.SetSpawnRotation(Quaternion.identity);
+            }
+
+            obj.transform.position = spawnObj.GetSpawnPosition();
+            obj.transform.rotation = spawnObj.GetSpawnRotation();
+        }
+        else
+        {
+            obj.transform.position = transform.position;
+            obj.transform.rotation = Quaternion.identity;
+        }
+
         obj.SetActive(true);
         _spawnedCount++;
         spawnerData.IncrementActiveInstancesCount();
@@ -139,6 +185,9 @@ public class SpawnManager : MonoBehaviour, INeedButton
     
     protected virtual void AddToPool(GameObject obj)
     {
+        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
+        if(!spawnObj) obj.AddComponent<SpawnedObjectBehavior>();
+        
         _pooledObjects.Add(obj);
         obj.SetActive(false);
     }
