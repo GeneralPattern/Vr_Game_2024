@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3128b0f61391142b4293ed14f3d2fc, type: 3}
-  m_Name: Cannon
+  m_Script: {fileID: 11500000, guid: 369448966d2faf24fbc5bffea5e272bc, type: 3}
+  m_Name: Cannon Ammo Prefab List
   m_EditorClassIdentifier: 
+  prefabDataList:
+  - {fileID: 11400000, guid: 46d439b21bb3a4c4c9596e6de9a2ee28, type: 2}
