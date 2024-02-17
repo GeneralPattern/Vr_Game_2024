@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PrefabDataList", menuName = "Data/List/PrefabDataList")]
 public class PrefabDataList : ScriptableObject
 {
-    public List<PrefabData> prefabDataList;
+    [HideInInspector] public List<PrefabData> prefabDataList;
 
     public int Size()
     {

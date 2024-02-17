@@ -5,16 +5,16 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NavAgentBehavior : MonoBehaviour
-{ // TD NavMeshAgent
-    public UnityEvent creepReachedBase;
+{ 
+    public UnityEvent onCreepReachedDestination;
     
-    private WaitForFixedUpdate _wffuObj;
+    private WaitForFixedUpdate _wffu;
     private NavMeshAgent _ai;
     public Transform destination;
 
     private void Awake()
     {
-        _wffuObj = new WaitForFixedUpdate();
+        _wffu = new WaitForFixedUpdate();
         _ai = GetComponent<NavMeshAgent>();
     }
 
@@ -22,10 +22,24 @@ public class NavAgentBehavior : MonoBehaviour
     {
         StartEndPathCheck();
     }
+    
+    public void SetSpeed(float speed)
+    {
+        _ai.speed = speed;
+    }
+    
+    public void SetRadius(float radius){
+        _ai.radius = radius;
+    }
+    
+    public void SetHeight(float height)
+    {
+        _ai.height = height;
+    }
 
     public void Setup(Transform dest)
     {
-        this.destination = dest;
+        destination = dest;
         _ai.SetDestination(destination.position);
     }
 
@@ -40,12 +54,16 @@ public class NavAgentBehavior : MonoBehaviour
         {
             if (_ai.remainingDistance < 0.5f && _ai.hasPath)
             {
-                gameObject.SetActive(false);
-                creepReachedBase.Invoke();
+                onCreepReachedDestination.Invoke();
                 yield break;
             }
 
-            yield return _wffuObj;
+            yield return _wffu;
         }
+    }
+    
+    public void StopMovement()
+    {
+        _ai.isStopped = true;
     }
 }

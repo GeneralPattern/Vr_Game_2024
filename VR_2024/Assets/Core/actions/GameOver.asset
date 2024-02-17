@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad256366cdef2846b48aac73c95619d, type: 3}
-  m_Name: Cannon Ball Prefab
+  m_Script: {fileID: 11500000, guid: ca529c66c1c059640915fe877e6dc1d7, type: 3}
+  m_Name: GameOver
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7281101536470286139, guid: c7f0cdd8601014a469748ed08d9c0f0e, type: 3}
-  spawnPriority: 100

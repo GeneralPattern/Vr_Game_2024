@@ -10,7 +10,8 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     public SpawnerData spawnerData;
 
-    public bool usePriority, spawnOnStart, setTransformToThisTransform;
+    public bool usePriority, spawnOnStart;
+    public Transform spawnTransform;
 
     [SerializeField] [ReadOnly] private int activeCount;
     
@@ -23,7 +24,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
     private WaitForFixedUpdate _wffu;
     private PrefabDataList _prefabSet;
     private List<GameObject> _pooledObjects;
-
+    
     public void SetSpawnDelay(float newDelay) 
     { 
         spawnDelay = newDelay;
@@ -51,11 +52,18 @@ public class SpawnManager : MonoBehaviour, INeedButton
         spawnerData.ResetSpawner();
         _prefabSet = spawnerData.prefabDataList;
         StartCoroutine(DelayPoolCreation());
+        if(!spawnTransform) spawnTransform = transform;
     }
 
     private void Start()
     {
-        if (spawnOnStart) StartSpawn(numToSpawn);
+        if (spawnOnStart)
+        {
+            var originalSpawnDelay = spawnDelay;
+            spawnDelay += poolCreationDelay;
+            StartSpawn(numToSpawn);
+            spawnDelay = originalSpawnDelay;
+        }
     }
 
     public void StartSpawn(int amount)
@@ -138,12 +146,12 @@ public class SpawnManager : MonoBehaviour, INeedButton
         if (spawnObj)
         {
             spawnObj.SetSpawnManager(this);
-            if (setTransformToThisTransform)
-            {
-                if (spawnObj.GetSpawnPosition() == Vector3.zero) spawnObj.SetSpawnPosition(transform.position);
-                if (spawnObj.GetSpawnRotation() == Quaternion.identity) spawnObj.SetSpawnRotation(Quaternion.identity);
-            }
-
+            var potentialSpawnPos = spawnObj.GetSpawnPosition();
+            var potentialSpawnRot = spawnObj.GetSpawnRotation();
+            
+            spawnObj.SetSpawnPosition(potentialSpawnPos != Vector3.zero ? potentialSpawnPos : spawnTransform.position);
+            spawnObj.SetSpawnRotation(potentialSpawnRot == Quaternion.identity ? potentialSpawnRot : spawnTransform.rotation);
+            
             obj.transform.position = spawnObj.GetSpawnPosition();
             obj.transform.rotation = spawnObj.GetSpawnRotation();
         }
