@@ -1276,6 +1276,7 @@ GameObject:
   - component: {fileID: 663851996}
   - component: {fileID: 663851995}
   - component: {fileID: 663851998}
+  - component: {fileID: 663851999}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -1418,7 +1419,7 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -1548,7 +1549,7 @@ MonoBehaviour:
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1367817612}
+        - m_Target: {fileID: 663851999}
           m_TargetAssemblyTypeName: TransformController, Assembly-CSharp
           m_MethodName: SetPosition
           m_Mode: 2
@@ -1561,6 +1562,47 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - nameIdObj: {fileID: 11400000, guid: 6496e6f3a634d304aae9b6bfa44fa469, type: 2}
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: c9552558b236f674fac80e6cf6b8e2da, type: 2}
+          m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
+          m_MethodName: RaiseAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 663851999}
+          m_TargetAssemblyTypeName: TransformController, Assembly-CSharp
+          m_MethodName: SetPosition
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 6241f1a21c430f7409937739d69fb693,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: Vector3Data, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &663851999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663851987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9da4a8154a2a54ba05a08e8fc35543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &712664551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,7 +2347,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 150, y: 0.5, z: 150}
+  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &956311496
 MonoBehaviour:
@@ -2845,7 +2887,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1367817611}
-  - component: {fileID: 1367817612}
   m_Layer: 0
   m_Name: XR Components
   m_TagString: Untagged
@@ -2870,18 +2911,6 @@ Transform:
   - {fileID: 663851990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1367817612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1367817610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba9da4a8154a2a54ba05a08e8fc35543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1375616672
 GameObject:
   m_ObjectHideFlags: 0

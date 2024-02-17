@@ -1,47 +1,105 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public struct StringIdEvent
+{
+    public string id;
+    public UnityEvent unityEvent;
+}
+
 public class WaitBehavior : MonoBehaviour
 {
-    [SerializeField] private string purpose;
-    public UnityEvent endWaitForSeconds, endWaitForZero;
-    
-    private int waitAmount;
-    private WaitForSeconds wfsObj = new WaitForSeconds(1);
-    private WaitForFixedUpdate wffuObj = new WaitForFixedUpdate();
+    public List<StringIdEvent> endWaitForSeconds;
+    public List<StringIdEvent> endWaitForZero;
+    public List<StringIdEvent> endWaitForFixedUpdate;
 
-    public void startWaitForSecondsEvent(int seconds)
+    private float _secondsToWait;
+    private int _waitAmount;
+    private IntData _intData;
+    private WaitForSeconds _wfs = new WaitForSeconds(1);
+    private WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
+    
+    public void SetSecondsToWait(float seconds){ _secondsToWait = seconds; }
+    public void SetWaitForZeroAmount(IntData amount){ _intData = amount; }
+
+    public void StartWaitForSecondsEvent(string eventID)
     {
-        StartCoroutine(WaitForSecondsEvent(seconds));
+        if (_secondsToWait <= 0) return;
+        StartCoroutine(WaitForSecondsEvent(_secondsToWait, eventID));
     }
 
-    public void startWaitForZeroIntDataEvent(IntData data)
+    public void StartWaitForSecondsEvent(int seconds, string eventID)
     {
-        StartCoroutine(WaitForZeroIntDataEvent(data));
+        StartCoroutine(WaitForSecondsEvent(seconds, eventID));
     }
-    
-    private IEnumerator WaitForZeroIntDataEvent(IntData obj)
+
+    public void StartWaitForZeroIntDataEvent(string eventID)
     {
-        waitAmount = obj.value;
-        
-        while (waitAmount > 0)
-        {
-            waitAmount = obj.value;
-            yield return wffuObj;
-        }
-        endWaitForZero.Invoke();
+        if (_intData == null) return;
+        StartCoroutine(WaitForZeroIntDataEvent(_intData, eventID));
     }
-    
-    private IEnumerator WaitForSecondsEvent(int num)
+
+    public void StartWaitForZeroIntDataEvent(IntData data, string eventID)
     {
-        waitAmount = num;
-        
-        while (waitAmount > 0)
+        StartCoroutine(WaitForZeroIntDataEvent(data, eventID));
+    }
+
+    public void StartWaitForFixedUpdateEvent(string eventID)
+    {
+        StartCoroutine(WaitForFixedUpdateEvent(eventID));
+    }
+
+    private IEnumerator WaitForSecondsEvent(float num, string eventID)
+    {
+        _secondsToWait = num;
+        while (_secondsToWait > 0)
         {
-            waitAmount--;
-            yield return wfsObj;
+            _secondsToWait--;
+            yield return _wfs;
         }
-        endWaitForSeconds.Invoke();
+
+        foreach (var StringIdEvent in endWaitForSeconds)
+        {
+            if (StringIdEvent.id == eventID)
+            {
+                StringIdEvent.unityEvent.Invoke();
+                break;
+            }
+        }
+    }
+
+    private IEnumerator WaitForZeroIntDataEvent(IntData obj, string eventID)
+    {
+        _waitAmount = obj.value;
+        while (_waitAmount > 0)
+        {
+            _waitAmount = obj.value;
+            yield return _wffu;
+        }
+
+        foreach (var StringIdEvent in endWaitForZero)
+        {
+            if (StringIdEvent.id == eventID)
+            {
+                StringIdEvent.unityEvent.Invoke();
+                break;
+            }
+        }
+    }
+
+    private IEnumerator WaitForFixedUpdateEvent(string eventID)
+    {
+        yield return _wffu;
+        foreach (var StringIdEvent in endWaitForFixedUpdate)
+        {
+            if (StringIdEvent.id == eventID)
+            {
+                StringIdEvent.unityEvent.Invoke();
+                break;
+            }
+        }
     }
 }

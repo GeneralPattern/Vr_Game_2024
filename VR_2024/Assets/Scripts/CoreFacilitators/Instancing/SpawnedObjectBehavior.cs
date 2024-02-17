@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpawnedObjectBehavior : MonoBehaviour
 {
     private SpawnedObjectData _spawnedObjectData;
-    public float ammoRespawnTime;
+    public float respawnTime;
     
     private void Awake()
     {
@@ -15,6 +15,8 @@ public class SpawnedObjectBehavior : MonoBehaviour
     public SpawnManager GetSpawnManager() { return _spawnedObjectData.spawnManager; }
     
     public void SetSpawnPosition(Vector3 spawnPosition) { _spawnedObjectData.SetSpawnPosition(spawnPosition); }
+    public void SetSpawnPosition(Transform spawnPosition) { _spawnedObjectData.SetSpawnPosition(spawnPosition.position); }
+    public void SetSpawnPosition(GameObject spawnPosition) { _spawnedObjectData.SetSpawnPosition(spawnPosition.transform.position); }
     public Vector3 GetSpawnPosition() { return _spawnedObjectData.GetSpawnPosition(); }
     
     public void SetSpawnRotation(Quaternion spawnRotation) { _spawnedObjectData.SetSpawnRotation(spawnRotation); }
@@ -27,9 +29,9 @@ public class SpawnedObjectBehavior : MonoBehaviour
     
     public void SetSpawnTime()
     {
-        if (_spawnedObjectData.spawnManager.GetSpawnDelay() != ammoRespawnTime)
+        if (_spawnedObjectData.spawnManager.GetSpawnDelay() != respawnTime)
         {
-            _spawnedObjectData.spawnManager.SetSpawnDelay(ammoRespawnTime);
+            _spawnedObjectData.spawnManager.SetSpawnDelay(respawnTime);
         }
     }
 }
