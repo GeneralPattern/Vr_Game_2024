@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,16 +11,32 @@ public class NavCreepController : MonoBehaviour, IDamageDealer
     
     private NavAgentBehavior _agentBehavior;
     private HealthBehavior _health;
+    
+    private WaitForFixedUpdate _wffu;
 
     private void Awake()
     {
         _health = GetComponent<HealthBehavior>();
-        _agentBehavior = GetComponent<NavAgentBehavior>();
+        _wffu = new WaitForFixedUpdate();
+        StartCoroutine(Setup());
+    }
+    
+    private IEnumerator Setup()
+    {
+        var attempts = 0;
+        while (_agentBehavior == null && attempts < 5)
+        {
+            _agentBehavior = GetComponent<NavAgentBehavior>();
+            attempts++;
+            yield return _wffu;
+        }
+        if (_agentBehavior == null) { Debug.LogError("NavAgentBehavior not found in " + name); yield break; }
         _agentBehavior.SetSpeed(creepData.speed);
         _agentBehavior.SetRadius(creepData.radius);
         _agentBehavior.SetHeight(creepData.height);
         _health.maxHealth = creepData.health;
         _health.health = creepData.health;
+        
     }
     
     public void StopMovement()

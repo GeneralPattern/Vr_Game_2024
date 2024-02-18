@@ -85,18 +85,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
-      propertyPath: fireForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
-        type: 3}
       propertyPath: fireDirection.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
-        type: 3}
-      propertyPath: fireDirection.y
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7771519555260221140, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}

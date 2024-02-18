@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class SpawnedObjectBehavior : MonoBehaviour
-{
+{ 
     private SpawnedObjectData _spawnedObjectData;
     public float respawnTime;
     
@@ -12,15 +12,20 @@ public class SpawnedObjectBehavior : MonoBehaviour
     }
     
     public void SetSpawnManager(SpawnManager spawnManager) { _spawnedObjectData.spawnManager = spawnManager; }
-    public SpawnManager GetSpawnManager() { return _spawnedObjectData.spawnManager; }
-    
-    public void SetSpawnPosition(Vector3 spawnPosition) { _spawnedObjectData.SetSpawnPosition(spawnPosition); }
-    public void SetSpawnPosition(Transform spawnPosition) { _spawnedObjectData.SetSpawnPosition(spawnPosition.position); }
-    public void SetSpawnPosition(GameObject spawnPosition) { _spawnedObjectData.SetSpawnPosition(spawnPosition.transform.position); }
+
     public Vector3 GetSpawnPosition() { return _spawnedObjectData.GetSpawnPosition(); }
-    
-    public void SetSpawnRotation(Quaternion spawnRotation) { _spawnedObjectData.SetSpawnRotation(spawnRotation); }
+    public void SetSpawnPosition(Vector3 spawnPosition)
+    {
+        _spawnedObjectData.SetSpawnPosition(spawnPosition);
+        transform.position = spawnPosition;
+    }
+
     public Quaternion GetSpawnRotation() { return _spawnedObjectData.GetSpawnRotation(); }
+    public void SetSpawnRotation(Quaternion spawnRotation)
+    {
+        _spawnedObjectData.SetSpawnRotation(spawnRotation);
+        transform.rotation = spawnRotation;
+    }
 
     public void TriggerRespawn()
     {
@@ -32,6 +37,14 @@ public class SpawnedObjectBehavior : MonoBehaviour
         if (_spawnedObjectData.spawnManager.GetSpawnDelay() != respawnTime)
         {
             _spawnedObjectData.spawnManager.SetSpawnDelay(respawnTime);
+        }
+    }
+    
+    private void OnDisable()
+    {
+        // if (_spawnedObjectData.spawnManager is AdvancedSpawnManager advancedSpawnManager)
+        {
+            // advancedSpawnManager.NotifyObjectRemoval(spawnLocation);
         }
     }
 }

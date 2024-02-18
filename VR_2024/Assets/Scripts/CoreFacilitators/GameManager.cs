@@ -3,11 +3,16 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent startGameEvent, gameOverEvent, restartGameEvent;
+    public UnityEvent initializeSceneEvent, startGameEvent, gameOverEvent, restartGameEvent;
     
     private void Start()
     {
-        StartGame();
+        InitializeScene();
+    }
+    
+    public void InitializeScene()
+    {
+        initializeSceneEvent.Invoke();
     }
 
     public void StartGame()

@@ -11,11 +11,4 @@ public class NavCreepSpawnManager : SpawnManager
         obj.GetComponent<NavAgentBehavior>().Setup(pathingTarget);
         base.Spawn(obj);
     }
-    
-    protected override GameObject FetchPrefab(PrefabData data)
-    {
-        var creepPrefabData = (CreepPrefabData)data;
-        creepPrefabData.creepData.totalSpawned += 1;
-        return base.FetchPrefab(creepPrefabData);
-    }
 }

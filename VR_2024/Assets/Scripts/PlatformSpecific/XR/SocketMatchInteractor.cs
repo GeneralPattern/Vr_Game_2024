@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using Object = UnityEngine.Object;
 
 public class SocketMatchInteractor : XRSocketInteractor
 {
