@@ -10,57 +10,80 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     public SpawnerData spawnerData;
 
-    public bool usePriority, spawnOnStart, setTransformToThisTransform;
+    public bool usePriority, spawnOnStart;
+    public Transform spawnLocation;
 
+    // ReSharper disable once NotAccessedField.Local
     [SerializeField] [ReadOnly] private int activeCount;
     
     public int numToSpawn = 10, poolSize = 10;
     public float poolCreationDelay = 1.0f, spawnDelay = 1.0f, spawnRate = 0.3f;
+
+    private int spawnedCount
+    {
+        get => spawnerData.GetAliveCount();
+        set => spawnerData.activeCount.UpdateValue(value);
+    }
     
-    private int _spawnedCount;
+    private bool _overrideLocation;
 
     private WaitForSeconds _waitForSpawnRate, _waitForSpawnDelay, _waitForPoolDelay;
     private WaitForFixedUpdate _wffu;
     private PrefabDataList _prefabSet;
     private List<GameObject> _pooledObjects;
-
+    
+    private Coroutine _spawnRoutine;
+    
     public void SetSpawnDelay(float newDelay) 
     { 
         spawnDelay = newDelay;
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
     }
     public float GetSpawnDelay() { return spawnDelay; }
-    
-    public void SetPoolSize(int newSize) { poolSize = newSize; }
-    public int GetPoolSize() { return poolSize; }
 
     public void SetSpawnRate(float newRate)
     {
         spawnRate = newRate;
         _waitForSpawnRate = new WaitForSeconds(spawnRate);
     }
-    public float GetSpawnRate() { return spawnRate; }
     
     private void Awake()
     {
-        activeCount = 0;
+        spawnedCount = 0;
         _waitForSpawnRate = new WaitForSeconds(spawnRate);
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
         _waitForPoolDelay = new WaitForSeconds(poolCreationDelay);
         _wffu = new WaitForFixedUpdate();
+        if (!spawnerData) { Debug.LogError("SpawnerData not found in " + name); return; }
         spawnerData.ResetSpawner();
         _prefabSet = spawnerData.prefabDataList;
         StartCoroutine(DelayPoolCreation());
+        if(!spawnLocation) spawnLocation = transform;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        if (spawnOnStart) StartSpawn(numToSpawn);
+        if (spawnOnStart)
+        {
+            var originalSpawnDelay = spawnDelay;
+            spawnDelay += poolCreationDelay;
+            StartSpawn(numToSpawn);
+            spawnDelay = originalSpawnDelay;
+        }
     }
 
     public void StartSpawn(int amount)
     {
-        numToSpawn = amount;
+        if (_spawnRoutine != null) return;
+        numToSpawn = (amount > 0) ? amount : numToSpawn;
+        StartSpawn();
+    }
+
+    public void StartSpawn()
+    {
+        if (_spawnRoutine != null) return;
+        numToSpawn = (numToSpawn > 0) ? numToSpawn : 1;
+        if (spawnedCount > 0) spawnerData.ResetSpawner();
         StartCoroutine(DelaySpawn());
     }
 
@@ -74,7 +97,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
     {
         yield return _wffu;
         yield return _waitForSpawnDelay;
-        StartCoroutine(Spawner());
+        StartCoroutine(SpawnRoutine());
     }
     
     private void CreatePool()
@@ -100,17 +123,38 @@ public class SpawnManager : MonoBehaviour, INeedButton
         }
     }
 
-    private IEnumerator Spawner()
+    private IEnumerator SpawnRoutine()
     {
-        _spawnedCount = 0;
-        while (_spawnedCount < numToSpawn)
+        spawnedCount = 0;
+        while (spawnedCount < numToSpawn)
         {
-            activeCount =  spawnerData.GetAliveCount();
-            var spawnObj = FetchFromPool();
-            if (spawnObj) Spawn(spawnObj);
-            else IncreasePoolAndSpawn();
+            InternalSpawnRoutine();
             yield return _waitForSpawnRate;
         }
+    }
+    
+    protected virtual void InternalSpawnRoutine()
+    {
+        spawnedCount =  spawnerData.GetAliveCount();
+        var spawnObj = FetchFromPool();
+        if (spawnObj) Spawn(spawnObj);
+        else IncreasePoolAndSpawn();
+    }
+    
+    protected virtual void Spawn(GameObject obj)
+    {
+        if (!obj) return;
+
+        var rb = obj.GetComponent<Rigidbody>();
+        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
+
+        if (rb) rb.velocity = Vector3.zero;
+        
+        ProcessSpawnedObject(spawnObj);
+
+        obj.SetActive(true);
+        spawnedCount++;
+        onSpawn.Invoke();
     }
     
     private GameObject FetchFromPool()
@@ -126,41 +170,35 @@ public class SpawnManager : MonoBehaviour, INeedButton
         return null;
     }
     
-    protected virtual void Spawn(GameObject obj)
+    protected virtual void ProcessSpawnedObject(SpawnedObjectBehavior spawnObj)
     {
-        if (!obj) return;
-
-        var rb = obj.GetComponent<Rigidbody>();
-        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
-
-        if (rb) rb.velocity = Vector3.zero;
-
-        if (spawnObj)
+        if (spawnObj && spawnLocation)
         {
             spawnObj.SetSpawnManager(this);
-            if (setTransformToThisTransform)
+            if (_overrideLocation)
             {
-                if (spawnObj.GetSpawnPosition() == Vector3.zero) spawnObj.SetSpawnPosition(transform.position);
-                if (spawnObj.GetSpawnRotation() == Quaternion.identity) spawnObj.SetSpawnRotation(Quaternion.identity);
+                spawnObj.SetSpawnPosition(spawnLocation.position);
+                spawnObj.SetSpawnRotation(spawnLocation.rotation);
             }
-
-            obj.transform.position = spawnObj.GetSpawnPosition();
-            obj.transform.rotation = spawnObj.GetSpawnRotation();
+            else
+            {
+                var potentialSpawnPos = spawnObj.GetSpawnPosition();
+                var potentialSpawnRot = spawnObj.GetSpawnRotation();
+            
+                spawnObj.SetSpawnPosition(potentialSpawnPos != Vector3.zero ? potentialSpawnPos : spawnLocation.position);
+                spawnObj.SetSpawnRotation(potentialSpawnRot == Quaternion.identity ? potentialSpawnRot : spawnLocation.rotation);
+            }
         }
         else
         {
-            obj.transform.position = transform.position;
-            obj.transform.rotation = Quaternion.identity;
+            var objTransform = spawnObj.transform;
+            objTransform.position = transform.position;
+            objTransform.rotation = Quaternion.identity;
         }
-
-        obj.SetActive(true);
-        _spawnedCount++;
-        spawnerData.IncrementActiveInstancesCount();
-        onSpawn.Invoke();
     }
 
     protected void IncreasePoolAndSpawn()
-    {
+    {   
         int totalPriority = spawnerData.prefabDataList.GetPriority();
         int randomNumber = Random.Range(0, totalPriority);
         int sum = 0;
@@ -191,14 +229,9 @@ public class SpawnManager : MonoBehaviour, INeedButton
         _pooledObjects.Add(obj);
         obj.SetActive(false);
     }
-    
-    public void ButtonAction()
-    {
-       StartSpawn(numToSpawn);
-    }
 
-    public string GetButtonName()
+    public List<(System.Action, string)> GetButtonActions()
     {
-        return "Spawn";
+        return new List<(System.Action, string)> { (() => StartSpawn(numToSpawn), "Spawn") };
     }
 }

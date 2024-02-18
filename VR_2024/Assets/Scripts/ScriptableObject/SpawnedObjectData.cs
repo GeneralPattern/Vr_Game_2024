@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnedObjectData : ScriptableObject
 {
-    [HideInInspector] public SpawnManager spawnManager { get; set; }
+    public SpawnManager spawnManager { get; set; }
     
     private Vector3Data _spawnPosition;
     public void SetSpawnPosition(Vector3 spawnPosition) { _spawnPosition.value = spawnPosition; }
