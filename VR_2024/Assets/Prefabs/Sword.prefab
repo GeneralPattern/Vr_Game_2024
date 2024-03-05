@@ -57,22 +57,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.063
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.817
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
@@ -82,7 +82,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
@@ -139,6 +139,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3676125185261486996}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7998452306150262011}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
@@ -148,6 +152,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6512458281460464244}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1904282626790665596}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2529840004862625664}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3436590127454024626}
   m_SourcePrefab: {fileID: 100100000, guid: de44aed92ddd15e41a824d55633eaa91, type: 3}
 --- !u!1 &2428749710194030745 stripped
 GameObject:
@@ -174,8 +190,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.553716, y: 48.82399, z: 10.096696}
-  m_Center: {x: -1.8104885, y: 16.044939, z: -0.1163587}
+  m_Size: {x: 4.9531975, y: 34.53098, z: 0.5891296}
+  m_Center: {x: 0.26521868, y: 23.191486, z: -0.110326454}
+--- !u!135 &3676125185261486996
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428749710194030745}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7998452306150262011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -217,7 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 5009169836352066477}
+  - {fileID: 0}
+  - {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -375,6 +413,101 @@ MonoBehaviour:
   onRelease:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1904282626790665596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428749710194030745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084cda31011b9ca4a806fa24ee9735db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idObj: {fileID: 11400000, guid: b6cff83debbaa4740ac2b1be65e65933, type: 2}
+  triggerEnterMatches:
+  - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3436590127454024626}
+          m_TargetAssemblyTypeName: Rigidbody3DBehavior, Assembly-CSharp
+          m_MethodName: ToggleGravity
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3436590127454024626}
+          m_TargetAssemblyTypeName: Rigidbody3DBehavior, Assembly-CSharp
+          m_MethodName: ZeroOutVelocity
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2529840004862625664}
+          m_TargetAssemblyTypeName: TransformBehavior, Assembly-CSharp
+          m_MethodName: ResetTransform
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3436590127454024626}
+          m_TargetAssemblyTypeName: Rigidbody3DBehavior, Assembly-CSharp
+          m_MethodName: ToggleGravity
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2529840004862625664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428749710194030745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9da4a8154a2a54ba05a08e8fc35543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setToStartTransform: 1
+  setPosition: {x: 0, y: 0, z: 0}
+  setRotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3436590127454024626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428749710194030745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb823966f35bb7d48b01c48b9876196f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 7998452306150262011}
+  useGravity: 1
 --- !u!4 &3098325166816682531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,

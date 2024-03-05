@@ -85,18 +85,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
-      propertyPath: fireForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
-        type: 3}
       propertyPath: fireDirection.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
-        type: 3}
-      propertyPath: fireDirection.y
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7771519555260221140, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
@@ -111,40 +101,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 35433345984661303, guid: dd71d34adeacb304384e49f9f9b42e0d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3594226949313471756}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd71d34adeacb304384e49f9f9b42e0d, type: 3}
---- !u!1 &6689709427120634185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 35433345984661303, guid: dd71d34adeacb304384e49f9f9b42e0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6677568547793010302}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3594226949313471756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6689709427120634185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56cd28e0a55121e48827166219c4c69f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onSpawn:
-    m_PersistentCalls:
-      m_Calls: []
-  spawnerData: {fileID: 11400000, guid: 5e28332ae5f734a4080421fc535f685c, type: 2}
-  usePriority: 0
-  spawnOnStart: 0
-  setTransformToThisTransform: 0
-  activeCount: 0
-  numToSpawn: 1
-  poolSize: 1
-  poolCreationDelay: 1
-  spawnDelay: 1
-  spawnRate: 0

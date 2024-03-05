@@ -1,43 +1,42 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu (fileName = "SpawnerData", menuName = "Data/ManagerData/SpawnerData")]
 public class SpawnerData : ScriptableObject
 {
-    [HideInInspector] public int activeInstancesCount;
-    public IntData globalActiveInstancesCount;
+    // ReSharper disable once NotAccessedField.Global
+    [SerializeField] [ReadOnly] public int activeInstances;
+    public IntData activeCount;
     public PrefabDataList prefabDataList;
 
     private void Awake()
     {
+        if (activeCount == null) activeCount = CreateInstance<IntData>();
+        
         ResetSpawner();
     }
 
     public void ResetSpawner()
     {
-        activeInstancesCount = 0;
+        activeCount.SetValue(0);
+        activeInstances = activeCount.value;
     }
 
     public int GetAliveCount()
     {
-        if (activeInstancesCount < 0) activeInstancesCount = 0;
-        return activeInstancesCount;
+        var count = activeCount.value;
+        if (count < 0) activeCount.SetValue(0);
+        return activeCount.value;
     }
     
-    public void IncrementActiveInstancesCount()
+    public void IncrementCount()
     {
-        globalActiveInstancesCount.UpdateValue(1);
-        activeInstancesCount += 1;
+        activeCount.UpdateValue(1);
+        activeInstances = activeCount.value;
     }
 
-    private void DecrementActiveInstancesCount()
+    public void DecrementCount()
     {
-        globalActiveInstancesCount.UpdateValue(-1);
-        activeInstancesCount -= 1;
-    }
-
-    public void InstanceRemoved()
-    {
-        DecrementActiveInstancesCount();
+        activeCount.UpdateValue(-1);
+        activeInstances = activeCount.value;
     }
 }

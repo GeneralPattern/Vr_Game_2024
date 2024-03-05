@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 5717097105054219033}
   - component: {fileID: 919918478158659066}
   - component: {fileID: 1655934223155502546}
-  - component: {fileID: 5205379159137288752}
   - component: {fileID: 8596837145433627448}
   - component: {fileID: 7023567510724138398}
+  - component: {fileID: 6345085156865375072}
+  - component: {fileID: -1384171436132759502}
+  - component: {fileID: 3383906863256626595}
   m_Layer: 10
   m_Name: Cannonball
   m_TagString: Untagged
@@ -310,19 +312,6 @@ MonoBehaviour:
   onRelease:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5205379159137288752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281101536470286139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 758bba6c5a10eb840bf779d0dec9fc87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idObj: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
 --- !u!114 &8596837145433627448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
   triggerEnterMatches:
-  - nameIdObj: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
+  - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
@@ -365,20 +354,70 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 7281101536470286139}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: -1384171436132759502}
+          m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+          m_MethodName: StartWaitForFixedUpdateEvent
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
+            m_StringArgument: deactivate
+            m_BoolArgument: 1
           m_CallState: 2
-  - nameIdObj: {fileID: 11400000, guid: 9f5ff81a699609342b5b360edd1a0b78, type: 2}
-    triggerEvent:
+--- !u!114 &7023567510724138398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281101536470286139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de0a280a8dcd874a9ab022f3c4388b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 3
+--- !u!114 &6345085156865375072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281101536470286139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb823966f35bb7d48b01c48b9876196f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 5717097105054219033}
+  useGravity: 1
+--- !u!114 &-1384171436132759502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281101536470286139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endWaitForSeconds:
+  - id: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endWaitForZero:
+  - id: 
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endWaitForFixedUpdate:
+  - id: deactivate
+    unityEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7281101536470286139}
@@ -393,7 +432,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &7023567510724138398
+--- !u!114 &3383906863256626595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,7 +441,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7281101536470286139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de0a280a8dcd874a9ab022f3c4388b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 277736d8df898774dae62025d1af1ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoRespawnTime: 3
+  onDurabilityDepleted:
+    m_PersistentCalls:
+      m_Calls: []
+  durability: 100
+  damage: 0

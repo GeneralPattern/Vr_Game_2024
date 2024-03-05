@@ -4,13 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using Object = UnityEngine.Object;
 
 public class SocketMatchInteractor : XRSocketInteractor
 {
     [System.Serializable]
     public struct PossibleMatch
     {
-        public ID nameIdObj;
+        public ID id;
     }
 
     [SerializeField]
@@ -66,7 +67,7 @@ public class SocketMatchInteractor : XRSocketInteractor
     private bool CheckId(Object nameId)
     {
         if (triggerID == null) return false;
-        return nameId != null && triggerID.Any(obj => nameId == obj.nameIdObj);
+        return nameId != null && triggerID.Any(obj => nameId == obj.id);
     }
 
     public override bool CanHover(IXRHoverInteractable interactable)
