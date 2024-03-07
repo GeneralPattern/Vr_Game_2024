@@ -4912,6 +4912,7 @@ Transform:
   m_Children:
   - {fileID: 1470501949}
   - {fileID: 1874771188554680405}
+  - {fileID: 1479102516}
   m_Father: {fileID: 873119574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1246730100
@@ -5790,6 +5791,85 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6029987145392036956, guid: cb98aaa1ba08bd449b5a5cfa50f35361, type: 3}
+--- !u!1001 &1479102515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1244882421}
+    m_Modifications:
+    - target: {fileID: -9083884441078125805, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bbb692dd6618ae940b55637103e7fac7, type: 2}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a9bbfe60642b241488b248f0d8cafa84,
+        type: 3}
+      propertyPath: m_Name
+      value: Bow Filler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9bbfe60642b241488b248f0d8cafa84, type: 3}
+--- !u!4 &1479102516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9bbfe60642b241488b248f0d8cafa84,
+    type: 3}
+  m_PrefabInstance: {fileID: 1479102515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1484507530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6883640830475495972, guid: cb98aaa1ba08bd449b5a5cfa50f35361,
@@ -8084,6 +8164,17 @@ PrefabInstance:
       propertyPath: m_InteractionLayers.m_Bits
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6319580042757846042, guid: 5b31195bc445140409778d74b7ace232,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4686849319519084627, guid: 87c0842a9454fbf4cb990f3dff95e52b,
+        type: 3}
+    - target: {fileID: 7254341601079223220, guid: 5b31195bc445140409778d74b7ace232,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fa44f2e449bdda4d9822c929af76d52, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
