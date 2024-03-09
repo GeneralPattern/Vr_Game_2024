@@ -37,4 +37,19 @@ public class Rigidbody3DBehavior : MonoBehaviour
     {
         rigidBody.velocity = Vector3.zero;
     }
+    
+    public void ZeroOutAngularVelocity()
+    {
+        rigidBody.angularVelocity = Vector3.zero;
+    }
+    
+    public void FreezeRigidbody()
+    {
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+    
+    public void UnFreezeRigidbody()
+    {
+        rigidBody.constraints = RigidbodyConstraints.None;
+    }
 }
