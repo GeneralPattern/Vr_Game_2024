@@ -81,27 +81,27 @@ PrefabInstance:
     - target: {fileID: -5378381812545732338, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11546682542203883, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       propertyPath: m_Name
-      value: SharkModel
+      value: Shark
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6727007405964328823, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110,11 +110,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1302839861742248298}
+      addedObject: {fileID: 2416006670379812770}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5816105469764693319}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bc0a133b53ec334c8094512bba4dbb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4868366705470625697}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bc0a133b53ec334c8094512bba4dbb9,
         type: 3}
       insertIndex: -1
@@ -142,8 +146,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9018697618075728775}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1302839861742248298
-BoxCollider:
+--- !u!136 &2416006670379812770
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,14 +159,16 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 5120
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.0311735, z: 3.9150572}
-  m_Center: {x: -9.365491e-16, y: -0.088496804, z: -0.23650227}
+  serializedVersion: 2
+  m_Radius: 0.514441
+  m_Height: 3.8194685
+  m_Direction: 2
+  m_Center: {x: -0.0069346814, y: -0.09098995, z: -0.19834237}
 --- !u!114 &5816105469764693319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 1d5b471cb37600f458ef1f4fcd473db1, type: 2}
+  debug: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
@@ -183,7 +190,19 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 11400000, guid: cc15c70139498e04d95dbb067fbeadf2, type: 2}
           m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
-          m_MethodName: RaiseAction
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7972813844166388862}
+          m_TargetAssemblyTypeName: Rigidbody3DBehavior, Assembly-CSharp
+          m_MethodName: ToggleGravity
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -205,9 +224,40 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 4868366705470625697}
+          m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+          m_MethodName: StartWaitForFixedUpdateEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: pause for reset
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &4868366705470625697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208285733801002710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endWaitForSeconds: []
+  endWaitForZero: []
+  endWaitForFixedUpdate:
+  - id: pause for reset
+    onComplete:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 7003594777373466921}
           m_TargetAssemblyTypeName: TransformBehavior, Assembly-CSharp
-          m_MethodName: SetPosition
+          m_MethodName: ResetToStartTransform
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -236,7 +286,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -258,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 1302839861742248298}
+  - {fileID: 2416006670379812770}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -428,7 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9da4a8154a2a54ba05a08e8fc35543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setToStartTransform: 1
   setPosition: {x: 0, y: 0, z: 0}
   setRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7972813844166388862

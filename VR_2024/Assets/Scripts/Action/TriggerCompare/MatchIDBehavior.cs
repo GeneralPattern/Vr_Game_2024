@@ -13,6 +13,7 @@ public class MatchIDBehavior : IDBehavior
     }
 
     private WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
+    public bool debug;
     public List<PossibleMatch> triggerEnterMatches;
     private ID _otherIdObj;
 
@@ -31,11 +32,12 @@ public class MatchIDBehavior : IDBehavior
         foreach (var obj in possibleMatches)
         {
             if (_otherIdObj != obj.id) continue;
+            if (debug) Debug.Log($"Match found on: {this} with {obj.id}");
             noMatch = false;
             obj.triggerEvent.Invoke();
             yield return _wffu;
         }
-        if (noMatch) 
+        if (noMatch && debug) 
             Debug.Log($"No match found on: {this}");
     }
 }

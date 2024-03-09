@@ -40,8 +40,8 @@ public class NavAgentBehavior : MonoBehaviour
     public void Setup(Transform dest)
     {
         destination = dest;
-        if (_ai == null) _ai = GetComponent<NavMeshAgent>();
-        _ai.SetDestination(destination.position);
+        if (!_ai) _ai = GetComponent<NavMeshAgent>();
+        if (_ai) _ai.SetDestination(destination.position);
     }
 
     private void StartEndPathCheck()

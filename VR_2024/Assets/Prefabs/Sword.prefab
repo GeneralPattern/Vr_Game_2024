@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4444640708804645725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5885600390969276766}
+  - component: {fileID: 1743374235046239617}
+  - component: {fileID: 8772880353196411667}
+  m_Layer: 12
+  m_Name: Edge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5885600390969276766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444640708804645725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.11, y: 20.97, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3098325166816682531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1743374235046239617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444640708804645725}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.5452695, y: 34.31387, z: 2.7995322}
+  m_Center: {x: 0.13232939, y: 4.7138066, z: 0.12209356}
+--- !u!114 &8772880353196411667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444640708804645725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758bba6c5a10eb840bf779d0dec9fc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idObj: {fileID: 11400000, guid: 524fb3f573a236740969de4566385041, type: 2}
 --- !u!1 &7510531299503459307
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,42 +124,42 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.051
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.054
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.754
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9862541
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.1652356
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 19.022
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
@@ -114,6 +181,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -3901992563441801604, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fa44f2e449bdda4d9822c929af76d52, type: 2}
+    - target: {fileID: -376499447422176814, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4686849319519084627, guid: 87c0842a9454fbf4cb990f3dff95e52b,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       propertyPath: m_Name
@@ -131,6 +209,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8003997715660092588}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: de44aed92ddd15e41a824d55633eaa91,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5885600390969276766}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
@@ -139,7 +221,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3676125185261486996}
+      addedObject: {fileID: 7610201555326666695}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de44aed92ddd15e41a824d55633eaa91,
         type: 3}
       insertIndex: -1
@@ -190,10 +272,10 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.9531975, y: 34.53098, z: 0.5891296}
-  m_Center: {x: 0.26521868, y: 23.191486, z: -0.110326454}
---- !u!135 &3676125185261486996
-SphereCollider:
+  m_Size: {x: 5.884318, y: 47.245846, z: 0.5891296}
+  m_Center: {x: 0.7307807, y: 16.834053, z: -0.110329315}
+--- !u!136 &7610201555326666695
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -210,9 +292,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 6.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 3.9475427
+  m_Height: 12.433619
+  m_Direction: 1
+  m_Center: {x: -1.8776522, y: -0.34128428, z: -0.17246568}
 --- !u!54 &7998452306150262011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,7 +321,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &5203473155589607764
@@ -254,8 +338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5009169836352066477}
+  - {fileID: 7610201555326666695}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -426,14 +510,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: b6cff83debbaa4740ac2b1be65e65933, type: 2}
+  debug: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3436590127454024626}
-          m_TargetAssemblyTypeName: Rigidbody3DBehavior, Assembly-CSharp
-          m_MethodName: ToggleGravity
+        - m_Target: {fileID: 2529840004862625664}
+          m_TargetAssemblyTypeName: TransformBehavior, Assembly-CSharp
+          m_MethodName: ResetToStartTransform
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -455,21 +540,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 2529840004862625664}
-          m_TargetAssemblyTypeName: TransformBehavior, Assembly-CSharp
-          m_MethodName: ResetTransform
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 3436590127454024626}
           m_TargetAssemblyTypeName: Rigidbody3DBehavior, Assembly-CSharp
-          m_MethodName: ToggleGravity
+          m_MethodName: ZeroOutAngularVelocity
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -491,7 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9da4a8154a2a54ba05a08e8fc35543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setToStartTransform: 1
   setPosition: {x: 0, y: 0, z: 0}
   setRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &3436590127454024626
