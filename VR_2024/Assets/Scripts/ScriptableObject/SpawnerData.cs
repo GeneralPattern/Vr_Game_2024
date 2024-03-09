@@ -10,9 +10,8 @@ public class SpawnerData : ScriptableObject
 
     private void Awake()
     {
-        if (activeCount == null) activeCount = CreateInstance<IntData>();
-        
-        ResetSpawner();
+        if (activeCount == null) Debug.LogError("Missing IntData for activeCount on SpawnerData" + name);
+        activeInstances = activeCount.value;
     }
 
     public void ResetSpawner()
@@ -23,8 +22,7 @@ public class SpawnerData : ScriptableObject
 
     public int GetAliveCount()
     {
-        var count = activeCount.value;
-        if (count < 0) activeCount.SetValue(0);
+        if (activeCount.value < 0) activeCount.SetValue(0);
         return activeCount.value;
     }
     

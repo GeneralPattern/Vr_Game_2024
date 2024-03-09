@@ -6,15 +6,16 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour, INeedButton
 {
-    public UnityEvent onSpawn;
+    public UnityEvent onSpawn, onSpawningComplete;
 
     public SpawnerData spawnerData;
 
     public bool usePriority, spawnOnStart;
     public Transform spawnLocation;
 
-    // ReSharper disable once NotAccessedField.Local
+#pragma warning disable CS0414 // Field is assigned but its value is never used
     [SerializeField] [ReadOnly] private int activeCount;
+#pragma warning restore CS0414 // Field is assigned but its value is never used
     
     public int numToSpawn = 10, poolSize = 10;
     public float poolCreationDelay = 1.0f, spawnDelay = 1.0f, spawnRate = 0.3f;
@@ -34,6 +35,8 @@ public class SpawnManager : MonoBehaviour, INeedButton
     
     private Coroutine _spawnRoutine;
     
+    public bool allowSpawn { get; set; } = true;
+
     public void SetSpawnDelay(float newDelay) 
     { 
         spawnDelay = newDelay;
@@ -49,20 +52,20 @@ public class SpawnManager : MonoBehaviour, INeedButton
     
     private void Awake()
     {
-        spawnedCount = 0;
         _waitForSpawnRate = new WaitForSeconds(spawnRate);
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
         _waitForPoolDelay = new WaitForSeconds(poolCreationDelay);
         _wffu = new WaitForFixedUpdate();
-        if (!spawnerData) { Debug.LogError("SpawnerData not found in " + name); return; }
-        spawnerData.ResetSpawner();
-        _prefabSet = spawnerData.prefabDataList;
-        StartCoroutine(DelayPoolCreation());
         if(!spawnLocation) spawnLocation = transform;
     }
 
     protected virtual void Start()
     {
+        if (!spawnerData) { Debug.LogError("SpawnerData not found in " + name); return; }
+        spawnerData.ResetSpawner();
+        _prefabSet = spawnerData.prefabDataList;
+        StartCoroutine(DelayPoolCreation());
+        
         if (spawnOnStart)
         {
             var originalSpawnDelay = spawnDelay;
@@ -84,13 +87,13 @@ public class SpawnManager : MonoBehaviour, INeedButton
         if (_spawnRoutine != null) return;
         numToSpawn = (numToSpawn > 0) ? numToSpawn : 1;
         if (spawnedCount > 0) spawnerData.ResetSpawner();
-        StartCoroutine(DelaySpawn());
+        _spawnRoutine = StartCoroutine(DelaySpawn());
     }
 
     private IEnumerator DelayPoolCreation()
     {
         yield return _waitForPoolDelay;
-        CreatePool();
+        ProcessPool();
     }
 
     private IEnumerator DelaySpawn()
@@ -100,9 +103,9 @@ public class SpawnManager : MonoBehaviour, INeedButton
         StartCoroutine(SpawnRoutine());
     }
     
-    private void CreatePool()
+    private void ProcessPool(bool spawn = false)
     {
-        _pooledObjects = new List<GameObject>();
+        _pooledObjects ??= new List<GameObject>();
         
         int totalPriority = _prefabSet.GetPriority();
         
@@ -117,6 +120,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
                 {
                     GameObject obj = Instantiate(prefabData.obj);
                     AddToPool(obj);
+                    if (spawn) Spawn(obj);
                     break;
                 }
             }
@@ -131,6 +135,8 @@ public class SpawnManager : MonoBehaviour, INeedButton
             InternalSpawnRoutine();
             yield return _waitForSpawnRate;
         }
+        onSpawningComplete.Invoke();
+        _spawnRoutine = null;
     }
     
     protected virtual void InternalSpawnRoutine()
@@ -146,20 +152,23 @@ public class SpawnManager : MonoBehaviour, INeedButton
         if (!obj) return;
 
         var rb = obj.GetComponent<Rigidbody>();
-        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
 
-        if (rb) rb.velocity = Vector3.zero;
+        if (rb)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
         
-        ProcessSpawnedObject(spawnObj);
-
         obj.SetActive(true);
+        ProcessSpawnedObject(obj);
+
         spawnedCount++;
         onSpawn.Invoke();
     }
     
     private GameObject FetchFromPool()
     {
-        if (_pooledObjects.Count == 0) return null;
+        if (_pooledObjects == null) return null;
         foreach (var obj in _pooledObjects)
         {
             if (!obj.activeInHierarchy)
@@ -170,11 +179,19 @@ public class SpawnManager : MonoBehaviour, INeedButton
         return null;
     }
     
-    protected virtual void ProcessSpawnedObject(SpawnedObjectBehavior spawnObj)
+    protected virtual void ProcessSpawnedObject(GameObject obj)
     {
-        if (spawnObj && spawnLocation)
+        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
+        if (!spawnObj)
         {
-            spawnObj.SetSpawnManager(this);
+            obj.AddComponent<SpawnedObjectBehavior>();
+            Debug.Log("No SpawnObjectBehavior found on passed object in ProcessSpawnedObject Method, adding one...");
+            return;
+        }
+        spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
+        spawnObj.spawnManager = this;
+        if (spawnLocation)
+        {
             if (_overrideLocation)
             {
                 spawnObj.SetSpawnPosition(spawnLocation.position);
@@ -199,32 +216,13 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     protected void IncreasePoolAndSpawn()
     {   
-        int totalPriority = spawnerData.prefabDataList.GetPriority();
-        int randomNumber = Random.Range(0, totalPriority);
-        int sum = 0;
-        foreach (var prefabData in _prefabSet.prefabDataList)
-        {
-            sum += prefabData.priority;
-            if (randomNumber < sum || !usePriority)
-            {
-                var prefab = FetchPrefab(prefabData);
-                AddToPool(prefab);
-                Spawn(prefab);
-                break;
-            }
-        }
-    }
-    
-    protected virtual GameObject FetchPrefab(PrefabData data)
-    {
-        var obj = data.obj;
-        return obj;
+        ProcessPool(true);
     }
     
     protected virtual void AddToPool(GameObject obj)
     {
         var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
-        if(!spawnObj) obj.AddComponent<SpawnedObjectBehavior>();
+        if (!spawnObj) obj.AddComponent<SpawnedObjectBehavior>();
         
         _pooledObjects.Add(obj);
         obj.SetActive(false);

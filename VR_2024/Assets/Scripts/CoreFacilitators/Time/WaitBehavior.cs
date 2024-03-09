@@ -10,7 +10,7 @@ public class WaitBehavior : MonoBehaviour
     public struct StringIdEvent
     {
         public string id;
-        public UnityEvent onComplete;
+        public UnityEvent onWaitFinished;
     }
 
     [System.Serializable]
@@ -18,7 +18,7 @@ public class WaitBehavior : MonoBehaviour
     {
         public string id;
         public float seconds;
-        public UnityEvent onComplete;
+        public UnityEvent onWaitFinished;
     }
 
     [System.Serializable]
@@ -26,7 +26,7 @@ public class WaitBehavior : MonoBehaviour
     {
         public string id;
         public IntData data;
-        public UnityEvent onComplete;
+        public UnityEvent onWaitFinished;
     }
     
     
@@ -39,10 +39,7 @@ public class WaitBehavior : MonoBehaviour
     private IntData _intData;
     private readonly WaitForSeconds _wfms = new WaitForSeconds(0.1f);
     private readonly WaitForSeconds _wfs = new WaitForSeconds(1);
-    private WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
-    
-    public void SetSecondsToWait(float seconds){ _secondsToWait = seconds; }
-    public void SetWaitForZeroAmount(IntData amount){ _intData = amount; }
+    private readonly WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
 
     public void StartWaitForSecondsEvent(string eventID)
     {
@@ -90,7 +87,7 @@ public class WaitBehavior : MonoBehaviour
         foreach (var item in endWaitForSeconds)
         {
             if (item.id != eventID) continue;
-            item.onComplete.Invoke();
+            item.onWaitFinished.Invoke();
             break;
         }
     }
@@ -108,7 +105,7 @@ public class WaitBehavior : MonoBehaviour
         foreach (var item in endWaitForZero)
         {
             if (item.id != eventID) continue;
-            item.onComplete.Invoke();
+            item.onWaitFinished.Invoke();
             break;
         }
     }
@@ -119,7 +116,7 @@ public class WaitBehavior : MonoBehaviour
         foreach (var item in endWaitForFixedUpdate)
         {
             if (item.id != eventID) continue;
-            item.onComplete.Invoke();
+            item.onWaitFinished.Invoke();
             break;
         }
     }
