@@ -257,18 +257,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2929105483588171912}
         m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-        m_MethodName: SetSecondsToWait
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 3
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2929105483588171912}
-        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
         m_MethodName: StartWaitForSecondsEvent
         m_Mode: 5
         m_Arguments:
@@ -307,16 +295,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endWaitForSeconds:
   - id: deactivate
-    seconds: 0
-    onComplete:
+    seconds: 3
+    onWaitFinished:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 251029785398977055}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   endWaitForZero: []
   endWaitForFixedUpdate:
   - id: stopMovement
-    onComplete:
+    onWaitFinished:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 2597922183751111947}
+          m_TargetAssemblyTypeName: NavAgentBehavior, Assembly-CSharp
+          m_MethodName: StopMovement
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &3796367079650681888
 MonoBehaviour:
   m_ObjectHideFlags: 0

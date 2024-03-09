@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4681210892381976526}
   - component: {fileID: 8125470844937638257}
   m_Layer: 0
-  m_Name: Cannonball Spawn Position 1
+  m_Name: Cannonball Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
   spawnerData: {fileID: 0}
   usePriority: 0
   spawnOnStart: 1
-  spawnLocation: {fileID: 0}
+  spawnLocation: {fileID: 928212648418425731}
   activeCount: 0
   numToSpawn: 1
   poolSize: 1

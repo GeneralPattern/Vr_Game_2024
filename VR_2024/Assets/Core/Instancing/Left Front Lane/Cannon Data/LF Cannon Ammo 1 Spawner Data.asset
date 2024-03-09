@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e336f25b0cdb49a46b09e6958c9611af, type: 3}
   m_Name: LF Cannon Ammo 1 Spawner Data
   m_EditorClassIdentifier: 
-  activeInstancesCount: 0
-  globalActiveInstancesCount: {fileID: 11400000, guid: 08ac900e11c9e644b88552f03bd218a7,
-    type: 2}
+  activeInstances: 0
+  activeCount: {fileID: 11400000, guid: 08ac900e11c9e644b88552f03bd218a7, type: 2}
   prefabDataList: {fileID: 11400000, guid: cce5195886a2745459e8b36f9a378e97, type: 2}

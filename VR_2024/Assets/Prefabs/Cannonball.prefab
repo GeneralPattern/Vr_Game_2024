@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8386240886312617786
 Transform:
   m_ObjectHideFlags: 0
@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
+  debug: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
@@ -405,19 +406,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endWaitForSeconds:
-  - id: 
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  endWaitForZero:
-  - id: 
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls: []
+  endWaitForSeconds: []
+  endWaitForZero: []
   endWaitForFixedUpdate:
   - id: deactivate
-    unityEvent:
+    onWaitFinished:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7281101536470286139}
