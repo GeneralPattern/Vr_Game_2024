@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class SpawnedObjectBehavior : MonoBehaviour
+public class AdvancedSpawnedObjectBehavior : MonoBehaviour
 { 
     private WaitForFixedUpdate _wffu = new();
     
-    public SpawnManager spawnManager { get; set; }
+    public AdvancedSpawnManager spawnManager { get; set; }
     
     public Vector3 spawnPosition { get; set; }
     public Quaternion spawnRotation { get; set; }
