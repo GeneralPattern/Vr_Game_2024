@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpawnedObjectBehavior : MonoBehaviour
 { 
     private SpawnedObjectData _spawnedObjectData;
+    private SpawnManager _spawnManager;
     public float respawnTime;
     
     private void Awake()
@@ -11,7 +12,11 @@ public class SpawnedObjectBehavior : MonoBehaviour
         if (GetComponent<SpawnManager>()) _spawnedObjectData.spawnManager = GetComponent<SpawnManager>();
     }
     
-    public void SetSpawnManager(SpawnManager spawnManager) { _spawnedObjectData.spawnManager = spawnManager; }
+    public SpawnManager spawnManager
+    {
+        get => _spawnedObjectData.spawnManager;
+        set => _spawnedObjectData.spawnManager = value;
+    }
 
     public Vector3 GetSpawnPosition() { return _spawnedObjectData.GetSpawnPosition(); }
     public void SetSpawnPosition(Vector3 spawnPosition)

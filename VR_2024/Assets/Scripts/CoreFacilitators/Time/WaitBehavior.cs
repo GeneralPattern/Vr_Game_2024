@@ -3,43 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public struct StringIdEvent
-{
-    public string id;
-    public UnityEvent unityEvent;
-}
-
 public class WaitBehavior : MonoBehaviour
 {
-    public List<StringIdEvent> endWaitForSeconds;
-    public List<StringIdEvent> endWaitForZero;
+
+    [System.Serializable]
+    public struct StringIdEvent
+    {
+        public string id;
+        public UnityEvent onWaitFinished;
+    }
+
+    [System.Serializable]
+    public struct SecondsAndStringIdEvent
+    {
+        public string id;
+        public float seconds;
+        public UnityEvent onWaitFinished;
+    }
+
+    [System.Serializable]
+    public struct IntDataAndStringIdEvent
+    {
+        public string id;
+        public IntData data;
+        public UnityEvent onWaitFinished;
+    }
+    
+    
+    public List<SecondsAndStringIdEvent> endWaitForSeconds;
+    public List<IntDataAndStringIdEvent> endWaitForZero;
     public List<StringIdEvent> endWaitForFixedUpdate;
 
     private float _secondsToWait;
     private int _waitAmount;
     private IntData _intData;
-    private WaitForSeconds _wfs = new WaitForSeconds(1);
-    private WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
-    
-    public void SetSecondsToWait(float seconds){ _secondsToWait = seconds; }
-    public void SetWaitForZeroAmount(IntData amount){ _intData = amount; }
+    private readonly WaitForSeconds _wfms = new WaitForSeconds(0.1f);
+    private readonly WaitForSeconds _wfs = new WaitForSeconds(1);
+    private readonly WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
 
     public void StartWaitForSecondsEvent(string eventID)
     {
-        if (_secondsToWait <= 0) return;
-        StartCoroutine(WaitForSecondsEvent(_secondsToWait, eventID));
+        var seconds = endWaitForSeconds.Find(x => x.id == eventID).seconds;
+        StartCoroutine(WaitForSecondsEvent(seconds, eventID));
     }
 
-    public void StartWaitForSecondsEvent(int seconds, string eventID)
+    public void StartWaitForSecondsEvent(float seconds, string eventID)
     {
         StartCoroutine(WaitForSecondsEvent(seconds, eventID));
     }
 
     public void StartWaitForZeroIntDataEvent(string eventID)
     {
-        if (_intData == null) return;
-        StartCoroutine(WaitForZeroIntDataEvent(_intData, eventID));
+        var data = endWaitForZero.Find(x => x.id == eventID).data;
+        StartCoroutine(WaitForZeroIntDataEvent(data, eventID));
     }
 
     public void StartWaitForZeroIntDataEvent(IntData data, string eventID)
@@ -55,51 +71,53 @@ public class WaitBehavior : MonoBehaviour
     private IEnumerator WaitForSecondsEvent(float num, string eventID)
     {
         _secondsToWait = num;
+        if (_secondsToWait <= 0) yield break;
         while (_secondsToWait > 0)
         {
-            _secondsToWait--;
-            yield return _wfs;
+            if (_secondsToWait > 0) {
+                _secondsToWait--;
+                yield return _wfs;
+            } else
+            {
+                _secondsToWait -= 0.1f;
+                yield return _wfms;
+            }
         }
 
-        foreach (var StringIdEvent in endWaitForSeconds)
+        foreach (var item in endWaitForSeconds)
         {
-            if (StringIdEvent.id == eventID)
-            {
-                StringIdEvent.unityEvent.Invoke();
-                break;
-            }
+            if (item.id != eventID) continue;
+            item.onWaitFinished.Invoke();
+            break;
         }
     }
 
     private IEnumerator WaitForZeroIntDataEvent(IntData obj, string eventID)
     {
         _waitAmount = obj.value;
+        if (_waitAmount <= 0) yield break;
         while (_waitAmount > 0)
         {
             _waitAmount = obj.value;
             yield return _wffu;
         }
 
-        foreach (var StringIdEvent in endWaitForZero)
+        foreach (var item in endWaitForZero)
         {
-            if (StringIdEvent.id == eventID)
-            {
-                StringIdEvent.unityEvent.Invoke();
-                break;
-            }
+            if (item.id != eventID) continue;
+            item.onWaitFinished.Invoke();
+            break;
         }
     }
 
     private IEnumerator WaitForFixedUpdateEvent(string eventID)
     {
         yield return _wffu;
-        foreach (var StringIdEvent in endWaitForFixedUpdate)
+        foreach (var item in endWaitForFixedUpdate)
         {
-            if (StringIdEvent.id == eventID)
-            {
-                StringIdEvent.unityEvent.Invoke();
-                break;
-            }
+            if (item.id != eventID) continue;
+            item.onWaitFinished.Invoke();
+            break;
         }
     }
 }

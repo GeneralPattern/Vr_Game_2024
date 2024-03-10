@@ -257,18 +257,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2929105483588171912}
         m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-        m_MethodName: SetSecondsToWait
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 3
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2929105483588171912}
-        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
         m_MethodName: StartWaitForSecondsEvent
         m_Mode: 5
         m_Arguments:
@@ -307,21 +295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endWaitForSeconds:
   - id: deactivate
-    unityEvent:
+    seconds: 3
+    onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4082646551245953253}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 251029785398977055}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -337,11 +314,11 @@ MonoBehaviour:
   endWaitForZero: []
   endWaitForFixedUpdate:
   - id: stopMovement
-    unityEvent:
+    onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7843516419201182717}
-          m_TargetAssemblyTypeName: NavCreepController, Assembly-CSharp
+        - m_Target: {fileID: 2597922183751111947}
+          m_TargetAssemblyTypeName: NavAgentBehavior, Assembly-CSharp
           m_MethodName: StopMovement
           m_Mode: 1
           m_Arguments:
@@ -365,8 +342,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 9f5ff81a699609342b5b360edd1a0b78, type: 2}
-  triggerEnterMatches:
-  - id: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
-    triggerEvent:
-      m_PersistentCalls:
-        m_Calls: []
+  debug: 0
+  triggerEnterMatches: []

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class TransformBehavior : MonoBehaviour
 {
-    public bool setToStartTransform;
-    
     public Vector3 setPosition;
     public Quaternion setRotation;
     
@@ -19,26 +17,26 @@ public class TransformBehavior : MonoBehaviour
         _startTransformRotation = _transform.rotation;
     }
     
-    public void SetPosition() { transform.position = setPosition; }
+    public void SetToInputPosition() { transform.position = setPosition; }
+    public void SetToStartPosition() { transform.position = _startTransformPosition; }
     public void SetPosition(Vector3 newPosition) { transform.position = newPosition; }
     public void SetPosition(Vector3Data newPosition) { transform.position = newPosition.value; }
     public void SetPosition(CharacterData data) { transform.position = data.spawnPosition; }
+    public void SetPosition(Transform newPosition) { transform.position = newPosition.position; }
     
-    public void SetRotation() { transform.rotation = setRotation; }
-    public void SetRotation(Vector3 newPosition) { transform.position = newPosition; }
-    public void SetRotation(Vector3Data newPosition) { transform.position = newPosition.value; }
+    public void SetToInputRotation() { transform.rotation = setRotation; }
+    public void SetToStartRotation() { transform.rotation = _startTransformRotation; }
+    public void SetRotation(Vector3 newRotation) { transform.position = newRotation; }
+    public void SetRotation(Vector3Data newRotation) { transform.position = newRotation.value; }
+    public void SetRotation(Transform newRotation) { transform.rotation = newRotation.rotation; }
     
-    public void ResetPosition() { transform.position = _startTransformPosition; }
-    public void ResetRotation() { transform.rotation = _startTransformRotation; }
-
-    public void ResetTransform()
+    public void ResetToStartTransform()
     {
-        var thisTransform = transform;
-        thisTransform.position = GetResetPosition();
-        thisTransform.rotation = GetResetRotation();
+        SetToStartPosition();
+        SetToStartRotation();
     }
 
     public Vector3 GetPosition() { return transform.position; }
-    private Vector3 GetResetPosition() { return setToStartTransform ? _startTransformPosition : setPosition; }
-    private Quaternion GetResetRotation() { return setToStartTransform ? _startTransformRotation : setRotation; }
+    private Vector3 GetStartPosition() { return _startTransformPosition; }
+    private Quaternion GetStartRotation() { return _startTransformRotation; }
 }
