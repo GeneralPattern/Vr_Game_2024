@@ -1,32 +1,43 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent initializeSceneEvent, startGameEvent, gameOverEvent, restartGameEvent;
-    
+    public UnityEvent onAwake, onSceneInit, onLateInit, onGameStart, onGameOver, onRestartGame;
+    private readonly WaitForFixedUpdate _wffu = new();
+
+    private void Awake()
+    {
+        onAwake.Invoke();
+    }
+
     private void Start()
     {
-        InitializeScene();
+        onSceneInit.Invoke();
+        StartCoroutine(LateInit());
     }
     
-    public void InitializeScene()
+    private IEnumerator LateInit()
     {
-        initializeSceneEvent.Invoke();
+        yield return _wffu;
+        yield return _wffu;
+        yield return _wffu;
+        onLateInit.Invoke();
     }
 
     public void StartGame()
     {
-        startGameEvent.Invoke();
+        onGameStart.Invoke();
     }
 
     public void GameOver()
     {
-        gameOverEvent.Invoke();
+        onGameOver.Invoke();
     }
 
     public void RestartGame()
     {
-        restartGameEvent.Invoke();
+        onRestartGame.Invoke();
     }
 }

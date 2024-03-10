@@ -2,47 +2,35 @@ using UnityEngine;
 
 public class SpawnedObjectBehavior : MonoBehaviour
 { 
-    private SpawnedObjectData _spawnedObjectData;
-    private SpawnManager _spawnManager;
-    public float respawnTime;
-    
-    private void Awake()
-    {
-        _spawnedObjectData = ScriptableObject.CreateInstance<SpawnedObjectData>();
-        if (GetComponent<SpawnManager>()) _spawnedObjectData.spawnManager = GetComponent<SpawnManager>();
-    }
+    private WaitForFixedUpdate _wffu = new();
     
     public SpawnManager spawnManager
     {
-        get => _spawnedObjectData.spawnManager;
-        set => _spawnedObjectData.spawnManager = value;
+        get;
+        set;
     }
-
-    public Vector3 GetSpawnPosition() { return _spawnedObjectData.GetSpawnPosition(); }
-    public void SetSpawnPosition(Vector3 spawnPosition)
-    {
-        _spawnedObjectData.SetSpawnPosition(spawnPosition);
-        transform.position = spawnPosition;
-    }
-
-    public Quaternion GetSpawnRotation() { return _spawnedObjectData.GetSpawnRotation(); }
-    public void SetSpawnRotation(Quaternion spawnRotation)
-    {
-        _spawnedObjectData.SetSpawnRotation(spawnRotation);
-        transform.rotation = spawnRotation;
-    }
+    
+    public Vector3 spawnPosition { get; set; }
+    public Quaternion spawnRotation { get; set; }
 
     public void TriggerRespawn()
     {
-        _spawnedObjectData.spawnManager.StartSpawn(_spawnedObjectData.spawnManager.numToSpawn);
+        if (spawnManager == null)
+        {
+            Debug.LogWarning("SpawnManager is null" + name + " SpawnedObjectBehavior.");
+            return;
+        }
+        spawnManager.StartSpawn(spawnManager.numToSpawn);
     }
     
-    public void SetSpawnTime()
+    public void SetSpawnDelay(float respawnTime)
     {
-        if (_spawnedObjectData.spawnManager.GetSpawnDelay() != respawnTime)
+        if (spawnManager == null)
         {
-            _spawnedObjectData.spawnManager.SetSpawnDelay(respawnTime);
+            Debug.LogWarning("SpawnManager is null on " + name + " SpawnedObjectBehavior.");
+            return;
         }
+        spawnManager.SetSpawnDelay(respawnTime);
     }
     
     private void OnDisable()
