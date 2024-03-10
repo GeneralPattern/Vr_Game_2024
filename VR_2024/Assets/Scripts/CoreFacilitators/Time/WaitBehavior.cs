@@ -17,6 +17,7 @@ public class WaitBehavior : MonoBehaviour
     public struct SecondsAndStringIdEvent
     {
         public string id;
+        public bool realTime;
         public float seconds;
         public UnityEvent onWaitFinished;
     }
@@ -37,9 +38,11 @@ public class WaitBehavior : MonoBehaviour
     private float _secondsToWait;
     private int _waitAmount;
     private IntData _intData;
-    private readonly WaitForSeconds _wfms = new WaitForSeconds(0.1f);
-    private readonly WaitForSeconds _wfs = new WaitForSeconds(1);
-    private readonly WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
+    private readonly WaitForSeconds _wfms = new (0.1f);
+    private readonly WaitForSeconds _wfs = new (1);
+    private readonly WaitForSecondsRealtime  _wfmrts = new (0.1f);
+    private readonly WaitForSecondsRealtime  _wfrts = new (1);
+    private readonly WaitForFixedUpdate _wffu = new ();
 
     public void StartWaitForSecondsEvent(string eventID)
     {
@@ -68,22 +71,41 @@ public class WaitBehavior : MonoBehaviour
         StartCoroutine(WaitForFixedUpdateEvent(eventID));
     }
 
-    private IEnumerator WaitForSecondsEvent(float num, string eventID)
+    private IEnumerator WaitForSecondsEvent(float seconds, string eventID)
     {
-        _secondsToWait = num;
-        if (_secondsToWait <= 0) yield break;
-        while (_secondsToWait > 0)
+        var runInRealTime = endWaitForSeconds.Find(x => x.id == eventID).realTime;
+
+        if (runInRealTime)
         {
-            if (_secondsToWait > 0) {
-                _secondsToWait--;
-                yield return _wfs;
-            } else
+            float elapsed = 0f;
+
+            while (elapsed < seconds)
             {
-                _secondsToWait -= 0.1f;
-                yield return _wfms;
+                elapsed += Time.unscaledDeltaTime;
+                yield return null; 
+            }
+            
+            var eventToInvoke = endWaitForSeconds.Find(x => x.id == eventID);
+            eventToInvoke.onWaitFinished?.Invoke();
+        } else 
+        {
+            _secondsToWait = seconds;
+            if (_secondsToWait <= 0) yield break;
+            while (_secondsToWait > 0)
+            {
+                if (_secondsToWait > 0)
+                {
+                    _secondsToWait--;
+                    yield return _wfs;
+                }
+                else
+                {
+                    _secondsToWait -= 0.1f;
+                    yield return _wfms;
+                }
             }
         }
-
+        
         foreach (var item in endWaitForSeconds)
         {
             if (item.id != eventID) continue;

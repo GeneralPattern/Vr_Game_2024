@@ -30,6 +30,12 @@ public class TransformBehavior : MonoBehaviour
     public void SetRotation(Vector3Data newRotation) { transform.position = newRotation.value; }
     public void SetRotation(Transform newRotation) { transform.rotation = newRotation.rotation; }
     
+    public void SetToInputs()
+    {
+        SetToInputPosition();
+        SetToInputRotation();
+    }
+    
     public void ResetToStartTransform()
     {
         SetToStartPosition();
