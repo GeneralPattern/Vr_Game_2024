@@ -170,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de0a280a8dcd874a9ab022f3c4388b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 0
 --- !u!114 &7843516419201182717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endWaitForSeconds:
   - id: deactivate
+    realTime: 0
     seconds: 3
     onWaitFinished:
       m_PersistentCalls:
