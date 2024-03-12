@@ -17,6 +17,8 @@ public class SocketMatchInteractor : XRSocketInteractor
     [SerializeField]
     private List<PossibleMatch> triggerID;
     
+    public bool bypassDebug;
+    
     public UnityEvent onObjectSocketed;
     public UnityEvent onObjectUnsocketed;
     
@@ -30,6 +32,17 @@ public class SocketMatchInteractor : XRSocketInteractor
     private new void Awake()
     {
         _socketTrigger = GetComponent<Collider>();
+        if (_socketTrigger == null)
+        {
+            if (!bypassDebug) Debug.LogWarning("Socket trigger appears to be null, Adding BoxCollider");
+            _socketTrigger = gameObject.AddComponent<BoxCollider>();
+        }
+
+        if (_socketTrigger.isTrigger == false)
+        {
+            if (!bypassDebug) Debug.LogWarning("Socket trigger appears to be a collider, Setting to Trigger");
+            _socketTrigger.isTrigger = true;
+        }
         _removeAndMoveCoroutine = null;
         base.Awake();
     }
