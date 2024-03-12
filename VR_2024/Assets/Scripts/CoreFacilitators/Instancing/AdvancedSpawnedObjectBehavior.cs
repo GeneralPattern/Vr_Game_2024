@@ -1,24 +1,16 @@
 using UnityEngine;
 
 public class AdvancedSpawnedObjectBehavior : MonoBehaviour
-{ 
-    private WaitForFixedUpdate _wffu = new();
-    
+{/*
     public AdvancedSpawnManager spawnManager { get; set; }
-    
-    public Vector3 spawnPosition { get; set; }
-    public Quaternion spawnRotation { get; set; }
+    public string spawnerID { get; set; }
+    public bool spawned { get; set; }
 
-    public void TriggerRespawn()
+    private void Awake()
     {
-        if (spawnManager == null)
-        {
-            Debug.LogWarning("SpawnManager is null" + name + " SpawnedObjectBehavior.");
-            return;
-        }
-        spawnManager.StartSpawn(spawnManager.numToSpawn);
+        spawned = false;
     }
-    
+
     public void SetSpawnDelay(float respawnTime)
     {
         if (spawnManager == null)
@@ -28,12 +20,27 @@ public class AdvancedSpawnedObjectBehavior : MonoBehaviour
         }
         spawnManager.SetSpawnDelay(respawnTime);
     }
+
+    public void TriggerRespawn()
+    {
+        if (spawnManager == null)
+        {
+            Debug.LogWarning("SpawnManager is null" + name + " SpawnedObjectBehavior.");
+            return;
+        }
+        spawnManager.StartSpawn(1);
+    }
+    
+    // private void OnEnable()
+    // {
+    //     if (!spawned) return;
+    //     spawnManager.NotifyOfSpawn(spawnerID);
+    // }
     
     private void OnDisable()
     {
-        // if (_spawnedObjectData.spawnManager is AdvancedSpawnManager advancedSpawnManager)
-        {
-            // advancedSpawnManager.NotifyObjectRemoval(spawnLocation);
-        }
+        if (!spawned) return;
+        spawnManager.NotifyOfDeath(spawnerID);
+        spawned = false;
     }
-}
+*/}
