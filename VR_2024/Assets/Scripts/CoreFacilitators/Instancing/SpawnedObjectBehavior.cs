@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpawnedObjectBehavior : MonoBehaviour
 { 
     private WaitForFixedUpdate _wffu = new();
-    
+        
     public SpawnManager spawnManager { get; set; }
+    public UnityEvent onSpawnEvent;
     
     public Vector3 spawnPosition { get; set; }
     public Quaternion spawnRotation { get; set; }
@@ -28,7 +31,12 @@ public class SpawnedObjectBehavior : MonoBehaviour
         }
         spawnManager.SetSpawnDelay(respawnTime);
     }
-    
+
+    private void OnEnable()
+    {
+        onSpawnEvent.Invoke();
+    }
+
     private void OnDisable()
     {
         // if (_spawnedObjectData.spawnManager is AdvancedSpawnManager advancedSpawnManager)
