@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CannonManager : MonoBehaviour
 {
-    private WaitForFixedUpdate _wffu; 
+    private WaitForFixedUpdate _wffu;
+    
+    public UnityEvent onSuccessfulFire;
     
     public bool canFire;
     [ReadOnly] public int ammo;
@@ -35,6 +38,7 @@ public class CannonManager : MonoBehaviour
         if (ammo < 1) {Debug.LogWarning("Ammo Count: " + ammo); return;}
         if (_addForceCoroutine != null){ return;}
         // Debug.Log(fireDirection + "*" + fireForce + " = " + fireDirection * fireForce);
+        onSuccessfulFire.Invoke();
         _addForceCoroutine = StartCoroutine(AddForceToAmmo(ammoRb));
         DecrementAmmo();
     }
