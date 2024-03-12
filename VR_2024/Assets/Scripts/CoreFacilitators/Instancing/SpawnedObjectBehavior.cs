@@ -4,11 +4,7 @@ public class SpawnedObjectBehavior : MonoBehaviour
 { 
     private WaitForFixedUpdate _wffu = new();
     
-    public SpawnManager spawnManager
-    {
-        get;
-        set;
-    }
+    public SpawnManager spawnManager { get; set; }
     
     public Vector3 spawnPosition { get; set; }
     public Quaternion spawnRotation { get; set; }
