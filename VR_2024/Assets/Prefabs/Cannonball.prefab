@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
-  debug: 1
+  debug: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
@@ -379,6 +379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de0a280a8dcd874a9ab022f3c4388b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6345085156865375072
 MonoBehaviour:
   m_ObjectHideFlags: 0

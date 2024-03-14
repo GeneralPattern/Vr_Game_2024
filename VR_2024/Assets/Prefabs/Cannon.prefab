@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 2903229078399590228}
   - component: {fileID: 4635239953402139417}
   - component: {fileID: 3292306630701406386}
+  - component: {fileID: 3351215951878540337}
   m_Layer: 0
   m_Name: Reload Socket Position
   m_TagString: Untagged
@@ -312,9 +313,119 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3351215951878540337}
+        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+        m_MethodName: StartWaitForSecondsEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Enable Button
+          m_BoolArgument: 0
+        m_CallState: 2
   onObjectUnsocketed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7237436927792358146}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3351215951878540337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321144442172238580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endWaitForSeconds:
+  - id: Enable Button
+    realTime: 0
+    seconds: 0.5
+    onWaitFinished:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7237436927792358146}
+          m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endWaitForZero: []
+  endWaitForFixedUpdate: []
+--- !u!1 &1865015993642130077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410029129313235863}
+  - component: {fileID: 1383822420486834341}
+  m_Layer: 10
+  m_Name: Blocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1410029129313235863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865015993642130077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.03141073, w: 0.9995066}
+  m_LocalPosition: {x: 0, y: -0.024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4943384161548336669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.6}
+--- !u!65 &1383822420486834341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865015993642130077}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.95, y: 0.4, z: 0.4}
+  m_Center: {x: -0.37700582, y: 0.2487002, z: -0.00013361871}
 --- !u!1 &3702277246217215908
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +492,7 @@ Transform:
   - {fileID: 2903229078399590228}
   - {fileID: 1273239090810611194}
   - {fileID: 928212648418425731}
+  - {fileID: 1410029129313235863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5068600369596442604
@@ -452,9 +564,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
         type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7237436927792358146}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
       propertyPath: onInteractionPerformed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5068600369596442604}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Collider, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 415550084188153743, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: onInteractionEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3324140358586292488, guid: 6ca4bc20793257d498e842ac97d62686,
         type: 3}
       propertyPath: m_Layer
@@ -515,6 +667,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4051114305114842134, guid: 6ca4bc20793257d498e842ac97d62686,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4097521693575183747, guid: 6ca4bc20793257d498e842ac97d62686,
         type: 3}
       propertyPath: m_Name
@@ -550,6 +707,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca4bc20793257d498e842ac97d62686, type: 3}
+--- !u!65 &7237436927792358146 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4051114305114842134, guid: 6ca4bc20793257d498e842ac97d62686,
+    type: 3}
+  m_PrefabInstance: {fileID: 6649838032843441940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8061015196530188333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3717302483298625337, guid: 6ca4bc20793257d498e842ac97d62686,
