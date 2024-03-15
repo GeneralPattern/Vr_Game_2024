@@ -252,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 8125470844937638257, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: onObjectUnsocketed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8125470844937638257, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}

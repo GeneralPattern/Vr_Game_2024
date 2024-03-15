@@ -16,10 +16,10 @@ GameObject:
   - component: {fileID: 919918478158659066}
   - component: {fileID: 1655934223155502546}
   - component: {fileID: 8596837145433627448}
-  - component: {fileID: 7023567510724138398}
   - component: {fileID: 6345085156865375072}
   - component: {fileID: -1384171436132759502}
   - component: {fileID: 3383906863256626595}
+  - component: {fileID: -7157524752608855785}
   m_Layer: 10
   m_Name: Cannonball
   m_TagString: Untagged
@@ -331,8 +331,8 @@ MonoBehaviour:
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7023567510724138398}
-          m_TargetAssemblyTypeName: SpawnedObjectBehavior, Assembly-CSharp
+        - m_Target: {fileID: -7157524752608855785}
+          m_TargetAssemblyTypeName: PooledObjectBehavior, Assembly-CSharp
           m_MethodName: SetSpawnDelay
           m_Mode: 4
           m_Arguments:
@@ -342,18 +342,6 @@ MonoBehaviour:
             m_FloatArgument: 3
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 7023567510724138398}
-          m_TargetAssemblyTypeName: SpawnedObjectBehavior, Assembly-CSharp
-          m_MethodName: TriggerRespawn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: -1384171436132759502}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
@@ -367,21 +355,18 @@ MonoBehaviour:
             m_StringArgument: deactivate
             m_BoolArgument: 1
           m_CallState: 2
---- !u!114 &7023567510724138398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281101536470286139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de0a280a8dcd874a9ab022f3c4388b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onSpawnEvent:
-    m_PersistentCalls:
-      m_Calls: []
+        - m_Target: {fileID: -7157524752608855785}
+          m_TargetAssemblyTypeName: PooledObjectBehavior, Assembly-CSharp
+          m_MethodName: TriggerRespawn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!114 &6345085156865375072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,3 +429,15 @@ MonoBehaviour:
       m_Calls: []
   durability: 100
   damage: 0
+--- !u!114 &-7157524752608855785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281101536470286139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fe811fc536d27418854064fd3c4c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
