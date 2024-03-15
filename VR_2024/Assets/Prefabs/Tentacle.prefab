@@ -303,7 +303,7 @@ MonoBehaviour:
   endWaitForSeconds:
   - id: deactivate
     realTime: 0
-    seconds: 3
+    seconds: 5
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
