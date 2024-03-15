@@ -2,103 +2,120 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static ZpTools.UtilityFunctions;
 using Random = UnityEngine.Random;
+
 
 public class SpawnManager : MonoBehaviour, INeedButton
 {
+    public bool allowDebug;
+    
     public UnityEvent onSpawn, onSpawningComplete;
 
     public SpawnerData spawnerData;
+    public bool usePriority, spawnOnStart, randomizeSpawnRate;
 
-    public bool usePriority, spawnOnStart;
-    public Transform spawnLocation;
+    [System.Serializable]
+    public class Spawner
+    {
+        public string spawnerID;
+        public Transform spawnLocation, pathingTarget;
+        private int _currentSpawnCount;
+        public int activeSpawnLimit;
 
-#pragma warning disable CS0414 // Field is assigned but its value is never used
-    [SerializeField] [ReadOnly] private int activeCount;
-#pragma warning restore CS0414 // Field is assigned but its value is never used
-    
-    public int numToSpawn = 10, poolSize = 10;
-    public float poolCreationDelay = 1.0f, spawnDelay = 1.0f, spawnRate = 0.3f;
+        public int GetAliveCount() { return _currentSpawnCount; }
+        public void IncrementCount() { _currentSpawnCount++; }
+        public void DecrementCount() { _currentSpawnCount--; }
+    }
+    public List<Spawner> spawners = new();
+
+    public float poolCreationDelay = 1.0f, spawnDelay = 1.0f, spawnRateMin = 1.0f, spawnRateMax = 1.0f;
+    public int numToSpawn = 10;
+
+    private int _poolSize, _waitingCount;
+
+    private int poolSize
+    {
+        get
+        {
+            int totalPoolSize = 0;
+            foreach (var spawner in spawners)
+            {
+                totalPoolSize += spawner.activeSpawnLimit;
+            }
+
+            return totalPoolSize;
+        }
+    }
+
+    private List<GameObject> _pooledObjects;
+
+    private float _spawnRateStatic;
+
+    private float spawnRate
+    {
+        get
+        {
+            var value = Random.Range(spawnRateMin, spawnRateMax);
+            return value;
+        }
+    }
+
+    private WaitForSeconds _waitForSpawnRate, _waitForSpawnDelay, _waitForPoolDelay, _waitForSpawnOffset;
+    private WaitForFixedUpdate _wffu;
+    private Coroutine _lateStartRoutine, _delaySpawnRoutine,_spawnRoutine,_poolCreationRoutine, _spawnWaitingRoutine;
+
+    private PrefabDataList _prefabSet;
 
     private int spawnedCount
     {
-        get => spawnerData.GetAliveCount();
-        set => spawnerData.activeCount.UpdateValue(value);
-    }
-    
-    private bool _overrideLocation;
-
-    private WaitForSeconds _waitForSpawnRate, _waitForSpawnDelay, _waitForPoolDelay;
-    private WaitForFixedUpdate _wffu;
-    private PrefabDataList _prefabSet;
-    private List<GameObject> _pooledObjects;
-    
-    private Coroutine _spawnRoutine, _poolCreationRoutine;
-
-    public void SetSpawnDelay(float newDelay) 
-    { 
-        if (spawnDelay == newDelay) return;
-        if (newDelay < 0) return;
-        spawnDelay = newDelay;
-        _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
+        get => spawnerData.activeCount.value;
+        set => spawnerData.activeCount.SetValue(value);
     }
 
-    public void SetSpawnRate(float newRate)
-    {
-        spawnRate = newRate;
-        _waitForSpawnRate = new WaitForSeconds(spawnRate);
-    }
-    
     private void Awake()
     {
-        _waitForSpawnRate = new WaitForSeconds(spawnRate);
-        _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
-        _waitForPoolDelay = new WaitForSeconds(poolCreationDelay);
         _wffu = new WaitForFixedUpdate();
-        if(!spawnLocation) spawnLocation = transform;
-        
-        if (!spawnerData) { Debug.LogError("SpawnerData not found in " + name); return; }
+        _waitForSpawnOffset = new WaitForSeconds(1.0f);
+
+        _poolSize = poolSize;
+        _waitForPoolDelay = new WaitForSeconds(poolCreationDelay);
+
+        _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
+
+        _spawnRateStatic = spawnRate;
+        _waitForSpawnRate = new WaitForSeconds(_spawnRateStatic);
+        _waitForSpawnRate = randomizeSpawnRate ? new WaitForSeconds(spawnRate) : _waitForSpawnRate;
+
+        if (!spawnerData)
+        {
+            Debug.LogError("SpawnerData not found in " + name);
+            return;
+        }
+
         spawnerData.ResetSpawner();
         _prefabSet = spawnerData.prefabDataList;
-        _poolCreationRoutine = StartCoroutine(DelayPoolCreation());
-    }
-    
-    private void Start()
-    {
-        if (spawnOnStart) StartCoroutine(LateStartSpawn());
-    }
-    
-    private IEnumerator LateStartSpawn()
-    {
-        var count = 0;
-        while (count < 10)
-        {
-            count++;
-            yield return _wffu;
-        }
-        StartSpawn();
+
+        _poolCreationRoutine ??= StartCoroutine(DelayPoolCreation());
     }
 
     private IEnumerator DelayPoolCreation()
     {
         yield return _waitForPoolDelay;
         ProcessPool();
+        yield return _wffu;
+        _poolCreationRoutine = null;
     }
 
-    private IEnumerator DelaySpawn()
-    {
-        yield return _wffu;
-        yield return _waitForSpawnDelay;
-        StartCoroutine(SpawnRoutine());
-    }
-    
-    private void ProcessPool(bool spawn = false)
+    private void ProcessPool()
     {
         _pooledObjects ??= new List<GameObject>();
+        int iterationCount = _poolSize - _pooledObjects.Count;
+        if (iterationCount <= 0) return;
         
         int totalPriority = _prefabSet.GetPriority();
-        
-        for (int i = 0; i < poolSize; i++)
+
+        for (int i = 0; i < iterationCount; i++)
         {
             int randomNumber = Random.Range(0, totalPriority);
             int sum = 0;
@@ -109,129 +126,214 @@ public class SpawnManager : MonoBehaviour, INeedButton
                 {
                     GameObject obj = Instantiate(prefabData.obj);
                     AddToPool(obj);
-                    if (spawn) Spawn(obj);
                     break;
                 }
             }
         }
     }
 
+    private void AddToPool(GameObject obj)
+    {
+        var spawnBehavior = obj.GetComponent<PooledObjectBehavior>();
+        spawnBehavior = (spawnBehavior == null) ? obj.AddComponent<PooledObjectBehavior>() : spawnBehavior;
+        spawnBehavior.spawned = false;
+
+        _pooledObjects.Add(obj);
+        obj.SetActive(false);
+    }
+
+    public void SetSpawnDelay(float newDelay)
+    {
+        newDelay = ToleranceCheck(spawnDelay, newDelay);
+        if (newDelay < 0) return;
+        spawnDelay = newDelay;
+        _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
+    }
+    
+    private void Start()
+    {
+        if (spawnOnStart) _lateStartRoutine ??= StartCoroutine(LateStartSpawn());
+    }
+
+    private IEnumerator LateStartSpawn()
+    {
+        yield return _wffu;
+        yield return _waitForPoolDelay;
+        yield return _wffu;
+        yield return _waitForSpawnDelay;
+        yield return _wffu;
+        StartSpawn();
+        yield return _wffu;
+        _lateStartRoutine = null;
+    }
+
     public void StartSpawn(int amount)
     {
-        if (_spawnRoutine != null && _poolCreationRoutine != null) return;
+        if (_spawnRoutine != null) return;
         numToSpawn = (amount > 0) ? amount : numToSpawn;
         StartSpawn();
     }
 
     public void StartSpawn()
     {
-        if (_spawnRoutine != null && _poolCreationRoutine != null) return;
-        numToSpawn = (numToSpawn > 0) ? numToSpawn : 1;
-        if (spawnedCount > 0) spawnerData.ResetSpawner();
-        _spawnRoutine = StartCoroutine(DelaySpawn());
+        if (_spawnRoutine != null) return;
+        numToSpawn = numToSpawn > 0 ? numToSpawn : 1;
+        if (spawnedCount > 0) spawnedCount = 0;
+        _delaySpawnRoutine ??= StartCoroutine(DelaySpawn());
     }
 
-    private IEnumerator SpawnRoutine()
+    private IEnumerator DelaySpawn()
     {
-        spawnedCount = 0;
+        yield return _wffu;
+        yield return _waitForSpawnDelay;
+        _spawnRoutine ??= StartCoroutine(Spawn());
+        yield return _wffu;
+        _delaySpawnRoutine = null;
+    }
+    
+    private IEnumerator Spawn()
+    {
+        yield return _waitForSpawnOffset;
         while (spawnedCount < numToSpawn)
         {
-            InternalSpawnRoutine();
+            if (allowDebug) Debug.Log($"Spawning... Count: {spawnedCount} Total To Spawn: {numToSpawn} Num Left: {numToSpawn-spawnedCount} PoolSize: {_poolSize} PooledObjects: {_pooledObjects.Count} spawners: {spawners.Count} spawnRate: {_spawnRateStatic}");
+            
+            Spawner spawner = GetSpawner();
+            if (spawner == null)
+            {
+                _waitingCount = numToSpawn - spawnedCount;
+                spawnedCount = 0;
+                if (allowDebug) Debug.Log($"All Spawners Active... Killing Process, {_waitingCount} spawns waiting for next spawn cycle.");
+                _spawnRoutine = null;
+                yield break;
+            }
+
+            GameObject spawnObj = FetchFromPool();
+            _poolSize = _pooledObjects.Count;
+            
+            if (!spawnObj)
+            {
+                _poolSize++;
+                ProcessPool();
+                continue;
+            }
+
+            
+            var navBehavior = spawner.pathingTarget ? spawnObj.GetComponent<NavAgentBehavior>(): null;
+            if (spawner.pathingTarget && navBehavior == null) Debug.LogError($"No NavAgentBehavior found on {spawnObj} though a pathingTarget was found in ProcessSpawnedObject Method");
+
+            Transform objTransform = spawnObj.transform;
+            PooledObjectBehavior objBehavior = spawnObj.GetComponent<PooledObjectBehavior>();
+                    
+            if (objBehavior == null) Debug.LogError($"No SpawnObjectBehavior found on {spawnObj} in ProcessSpawnedObject Method");
+            var rb = spawnObj.GetComponent<Rigidbody>();
+
+            objBehavior.spawnManager = this;
+            objBehavior.spawnerID = spawner.spawnerID;
+            objBehavior.spawned = true;
+            
+            if (rb)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+            
+            if (allowDebug) Debug.Log($"Retrieved Spawner: {spawner.spawnerID} with... Count: {spawner.GetAliveCount()} Limit: {spawner.activeSpawnLimit}"); 
+            Transform spawnLocation = spawner.spawnLocation;
+            
+            objTransform.position = spawnLocation.position;
+            objTransform.rotation = spawnLocation.rotation;
+            
+            if (navBehavior) navBehavior.destination = spawner.pathingTarget;
+            spawnObj.SetActive(true);
+            if (navBehavior) navBehavior.Setup(spawner.pathingTarget);
+            onSpawn.Invoke();
+            spawner.IncrementCount();
+            spawnedCount++;
             yield return _waitForSpawnRate;
         }
         onSpawningComplete.Invoke();
         _spawnRoutine = null;
     }
-    
-    protected virtual void InternalSpawnRoutine()
-    {
-        spawnedCount =  spawnerData.GetAliveCount();
-        var spawnObj = FetchFromPool();
-        if (spawnObj) Spawn(spawnObj);
-        else IncreasePoolAndSpawn();
-    }
-    
-    protected virtual void Spawn(GameObject obj)
-    {
-        if (!obj) {Debug.LogError("There is no object provided to spawn, killing process"); return;}
-        var spawnObj = obj.GetComponent<SpawnedObjectBehavior>();
-        
-        var rb = obj.GetComponent<Rigidbody>();
-        if (rb)
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
-        
-        if (spawnObj == null) Debug.LogError($"No SpawnObjectBehavior found on {obj} in ProcessSpawnedObject Method");
-        
-        ProcessSpawnedObject(obj, spawnObj);
-        obj.SetActive(true);
 
-        spawnedCount++;
-        onSpawn.Invoke();
-    }
-    
-    private GameObject FetchFromPool()
+    private GameObject FetchFromPool() { return FetchFromList(_pooledObjects, obj => !obj.activeInHierarchy); }
+
+    private Spawner RandomlyFetchFromAllOpenSpawners()
     {
-        if (_pooledObjects == null) return null;
-        foreach (var obj in _pooledObjects)
+        var availableSpawners = new List<Spawner>();
+        foreach (var spawner in spawners)
         {
-            if (!obj.activeInHierarchy)
+            if (spawner.GetAliveCount() < spawner.activeSpawnLimit)
             {
-                return obj;
+                availableSpawners.Add(spawner);
             }
         }
-        return null;
-    }
-    
-    protected virtual void ProcessSpawnedObject(GameObject obj, SpawnedObjectBehavior spawnObj)
-    {
-        if (spawnLocation)
-        {
-            if (_overrideLocation)
-            {
-                spawnObj.spawnPosition = spawnLocation.position;
-                spawnObj.spawnRotation = spawnLocation.rotation;
-            }
-            else
-            {
-                var potentialSpawnPos = spawnObj.spawnPosition;
-                var potentialSpawnRot = spawnObj.spawnRotation;
-            
-                spawnObj.spawnPosition = potentialSpawnPos != Vector3.zero ? potentialSpawnPos : spawnLocation.position;
-                spawnObj.spawnRotation = potentialSpawnRot != Quaternion.identity ? potentialSpawnRot : spawnLocation.rotation;
-            }
-            
-            obj.transform.position = spawnObj.spawnPosition;
-            obj.transform.rotation = spawnObj.spawnRotation;
-        }
-        else
-        {
-            var objTransform = obj.transform;
-            objTransform.position = transform.position;
-            objTransform.rotation = Quaternion.identity;
-        }
+        return (availableSpawners.Count == 0) ? null: availableSpawners[Random.Range(0, availableSpawners.Count)];
     }
 
-    protected void IncreasePoolAndSpawn()
-    {   
-        poolSize++;
-        ProcessPool(true);
+    private Spawner GetSpawner()
+    {
+        var count = spawners.Count;
+        switch (count)
+        {
+            case 0:
+                return null;
+            case 1:
+                return spawners[0];
+        }
+
+        var spawner = RandomlyFetchFromAllOpenSpawners();
+        return spawner;
     }
     
-    protected virtual void AddToPool(GameObject obj)
+    private IEnumerator ProcessWaitingSpawns()
     {
-        var spawnBehavior = obj.GetComponent<SpawnedObjectBehavior>();
-        if (spawnBehavior == null) obj.AddComponent<SpawnedObjectBehavior>();
-        spawnBehavior.spawnManager = this;
-        
-        _pooledObjects.Add(obj);
-        obj.SetActive(false);
+        yield return _wffu;
+        if (_waitingCount <= 0) yield break;
+        StartSpawn(_waitingCount);
+        _waitingCount = 0;
+        _spawnWaitingRoutine = null;
     }
+    
+    public void NotifyOfDeath(string spawnerID)
+    {
+        if (allowDebug) Debug.Log($"Notified of Death: passed {spawnerID} as spawnerID");
+        foreach (var spawner in spawners)
+        {
+            if (spawner.spawnerID != spawnerID) continue;
+            if (allowDebug) Debug.Log($"Found {spawnerID} in spawner list... Current Count: {spawner.GetAliveCount()}");
+            spawner.DecrementCount();
+            if (allowDebug) Debug.Log($"New count: {spawner.GetAliveCount()}");
+            break;
+        }
 
+        if (_waitingCount <= 0) return;
+        _spawnWaitingRoutine ??= StartCoroutine(ProcessWaitingSpawns());
+    }
+    
     public List<(System.Action, string)> GetButtonActions()
     {
         return new List<(System.Action, string)> { (() => StartSpawn(numToSpawn), "Spawn") };
+    }
+}
+
+namespace ZpTools
+{
+    public static class UtilityFunctions
+    {
+        public static float ToleranceCheck(float value, float newValue, float tolerance = 0.1f)
+        {
+            return System.Math.Abs(value - newValue) < tolerance ? value : newValue;
+        }
+        
+        public static T FetchFromList<T>(List<T> listToProcess, System.Func<T, bool> condition)
+        {
+            if (listToProcess == null || listToProcess.Count == 0) return default;
+            foreach (var obj in listToProcess)
+            {
+                if (condition(obj)) return obj;
+            }
+            return default;
+        }
     }
 }
