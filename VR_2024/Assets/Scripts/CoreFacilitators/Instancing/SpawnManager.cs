@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     public SpawnerData spawnerData;
     public bool usePriority, spawnOnStart, randomizeSpawnRate;
+    private bool _destroying;
 
     [System.Serializable]
     public class Spawner
@@ -297,6 +299,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
     
     public void NotifyOfDeath(string spawnerID)
     {
+        if (_destroying) return;
         if (allowDebug) Debug.Log($"Notified of Death: passed {spawnerID} as spawnerID");
         foreach (var spawner in spawners)
         {
@@ -310,7 +313,12 @@ public class SpawnManager : MonoBehaviour, INeedButton
         if (_waitingCount <= 0) return;
         _spawnWaitingRoutine ??= StartCoroutine(ProcessWaitingSpawns());
     }
-    
+
+    private void OnDestroy()
+    {
+        _destroying = true;
+    }
+
     public List<(System.Action, string)> GetButtonActions()
     {
         return new List<(System.Action, string)> { (() => StartSpawn(numToSpawn), "Spawn") };
