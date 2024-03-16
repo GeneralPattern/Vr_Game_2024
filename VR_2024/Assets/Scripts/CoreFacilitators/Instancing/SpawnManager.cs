@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,13 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour, INeedButton
 {
-    public bool allowDebug;
+    public bool allowDebug, allowMultipleSpawnInstances;
     
     public UnityEvent onSpawn, onSpawningComplete;
 
     public SpawnerData spawnerData;
     public bool usePriority, spawnOnStart, randomizeSpawnRate;
+    private bool _destroying;
 
     [System.Serializable]
     public class Spawner
@@ -169,7 +171,11 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     public void StartSpawn(int amount)
     {
-        if (_spawnRoutine != null) return;
+        if (_spawnRoutine != null)
+        {
+            if (allowMultipleSpawnInstances) numToSpawn += amount;
+            return;
+        }
         numToSpawn = (amount > 0) ? amount : numToSpawn;
         StartSpawn();
     }
@@ -297,6 +303,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
     
     public void NotifyOfDeath(string spawnerID)
     {
+        if (_destroying) return;
         if (allowDebug) Debug.Log($"Notified of Death: passed {spawnerID} as spawnerID");
         foreach (var spawner in spawners)
         {
@@ -310,7 +317,12 @@ public class SpawnManager : MonoBehaviour, INeedButton
         if (_waitingCount <= 0) return;
         _spawnWaitingRoutine ??= StartCoroutine(ProcessWaitingSpawns());
     }
-    
+
+    private void OnDestroy()
+    {
+        _destroying = true;
+    }
+
     public List<(System.Action, string)> GetButtonActions()
     {
         return new List<(System.Action, string)> { (() => StartSpawn(numToSpawn), "Spawn") };
