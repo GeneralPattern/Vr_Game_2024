@@ -1552,6 +1552,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5e28332ae5f734a4080421fc535f685c,
         type: 2}
+    - target: {fileID: 2426555322642449286, guid: abf8b605003353242817448799ca52e6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc335bb6451a0724d8729c960c03e6a2, type: 2}
     - target: {fileID: 3322374704211675684, guid: abf8b605003353242817448799ca52e6,
         type: 3}
       propertyPath: m_Name
@@ -1562,6 +1567,11 @@ PrefabInstance:
       propertyPath: onObjectUnsocketed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6541239345263561910, guid: abf8b605003353242817448799ca52e6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc335bb6451a0724d8729c960c03e6a2, type: 2}
     - target: {fileID: 8502703417191801785, guid: abf8b605003353242817448799ca52e6,
         type: 3}
       propertyPath: m_Size.x
