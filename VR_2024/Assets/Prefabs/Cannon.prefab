@@ -272,19 +272,7 @@ MonoBehaviour:
         m_CallState: 2
   onObjectUnsocketed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3351215951878540337}
-        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-        m_MethodName: StartWaitForFixedUpdateEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: trigger unload animation
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3351215951878540337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,22 +302,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Load
-            m_BoolArgument: 0
-          m_CallState: 2
-  - id: trigger unload animation
-    onWaitFinished:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3124259638478956480}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Unload
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &3702277246217215908

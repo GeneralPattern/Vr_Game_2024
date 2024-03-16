@@ -2167,7 +2167,7 @@ PrefabInstance:
     - target: {fileID: 3098325166816682531, guid: 5b31195bc445140409778d74b7ace232,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -83.02
+      value: -49.5
       objectReference: {fileID: 0}
     - target: {fileID: 3098325166816682531, guid: 5b31195bc445140409778d74b7ace232,
         type: 3}
@@ -2177,7 +2177,7 @@ PrefabInstance:
     - target: {fileID: 3098325166816682531, guid: 5b31195bc445140409778d74b7ace232,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3098325166816682531, guid: 5b31195bc445140409778d74b7ace232,
         type: 3}
@@ -4391,7 +4391,6 @@ GameObject:
   - component: {fileID: 2119517339}
   - component: {fileID: 2119517342}
   - component: {fileID: 2119517343}
-  - component: {fileID: 2119517344}
   - component: {fileID: 2119517345}
   m_Layer: 12
   m_Name: Socket
@@ -4415,18 +4414,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 721119682}
   m_LocalEulerAnglesHint: {x: 180, y: 90, z: 90}
---- !u!114 &2119517341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119517338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56cd28e0a55121e48827166219c4c69f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2119517342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4541,21 +4528,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5248438, y: 0.95260304, z: 1}
   m_Center: {x: 0.02365452, y: 0.24619089, z: 0}
---- !u!111 &2119517344
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119517338}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &2119517345
 Animator:
   serializedVersion: 5
@@ -4780,13 +4752,13 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 439606249}
   - {fileID: 80380802}
   - {fileID: 4039675456834343168}
   - {fileID: 1383822661}
   - {fileID: 1353489692}
   - {fileID: 1424318151}
   - {fileID: 298959652}
-  - {fileID: 439606249}
   - {fileID: 162722215}
   - {fileID: 278631945}
   - {fileID: 1525516646}
