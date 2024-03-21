@@ -12,7 +12,7 @@ public class MatchIDBehavior : IDBehavior
         public UnityEvent triggerEvent;
     }
     
-    private WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
+    private readonly WaitForFixedUpdate _wffu = new();
     public bool debug;
     public List<PossibleMatch> triggerEnterMatches;
 
