@@ -176,9 +176,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8836731857416346732}
   - component: {fileID: 2416006670379812770}
+  - component: {fileID: 9160860706576739989}
   - component: {fileID: 5816105469764693319}
   - component: {fileID: 4868366705470625697}
-  - component: {fileID: 9160860706576739989}
   - component: {fileID: 6606272775372472817}
   - component: {fileID: 138105534624306030}
   - component: {fileID: 7003594777373466921}
@@ -229,6 +229,33 @@ CapsuleCollider:
   m_Height: 3.8194685
   m_Direction: 2
   m_Center: {x: -0.0069346814, y: -0.09098995, z: -0.19834237}
+--- !u!54 &9160860706576739989
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208285733801002710}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &5816105469764693319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 1d5b471cb37600f458ef1f4fcd473db1, type: 2}
   debug: 0
+  active: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
@@ -358,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endWaitForSeconds:
   - id: respawn
+    realTime: 0
     seconds: 3
     onWaitFinished:
       m_PersistentCalls:
@@ -404,33 +433,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
---- !u!54 &9160860706576739989
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208285733801002710}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 4096
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &6606272775372472817
 MonoBehaviour:
   m_ObjectHideFlags: 0

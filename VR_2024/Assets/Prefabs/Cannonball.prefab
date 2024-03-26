@@ -328,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: 0eba56e70948ccd4a8f10c4ad410c5be, type: 2}
   debug: 0
+  active: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
@@ -369,6 +370,22 @@ MonoBehaviour:
             m_StringArgument: deactivate
             m_BoolArgument: 1
           m_CallState: 2
+  - id: {fileID: 11400000, guid: 9f5ff81a699609342b5b360edd1a0b78, type: 2}
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3383906863256626595}
+          m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+          m_MethodName: set_canDealDamage
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &6345085156865375072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,10 +412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endWaitForSeconds: []
-  endWaitForZero: []
-  endWaitForFixedUpdate:
+  endWaitForSeconds:
   - id: deactivate
+    realTime: 0
+    seconds: 2
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
@@ -414,6 +431,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  endWaitForZero: []
+  endWaitForFixedUpdate: []
 --- !u!114 &3383906863256626595
 MonoBehaviour:
   m_ObjectHideFlags: 0
