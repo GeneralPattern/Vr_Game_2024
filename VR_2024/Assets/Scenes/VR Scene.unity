@@ -4337,6 +4337,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc92a87b298074469f00001545ae4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthEvents:
+  - atHealth: 2
+    healthEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - atHealth: 1
+    healthEvent:
+      m_PersistentCalls:
+        m_Calls: []
   onHealthGained:
     m_PersistentCalls:
       m_Calls: []
