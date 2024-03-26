@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,13 +11,28 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         onAwake.Invoke();
-        _gameOverAction.Raise += GameOver;
+        
+        var allGameActions = FindObjectsOfType<GameAction>();
+
+        foreach (var gameAction in allGameActions)
+        {
+            if (gameAction.name != "GameOver" || gameAction.name != "gameover") continue;
+            _gameOverAction = gameAction;
+            break;
+        }
+        if (_gameOverAction != null) _gameOverAction.Raise += GameOver;
     }
 
     private void OnDisable()
     {
-        _gameOverAction.Raise -= GameOver;
+        if (_gameOverAction != null) _gameOverAction.Raise -= GameOver;
     }
+    
+    void OnDestroy()
+    {
+        if (_gameOverAction != null) { _gameOverAction.Raise -= GameOver; }
+    }
+
 
     private void Start()
     {

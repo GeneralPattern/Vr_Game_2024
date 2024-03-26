@@ -9,7 +9,7 @@ public class AnimationEventHandler : MonoBehaviour
     {
         // Do something when the animation event is triggered
         animationEvent.Invoke();
-        Debug.Log("Animation event triggered!");
+        // Debug.Log("Animation event triggered!");
     }
 
    /*// Example of an event function that takes an AnimationEvent parameter

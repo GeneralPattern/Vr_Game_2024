@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +15,8 @@ public class WeaponController : MonoBehaviour, IDamagable, IDamageDealer
     
     public void SetDamage(float newDamage) { _damage.SetValue(newDamage); damage = newDamage; }
     public float GetDamage() { return damage; }
+    
+    public bool canDealDamage { get; set; }
     
     public void Start()
     {
@@ -42,11 +45,18 @@ public class WeaponController : MonoBehaviour, IDamagable, IDamageDealer
     
     public void DealDamage(IDamagable target)
     {
+        if (!canDealDamage) return;
         target.TakeDamage(damage);
     }
 
     public void DealDamage(IDamagable target, float amount)
     {
+        if (!canDealDamage) return;
         target.TakeDamage(amount);
+    }
+
+    private void OnEnable()
+    {
+        canDealDamage = true;
     }
 }
