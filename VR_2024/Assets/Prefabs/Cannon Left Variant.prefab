@@ -133,7 +133,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c3b9db9d62123db45b135b2f3c9fe809, type: 2}
+      objectReference: {fileID: 9100000, guid: 97929c07e1ea1764b807b2e56f1a946a, type: 2}
     - target: {fileID: 3292306630701406386, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: onObjectSocketed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
