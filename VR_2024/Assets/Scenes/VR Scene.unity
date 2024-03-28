@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idObj: {fileID: 11400000, guid: b1248dc0261effe40b46761673244b02, type: 2}
-  debug: 0
+  debug: 1
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:
@@ -2201,6 +2201,22 @@ MonoBehaviour:
         - m_Target: {fileID: 11400000, guid: c9552558b236f674fac80e6cf6b8e2da, type: 2}
           m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
           m_MethodName: RaiseAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: {fileID: 11400000, guid: 9f5ff81a699609342b5b360edd1a0b78, type: 2}
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 663851999}
+          m_TargetAssemblyTypeName: TransformBehavior, Assembly-CSharp
+          m_MethodName: ResetToStartTransform
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8349,9 +8365,9 @@ MonoBehaviour:
     pathingTarget: {fileID: 1326836874}
     activeSpawnLimit: 1
   poolCreationDelay: 1
-  spawnDelay: 1
+  spawnDelay: 1.2
   spawnRateMin: 5
-  spawnRateMax: 5
+  spawnRateMax: 5.5
   numToSpawn: 20
 --- !u!1 &955506983
 GameObject:
