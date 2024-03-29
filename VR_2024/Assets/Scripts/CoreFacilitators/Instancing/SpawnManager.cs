@@ -95,7 +95,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
         }
 
         spawnerData.ResetSpawner();
-        _prefabSet = spawnerData.prefabDataList;
+        _prefabSet = spawnerData.prefabList;
 
         _poolCreationRoutine ??= StartCoroutine(DelayPoolCreation());
     }
@@ -120,15 +120,14 @@ public class SpawnManager : MonoBehaviour, INeedButton
         {
             int randomNumber = Random.Range(0, totalPriority);
             int sum = 0;
-            foreach (var prefabData in _prefabSet.prefabDataList)
+            foreach (var _ in _prefabSet.prefabDataList)
             {
-                sum += prefabData.priority;
-                if (randomNumber < sum || !usePriority)
-                {
-                    GameObject obj = Instantiate(prefabData.obj);
-                    AddToPool(obj);
-                    break;
-                }
+                var objData = _prefabSet.GetRandomPrefabData();
+                sum += objData.priority;
+                if (randomNumber >= sum && usePriority) continue;
+                var obj = Instantiate(objData.prefab);
+                AddToPool(obj);
+                break;
             }
         }
     }
