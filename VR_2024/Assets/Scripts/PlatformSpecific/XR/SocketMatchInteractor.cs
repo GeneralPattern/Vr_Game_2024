@@ -74,7 +74,7 @@ public class SocketMatchInteractor : XRSocketInteractor
     private static ID FetchOtherID(GameObject interactable)
     {
         var idBehavior = interactable.transform.GetComponent<IDBehavior>();
-        return idBehavior != null ? idBehavior.idObj : null;
+        return idBehavior != null ? idBehavior.id : null;
     }
     
     private bool CheckId(Object nameId)

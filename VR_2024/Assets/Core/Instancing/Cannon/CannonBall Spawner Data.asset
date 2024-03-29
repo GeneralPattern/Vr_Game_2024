@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeInstances: 0
   activeCount: {fileID: 11400000, guid: 222e03ce350db2a468720bfbd081486f, type: 2}
-  prefabDataList: {fileID: 11400000, guid: cce5195886a2745459e8b36f9a378e97, type: 2}
+  prefabList: {fileID: 11400000, guid: cce5195886a2745459e8b36f9a378e97, type: 2}

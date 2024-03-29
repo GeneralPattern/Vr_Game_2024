@@ -6,7 +6,7 @@ public class SpawnerData : ScriptableObject
     // ReSharper disable once NotAccessedField.Global
     [SerializeField] [ReadOnly] public int activeInstances;
     public IntData activeCount;
-    public PrefabDataList prefabDataList;
+    public PrefabDataList prefabList;
 
     private void Awake()
     {

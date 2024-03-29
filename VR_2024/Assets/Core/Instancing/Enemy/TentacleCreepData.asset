@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Tentacle
   type: Enemy
-  speed: 3.5
+  speed: 3
   height: 1
   radius: 1
   health: 1
