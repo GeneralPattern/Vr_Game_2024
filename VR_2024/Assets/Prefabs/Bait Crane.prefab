@@ -192,6 +192,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6113190299529204041}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7932036066231553072, guid: 5e2ff9543d3358e45b70886ff2097bd9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4842595099243198306}
     - targetCorrespondingSourceObject: {fileID: 3944313161788818033, guid: 5e2ff9543d3358e45b70886ff2097bd9,
         type: 3}
       insertIndex: -1
@@ -201,6 +205,34 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2148674677480520370}
   m_SourcePrefab: {fileID: 100100000, guid: 5e2ff9543d3358e45b70886ff2097bd9, type: 3}
+--- !u!1 &5604529040671093205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7932036066231553072, guid: 5e2ff9543d3358e45b70886ff2097bd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6641954369025720837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4842595099243198306
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604529040671093205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3298672756486326878, guid: 5e2ff9543d3358e45b70886ff2097bd9, type: 3}
 --- !u!4 &6604052986775512558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e2ff9543d3358e45b70886ff2097bd9,
@@ -225,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084cda31011b9ca4a806fa24ee9735db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: {fileID: 0}
+  id: {fileID: 11400000, guid: d18387a3061f58d4db09127b101f428f, type: 2}
   debug: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 524fb3f573a236740969de4566385041, type: 2}
@@ -254,7 +286,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 6145
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -263,6 +295,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3840146784067909648, guid: 8abcbd2ddd8435a4ca5f709af8ccd253, type: 3}
