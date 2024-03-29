@@ -3,30 +3,16 @@ using UnityEngine.Events;
 
 public class HealthBehavior : MonoBehaviour, IDamagable
 {
-    [System.Serializable]
-    private struct HealthEvents
-    {
-        public float atHealth;
-        public UnityEvent healthEvent;
-    }
-    
-    [SerializeField] private HealthEvents[] healthEvents;
-    private bool _performHealthEvents;
-    
-    public UnityEvent onHealthGained, onHealthLost, onHealthDepleted;
+    public UnityEvent onHealthGained, onHealthLost, onThreeQuarterHealth, onHalfHealth, onQuarterHealth, onHealthDepleted;
     
     [SerializeField] [ReadOnly] private float currentHealth;
+    private float _previousCheckHealth;
     public float maxHealth;
 
     public float health
     {
         get => currentHealth;
         set => currentHealth = value;
-    }
-
-    private void Awake()
-    {
-        _performHealthEvents = healthEvents.Length > 0;
     }
 
     private void Start()
@@ -37,10 +23,10 @@ public class HealthBehavior : MonoBehaviour, IDamagable
     
     private void CheckHealthEvents()
     {
-        foreach (var healthEvent in healthEvents)
-        {
-            if (health == healthEvent.atHealth) healthEvent.healthEvent.Invoke();
-        }
+        if (health == maxHealth || health == 0) return;
+        if (health <= maxHealth * 0.75f && health >= maxHealth * 0.5f) onThreeQuarterHealth.Invoke();
+        else if (health <= maxHealth * 0.5f && health >= maxHealth * 0.25f) onHalfHealth.Invoke();
+        else if (health <= maxHealth * 0.25f && health >= maxHealth * 0) onQuarterHealth.Invoke();
     }
     
     public void SetHealth(float newHealth)
@@ -48,12 +34,12 @@ public class HealthBehavior : MonoBehaviour, IDamagable
         health = newHealth;
         if (health > maxHealth) health = maxHealth;
         if (health < 0) health = 0;
-        if (_performHealthEvents) CheckHealthEvents();
+        CheckHealthEvents();
     }
     
-    public void SetMaxHealth(float newHealth)
+    public void SetMaxHealth(float newMax)
     {
-        maxHealth = newHealth;
+        maxHealth = newMax;
     }
 
     public void LoseHealth(float amount)
@@ -61,14 +47,14 @@ public class HealthBehavior : MonoBehaviour, IDamagable
         health -= amount;
         if (health <= 0) onHealthDepleted.Invoke();
         else onHealthLost.Invoke();
-        if (_performHealthEvents) CheckHealthEvents();
+        CheckHealthEvents();
     }
     
     public void GainHealth(float amount)
     {
         health += amount;
         if (health >= maxHealth) health = maxHealth; 
-        if (_performHealthEvents) CheckHealthEvents();
+        CheckHealthEvents();
     }
 
     public void TakeDamage(float amount)
