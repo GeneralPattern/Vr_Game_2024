@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,16 +21,16 @@ public class MatchIDBehavior : IDBehavior
     {
         IDBehavior idBehavior = other.GetComponent<IDBehavior>();
         if (idBehavior == null) return;
-        StartCoroutine(CheckId(other, idBehavior.idObj, triggerEnterMatches));
+        StartCoroutine(CheckId(idBehavior.id, triggerEnterMatches));
     }
     
-    private IEnumerator CheckId(Collider other, ID otherId, List<PossibleMatch> possibleMatches)
+    private IEnumerator CheckId(ID otherId, List<PossibleMatch> possibleMatches)
     {
         bool noMatch = true;
         foreach (var obj in possibleMatches)
         {
             if (otherId != obj.id) continue;
-            if (debug) Debug.Log($"Match found on: '{this}' with '{obj.id}' while checking '{other}' with '{otherId}'");
+            if (debug) Debug.Log($"Match found on: '{this} (ID: {id})' with '{obj.id}' while checking '{otherId.GameObject()}' with '{otherId}'");
             noMatch = false;
             obj.triggerEvent.Invoke();
             yield return _wffu;
@@ -38,7 +39,7 @@ public class MatchIDBehavior : IDBehavior
         if (noMatch && debug)
         {
             Debug.Log(
-                $"No match found on: '{this}' While checking '{other}' with: '{otherId}' with {possibleMatches.Count}" +
+                $"No match found on: '{this} (ID: {id})' While checking '{otherId.GameObject()}' with: '{otherId}' with {possibleMatches.Count}" +
                 $" possible matches.");
         }
     }

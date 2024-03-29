@@ -23,17 +23,19 @@ public class HealthBehavior : MonoBehaviour, IDamagable
     
     private void CheckHealthEvents()
     {
-        if (health == maxHealth || health == 0) return;
+        if (health > maxHealth) health = maxHealth;
+        if (health == maxHealth) return;
+        if (health < 0) health = 0;
+        
         if (health <= maxHealth * 0.75f && health >= maxHealth * 0.5f) onThreeQuarterHealth.Invoke();
         else if (health <= maxHealth * 0.5f && health >= maxHealth * 0.25f) onHalfHealth.Invoke();
-        else if (health <= maxHealth * 0.25f && health >= maxHealth * 0) onQuarterHealth.Invoke();
+        else if (health <= maxHealth * 0.25f && health > maxHealth * 0) onQuarterHealth.Invoke();
+        else if (health <= 0) onHealthDepleted.Invoke();
     }
     
     public void SetHealth(float newHealth)
     {
         health = newHealth;
-        if (health > maxHealth) health = maxHealth;
-        if (health < 0) health = 0;
         CheckHealthEvents();
     }
     
@@ -45,15 +47,14 @@ public class HealthBehavior : MonoBehaviour, IDamagable
     public void LoseHealth(float amount)
     {
         health -= amount;
-        if (health <= 0) onHealthDepleted.Invoke();
-        else onHealthLost.Invoke();
+        if (health > 0) onHealthLost.Invoke();
         CheckHealthEvents();
     }
     
     public void GainHealth(float amount)
     {
         health += amount;
-        if (health >= maxHealth) health = maxHealth; 
+        onHealthGained.Invoke();
         CheckHealthEvents();
     }
 
