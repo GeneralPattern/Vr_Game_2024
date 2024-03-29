@@ -16,7 +16,7 @@ TagManager:
   - 
   - 'Traversible '
   - Grabbable
-  - 
+  - Sliceable
   - Trigger
   - 
   - 
