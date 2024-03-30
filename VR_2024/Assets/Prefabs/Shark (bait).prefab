@@ -268,9 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084cda31011b9ca4a806fa24ee9735db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idObj: {fileID: 11400000, guid: 1d5b471cb37600f458ef1f4fcd473db1, type: 2}
+  id: {fileID: 11400000, guid: 1d5b471cb37600f458ef1f4fcd473db1, type: 2}
   debug: 0
-  active: 0
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
     triggerEvent:

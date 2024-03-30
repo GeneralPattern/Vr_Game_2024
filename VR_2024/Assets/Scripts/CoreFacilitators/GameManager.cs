@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent onAwake, onSceneInit, onLateInit, onGameStart, onGameOver, onRestartGame;
+    public UnityEvent onAwake, onSceneInit, onLateInit, onGameStart, onGameOver, onGameWin, onRestartGame;
     private readonly WaitForFixedUpdate _wffu = new();
 
     private void Awake()
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
         onGameOver.Invoke();
     }
 
-    public void GameOver(GameAction action)
+    public void GameWin()
     {
-        onGameOver.Invoke();
+        onGameWin.Invoke();
     }
 
     public void RestartGame()

@@ -17,9 +17,22 @@ public class PrefabDataList : ScriptableObject
         foreach (var prefabData in prefabDataList) sum += prefabData.priority;
         return sum;
     }
-
-    public GameObject GetRandomPrefab()
+    
+    public int GetPrefabIndex(GameObject prefab)
     {
-        return prefabDataList[Random.Range(0, Size())].obj;
+        if (prefabDataList == null) return -1;
+        for (var i = 0; i < prefabDataList.Count; i++)
+        {
+            if (prefabDataList[i].prefab == prefab) return i;
+        }
+        return -1;
+    }
+    
+    public PrefabData GetRandomPrefabData()
+    {  
+        if (prefabDataList == null) return null;
+        if (prefabDataList.Count == 0) return null;
+        var randomIndex = Random.Range(0, Size());
+        return prefabDataList[randomIndex];
     }
 }
