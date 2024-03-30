@@ -5,6 +5,7 @@ public class PooledObjectBehavior : MonoBehaviour
     public SpawnManager spawnManager { get; set; }
     public string spawnerID { get; set; }
     public bool spawned { get; set; }
+    public bool finalSpawn { get; set; }
 
     private void Awake()
     {

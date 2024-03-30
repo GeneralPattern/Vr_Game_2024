@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour, INeedButton
 {
     public bool allowDebug, allowMultipleSpawnInstances;
-    
-    public UnityEvent onSpawn, onSpawningComplete;
+
+    public UnityEvent onSpawn, onSpawningComplete, onFinalSpawnDefeated;
 
     public SpawnerData spawnerData;
     public bool usePriority, spawnOnStart, randomizeSpawnRate;
@@ -221,7 +221,6 @@ public class SpawnManager : MonoBehaviour, INeedButton
                 ProcessPool();
                 continue;
             }
-
             
             var navBehavior = spawner.pathingTarget ? spawnObj.GetComponent<NavAgentBehavior>(): null;
             if (spawner.pathingTarget && navBehavior == null) Debug.LogError($"No NavAgentBehavior found on {spawnObj} though a pathingTarget was found in ProcessSpawnedObject Method");
@@ -231,10 +230,12 @@ public class SpawnManager : MonoBehaviour, INeedButton
                     
             if (objBehavior == null) Debug.LogError($"No SpawnObjectBehavior found on {spawnObj} in ProcessSpawnedObject Method");
             var rb = spawnObj.GetComponent<Rigidbody>();
-
+            
             objBehavior.spawnManager = this;
             objBehavior.spawnerID = spawner.spawnerID;
             objBehavior.spawned = true;
+            objBehavior.finalSpawn = spawnedCount == numToSpawn - 1;
+            Debug.Log($"SPAWNED COUNT: {spawnedCount}, NUM TO SPAWN: {numToSpawn}, FINAL SPAWN: {objBehavior.finalSpawn}, MANAGER BOOL: {spawnedCount == numToSpawn - 1}");
             
             if (rb)
             {
@@ -299,9 +300,10 @@ public class SpawnManager : MonoBehaviour, INeedButton
         _spawnWaitingRoutine = null;
     }
     
-    public void NotifyOfDeath(string spawnerID)
+    public void NotifyOfDeath(string spawnerID, bool finalSpawn = false)
     {
         if (_destroying) return;
+        
         if (allowDebug) Debug.Log($"Notified of Death: passed {spawnerID} as spawnerID");
         foreach (var spawner in spawners)
         {
@@ -311,7 +313,9 @@ public class SpawnManager : MonoBehaviour, INeedButton
             if (allowDebug) Debug.Log($"New count: {spawner.GetAliveCount()}");
             break;
         }
-
+        
+        if (finalSpawn) onFinalSpawnDefeated.Invoke();
+        
         if (_waitingCount <= 0) return;
         _spawnWaitingRoutine ??= StartCoroutine(ProcessWaitingSpawns());
     }
