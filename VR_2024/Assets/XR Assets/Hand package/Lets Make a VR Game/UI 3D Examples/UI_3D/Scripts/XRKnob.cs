@@ -7,6 +7,8 @@ namespace UnityEngine.XR.Content.Interaction
     /// <summary>
     /// An interactable knob that follows the rotation of the interactor
     /// </summary>
+    ///
+    /// 
     public class XRKnob : XRBaseInteractable
     {
         const float k_ModeSwitchDeadZone = 0.1f; // Prevents rapid switching between the different rotation tracking modes
@@ -14,6 +16,7 @@ namespace UnityEngine.XR.Content.Interaction
         /// <summary>
         /// Helper class used to track rotations that can go beyond 180 degrees while minimizing accumulation error
         /// </summary>
+        public UnityEvent onEnableEvent, onDisableEvent;
         struct TrackedRotation
         {
             /// <summary>
@@ -222,11 +225,13 @@ namespace UnityEngine.XR.Content.Interaction
 
             UpdateBaseKnobRotation();
             UpdateRotation(true);
+            onEnableEvent.Invoke();
         }
 
         void EndGrab(SelectExitEventArgs args)
         {
             m_Interactor = null;
+            onDisableEvent.Invoke();
         }
 
         public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
