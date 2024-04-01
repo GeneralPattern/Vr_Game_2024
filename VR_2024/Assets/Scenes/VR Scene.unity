@@ -2443,7 +2443,7 @@ GameObject:
   - component: {fileID: 528896744}
   - component: {fileID: 528896743}
   m_Layer: 0
-  m_Name: TestingButton
+  m_Name: LostTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30993,22 +30993,10 @@ MonoBehaviour:
   endWaitForSeconds:
   - id: Restart
     realTime: 0
-    seconds: 3
+    seconds: 6
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: PERFORMING RESTART
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 645482172}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
           m_MethodName: StartWaitForFixedUpdateEvent
@@ -31100,21 +31088,9 @@ MonoBehaviour:
     onRaiseEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: RESTART RAISED
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 645482172}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-          m_MethodName: StartWaitForFixedUpdateEvent
+          m_MethodName: StartWaitForSecondsEvent
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -31255,7 +31231,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 663851987}
   m_CameraFloorOffsetObject: {fileID: 1564911858}
   m_RequestedTrackingOriginMode: 1
-  m_CameraYOffset: 1.1176
+  m_CameraYOffset: 1
 --- !u!4 &663851990
 Transform:
   m_ObjectHideFlags: 0
@@ -31265,7 +31241,7 @@ Transform:
   m_GameObject: {fileID: 663851987}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42853,10 +42829,25 @@ MonoBehaviour:
   onSpawningComplete:
     m_PersistentCalls:
       m_Calls: []
+  onFinalSpawnDefeated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9d2b98518165a6848bbabf6b49ac6399, type: 2}
+        m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
+        m_MethodName: RaiseAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   spawnerData: {fileID: 11400000, guid: 3ddd3951da8dbcc49916b38e931368b4, type: 2}
   usePriority: 0
   spawnOnStart: 0
-  randomizeSpawnRate: 0
+  randomizeSpawnRate: 1
   spawners:
   - spawnerID: LR Enemy Spawn
     spawnLocation: {fileID: 371315821}
@@ -42882,11 +42873,11 @@ MonoBehaviour:
     spawnLocation: {fileID: 577991243}
     pathingTarget: {fileID: 1326836874}
     activeSpawnLimit: 1
-  poolCreationDelay: 1
-  spawnDelay: 1.2
+  poolCreationDelay: 0.5
+  spawnDelay: 3
   spawnRateMin: 5
-  spawnRateMax: 5.5
-  numToSpawn: 20
+  spawnRateMax: 8
+  numToSpawn: 1
 --- !u!1001 &951091061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45155,6 +45146,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1276662583}
+        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+        m_MethodName: StartWaitForSecondsEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: block visuals
+          m_BoolArgument: 0
+        m_CallState: 2
   onRestartGame:
     m_PersistentCalls:
       m_Calls: []
@@ -45238,18 +45241,6 @@ MonoBehaviour:
     onRaiseEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: GAMEOVER RAISED
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1276662582}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: GameOver
@@ -45266,18 +45257,6 @@ MonoBehaviour:
     onRaiseEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: YOU WON
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1276662582}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: GameWin
@@ -45410,7 +45389,7 @@ Transform:
   m_GameObject: {fileID: 1367817610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.392, y: 3.774, z: 10.208}
+  m_LocalPosition: {x: 2.392, y: 4.11, z: 10.208}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46640,6 +46619,9 @@ MonoBehaviour:
   onSpawningComplete:
     m_PersistentCalls:
       m_Calls: []
+  onFinalSpawnDefeated:
+    m_PersistentCalls:
+      m_Calls: []
   spawnerData: {fileID: 11400000, guid: 10649db0b35fff843bc908de984e368b, type: 2}
   usePriority: 0
   spawnOnStart: 1
@@ -47022,9 +47004,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 3840146784067909648, guid: 8abcbd2ddd8435a4ca5f709af8ccd253, type: 3}
+  m_Mesh: {fileID: 3840146784067909648, guid: e032989e777eba145a76536de71de624, type: 3}
 --- !u!114 &1491972936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47412,7 +47394,7 @@ Transform:
   m_GameObject: {fileID: 1564911858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49938,6 +49920,65 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 1989077727}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1991145461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1991145463}
+  - component: {fileID: 1991145462}
+  m_Layer: 0
+  m_Name: WinTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1991145462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991145461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9fc31ff1a6d89d4a89364aeee6cd9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onButtonPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9d2b98518165a6848bbabf6b49ac6399, type: 2}
+        m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
+        m_MethodName: RaiseAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1991145463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991145461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2002361186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51543,18 +51584,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-        m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-        m_MethodName: OnDebug
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: WheelStartSpin
-          m_BoolArgument: 0
-        m_CallState: 2
   onDisableEvent:
     m_PersistentCalls:
       m_Calls:
@@ -51568,18 +51597,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-        m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-        m_MethodName: OnDebug
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: WheelStop
           m_BoolArgument: 0
         m_CallState: 2
   m_Handle: {fileID: 1010211490}
@@ -51878,6 +51895,7 @@ SceneRoots:
   - {fileID: 1367817611}
   - {fileID: 873119574}
   - {fileID: 528896744}
+  - {fileID: 1991145463}
   - {fileID: 839980033}
   - {fileID: 1917778387}
   - {fileID: 573169662}

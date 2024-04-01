@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour, INeedButton
 {
     public bool allowDebug, allowMultipleSpawnInstances;
-    
-    public UnityEvent onSpawn, onSpawningComplete;
+
+    public UnityEvent onSpawn, onSpawningComplete, onFinalSpawnDefeated;
 
     public SpawnerData spawnerData;
     public bool usePriority, spawnOnStart, randomizeSpawnRate;
@@ -50,9 +50,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
     }
 
     private List<GameObject> _pooledObjects;
-
-    private float _spawnRateStatic;
-
+    private List<WaitForSeconds> _spawnRates = new();
     private float spawnRate
     {
         get
@@ -84,9 +82,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
 
-        _spawnRateStatic = spawnRate;
-        _waitForSpawnRate = new WaitForSeconds(_spawnRateStatic);
-        _waitForSpawnRate = randomizeSpawnRate ? new WaitForSeconds(spawnRate) : _waitForSpawnRate;
+        SetSpawnRate();
 
         if (!spawnerData)
         {
@@ -150,6 +146,27 @@ public class SpawnManager : MonoBehaviour, INeedButton
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
     }
     
+    public void SetSpawnRate()
+    {
+        if (!randomizeSpawnRate)
+        {
+            _waitForSpawnRate = new WaitForSeconds(spawnRate);
+            return;
+        }
+        if (numToSpawn < _spawnRates.Count) return;
+        
+        var count = numToSpawn - _spawnRates.Count;
+        for (var i = 0; i < count; i++)
+        {
+            _spawnRates.Add(new WaitForSeconds(spawnRate));
+        }
+    }
+    
+    public WaitForSeconds GetWaitSpawnRate()
+    {
+        return randomizeSpawnRate ? _spawnRates[Random.Range(0, _spawnRates.Count)] : _waitForSpawnRate;
+    }
+    
     private void Start()
     {
         if (spawnOnStart) _lateStartRoutine ??= StartCoroutine(LateStartSpawn());
@@ -188,6 +205,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
 
     private IEnumerator DelaySpawn()
     {
+        SetSpawnRate();
         yield return _wffu;
         yield return _waitForSpawnDelay;
         _spawnRoutine ??= StartCoroutine(Spawn());
@@ -200,7 +218,8 @@ public class SpawnManager : MonoBehaviour, INeedButton
         yield return _waitForSpawnOffset;
         while (spawnedCount < numToSpawn)
         {
-            if (allowDebug) Debug.Log($"Spawning... Count: {spawnedCount} Total To Spawn: {numToSpawn} Num Left: {numToSpawn-spawnedCount} PoolSize: {_poolSize} PooledObjects: {_pooledObjects.Count} spawners: {spawners.Count} spawnRate: {_spawnRateStatic}");
+            var waitTime = GetWaitSpawnRate();
+            if (allowDebug) Debug.Log($"Spawning... Count: {spawnedCount} Total To Spawn: {numToSpawn} Num Left: {numToSpawn-spawnedCount} PoolSize: {_poolSize} PooledObjects: {_pooledObjects.Count} spawners: {spawners.Count} spawnRate: {waitTime}");
             
             Spawner spawner = GetSpawner();
             if (spawner == null)
@@ -221,7 +240,6 @@ public class SpawnManager : MonoBehaviour, INeedButton
                 ProcessPool();
                 continue;
             }
-
             
             var navBehavior = spawner.pathingTarget ? spawnObj.GetComponent<NavAgentBehavior>(): null;
             if (spawner.pathingTarget && navBehavior == null) Debug.LogError($"No NavAgentBehavior found on {spawnObj} though a pathingTarget was found in ProcessSpawnedObject Method");
@@ -231,10 +249,12 @@ public class SpawnManager : MonoBehaviour, INeedButton
                     
             if (objBehavior == null) Debug.LogError($"No SpawnObjectBehavior found on {spawnObj} in ProcessSpawnedObject Method");
             var rb = spawnObj.GetComponent<Rigidbody>();
-
+            
             objBehavior.spawnManager = this;
             objBehavior.spawnerID = spawner.spawnerID;
             objBehavior.spawned = true;
+            objBehavior.finalSpawn = spawnedCount == numToSpawn - 1;
+            if (allowDebug) objBehavior.debugging = allowDebug;
             
             if (rb)
             {
@@ -254,7 +274,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
             onSpawn.Invoke();
             spawner.IncrementCount();
             spawnedCount++;
-            yield return _waitForSpawnRate;
+            yield return waitTime;
         }
         onSpawningComplete.Invoke();
         _spawnRoutine = null;
@@ -299,9 +319,10 @@ public class SpawnManager : MonoBehaviour, INeedButton
         _spawnWaitingRoutine = null;
     }
     
-    public void NotifyOfDeath(string spawnerID)
+    public void NotifyOfDeath(string spawnerID, bool finalSpawn = false)
     {
         if (_destroying) return;
+        
         if (allowDebug) Debug.Log($"Notified of Death: passed {spawnerID} as spawnerID");
         foreach (var spawner in spawners)
         {
@@ -311,7 +332,9 @@ public class SpawnManager : MonoBehaviour, INeedButton
             if (allowDebug) Debug.Log($"New count: {spawner.GetAliveCount()}");
             break;
         }
-
+        
+        if (finalSpawn) onFinalSpawnDefeated.Invoke();
+        
         if (_waitingCount <= 0) return;
         _spawnWaitingRoutine ??= StartCoroutine(ProcessWaitingSpawns());
     }
