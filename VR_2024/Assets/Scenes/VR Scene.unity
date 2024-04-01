@@ -30541,22 +30541,10 @@ MonoBehaviour:
   endWaitForSeconds:
   - id: Restart
     realTime: 0
-    seconds: 3
+    seconds: 6
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: PERFORMING RESTART
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 645482172}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
           m_MethodName: StartWaitForFixedUpdateEvent
@@ -30648,21 +30636,9 @@ MonoBehaviour:
     onRaiseEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: RESTART RAISED
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 645482172}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-          m_MethodName: StartWaitForFixedUpdateEvent
+          m_MethodName: StartWaitForSecondsEvent
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -42337,22 +42313,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-        m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-        m_MethodName: OnDebug
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: LAST SPAWN DEFEATED PUSHING WIN ACTION
-          m_BoolArgument: 0
-        m_CallState: 2
   spawnerData: {fileID: 11400000, guid: 3ddd3951da8dbcc49916b38e931368b4, type: 2}
   usePriority: 0
   spawnOnStart: 0
-  randomizeSpawnRate: 0
+  randomizeSpawnRate: 1
   spawners:
   - spawnerID: LR Enemy Spawn
     spawnLocation: {fileID: 371315821}
@@ -42378,10 +42342,10 @@ MonoBehaviour:
     spawnLocation: {fileID: 577991243}
     pathingTarget: {fileID: 1326836874}
     activeSpawnLimit: 1
-  poolCreationDelay: 1
+  poolCreationDelay: 0.5
   spawnDelay: 3
-  spawnRateMin: 7
-  spawnRateMax: 7.5
+  spawnRateMin: 5
+  spawnRateMax: 8
   numToSpawn: 1
 --- !u!1001 &951091061
 PrefabInstance:
@@ -44534,6 +44498,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1276662583}
+        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+        m_MethodName: StartWaitForSecondsEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: block visuals
+          m_BoolArgument: 0
+        m_CallState: 2
   onRestartGame:
     m_PersistentCalls:
       m_Calls: []
@@ -44617,18 +44593,6 @@ MonoBehaviour:
     onRaiseEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: GAMEOVER RAISED
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1276662582}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: GameOver
@@ -44645,18 +44609,6 @@ MonoBehaviour:
     onRaiseEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-          m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-          m_MethodName: OnDebug
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: YOU WON
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1276662582}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: GameWin
@@ -46404,9 +46356,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 3840146784067909648, guid: 8abcbd2ddd8435a4ca5f709af8ccd253, type: 3}
+  m_Mesh: {fileID: 3840146784067909648, guid: e032989e777eba145a76536de71de624, type: 3}
 --- !u!114 &1491972936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50768,18 +50720,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-        m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-        m_MethodName: OnDebug
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: WheelStartSpin
-          m_BoolArgument: 0
-        m_CallState: 2
   onDisableEvent:
     m_PersistentCalls:
       m_Calls:
@@ -50793,18 +50733,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 64d2a065675ec06459afe88e7946aa47, type: 2}
-        m_TargetAssemblyTypeName: Debugger, Assembly-CSharp
-        m_MethodName: OnDebug
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: WheelStop
           m_BoolArgument: 0
         m_CallState: 2
   m_Handle: {fileID: 1010211490}

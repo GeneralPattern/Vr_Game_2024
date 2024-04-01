@@ -6,10 +6,13 @@ public class PooledObjectBehavior : MonoBehaviour
     public string spawnerID { get; set; }
     public bool spawned { get; set; }
     public bool finalSpawn { get; set; }
+    public bool debugging { get; set; }
+    
+    private bool _justInstantiated;
 
     private void Awake()
     {
-        spawned = false;
+        _justInstantiated = false;
     }
 
     public void SetSpawnDelay(float respawnTime)
@@ -34,14 +37,20 @@ public class PooledObjectBehavior : MonoBehaviour
 
     private void OnEnable()
     {
+        if (_justInstantiated)
+        {
+            _justInstantiated = false;
+            return;
+        }
         spawned = true;
     }
 
     private void OnDisable()
     {
-        // Debug.Log($"OnDisable of {name} called. {spawnerID} NOTIFYING: {spawned}");
-        if (!spawned) return;
-        spawnManager.NotifyOfDeath(spawnerID);
+        if (debugging) Debug.Log($"OnDisable of {name} called");
+        if (!spawned) return;;
+        if (debugging) Debug.Log($"NOTIFYING: {spawnerID}, WAS FINAL SPAWN: {finalSpawn}");
+        spawnManager.NotifyOfDeath(spawnerID, finalSpawn);
         spawned = false;
     }
 
