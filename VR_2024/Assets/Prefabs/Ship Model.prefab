@@ -563,6 +563,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9551aa2562768af44b5642484a1268e5, type: 2}
+    - target: {fileID: -934059997695790449, guid: cb98aaa1ba08bd449b5a5cfa50f35361,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 5607226219432137327, guid: 6a799863cb9dcc94d97220624ceffda9,
+        type: 3}
     - target: {fileID: -809377870270196910, guid: cb98aaa1ba08bd449b5a5cfa50f35361,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1994,7 +2000,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -3469032994234112745, guid: cb98aaa1ba08bd449b5a5cfa50f35361, type: 3}
+  m_Mesh: {fileID: 5607226219432137327, guid: 6a799863cb9dcc94d97220624ceffda9, type: 3}
 --- !u!1 &3441893941961776958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3645754730354309090, guid: cb98aaa1ba08bd449b5a5cfa50f35361,
