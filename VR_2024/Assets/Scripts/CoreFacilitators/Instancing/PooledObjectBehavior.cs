@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PooledObjectBehavior : MonoBehaviour
 {
+    public UnityEvent onSpawn;
     public SpawnManager spawnManager { get; set; }
     public string spawnerID { get; set; }
     public bool spawned { get; set; }
     public bool finalSpawn { get; set; }
-    public bool debugging { get; set; }
+    public bool allowDebug { get; set; }
     
     private bool _justInstantiated;
 
@@ -43,14 +45,21 @@ public class PooledObjectBehavior : MonoBehaviour
             return;
         }
         spawned = true;
+        onSpawn.Invoke();
+    }
+
+    public void InvalidateDeath()
+    {
+        finalSpawn = false;
+        spawnManager.numToSpawn++;
+        spawnManager.waitingCount++;
     }
 
     private void OnDisable()
     {
-        if (debugging) Debug.Log($"OnDisable of {name} called");
+        if (allowDebug) Debug.Log($"OnDisable of {name} called");
         if (!spawned) return;;
-        if (debugging) Debug.Log($"NOTIFYING: {spawnerID}, WAS FINAL SPAWN: {finalSpawn}");
-        spawnManager.NotifyOfDeath(spawnerID, finalSpawn);
+        spawnManager.NotifyOfDeath(spawnerID);
         spawned = false;
     }
 
