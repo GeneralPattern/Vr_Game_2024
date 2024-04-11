@@ -25329,7 +25329,7 @@ MonoBehaviour:
   spawnDelay: 6
   spawnRateMin: 12
   spawnRateMax: 15
-  numToSpawn: 3
+  numToSpawn: 10
   waitingCount: 0
 --- !u!1001 &951091061
 PrefabInstance:
