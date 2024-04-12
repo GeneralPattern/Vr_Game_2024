@@ -4,43 +4,38 @@ using UnityEngine.Events;
 
 public class WeaponController : MonoBehaviour, IDamagable, IDamageDealer
 {
+    public WeaponData weaponData;
     public UnityEvent onDurabilityDepleted;
     
-    [SerializeField] [ReadOnly] private float durability = 100;
-    [SerializeField] [ReadOnly] private float damage;
-    private FloatData _damage;
-    
-    public void SetDurability(float newDurability) { durability = newDurability; }
-    public float GetDurability() { return durability; }
-    
-    public void SetDamage(float newDamage) { _damage.SetValue(newDamage); damage = newDamage; }
-    public float GetDamage() { return damage; }
+    public float damage
+    {
+     get => weaponData.damage;
+     set => weaponData.damage = value;
+    }
+
+    public float health
+    {
+     get => weaponData.health;
+     set => weaponData.health = value;
+    }
     
     public bool canDealDamage { get; set; }
-    
-    public void Start()
-    {
-        _damage = ScriptableObject.CreateInstance<FloatData>();
-        damage = (_damage.value > 0) ? _damage.value : 1;
-    }
 
     private void OnCollisionEnter(Collision other)
     {
-        var damagable = other.gameObject.GetComponent<IDamagable>();
-        if (damagable != null) { DealDamage(damagable); }
+        var damagableObj = other.gameObject.GetComponent<IDamagable>();
+        if (damagableObj != null) { DealDamage(damagableObj); }
     }
 
     public void TakeDamage(float amount)
     {
-        durability -= amount;
-        if (durability <= 0)
-        {
-            onDurabilityDepleted.Invoke();
-        }
+        health -= amount;
+        if (health <= 0) onDurabilityDepleted.Invoke();
     }
 
     public void TakeDamage(IDamageDealer dealer)
     {
+        TakeDamage(dealer.damage);
     }
     
     public void DealDamage(IDamagable target)

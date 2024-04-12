@@ -104,6 +104,15 @@ public class SocketMatchInteractor : XRSocketInteractor
         return base.EndSocketSnapping(interactable);
     }
     
+    public void RemoveAndMoveSocketObject(Transform copyTransform)
+    {
+        if (_socketedObject == null){Debug.LogWarning("SOCKETED OBJECT APPEARS TO BE NULL"); return;}
+        var obj = _socketedObject.gameObject;
+        _socketTrigger.enabled = false;
+        if (_removeAndMoveCoroutine != null) return;
+        _removeAndMoveCoroutine = StartCoroutine(PerformRemoveAndMove(copyTransform.position, copyTransform.rotation));
+    }
+
     public GameObject RemoveAndMoveSocketObject(Vector3 position, Quaternion rotation)
     {
         if (_socketedObject == null){Debug.LogWarning("SOCKETED OBJECT APPEARS TO BE NULL"); return null;}

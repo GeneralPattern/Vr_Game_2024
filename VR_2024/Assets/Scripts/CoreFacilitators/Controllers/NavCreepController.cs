@@ -50,6 +50,18 @@ public class NavCreepController : MonoBehaviour, IDamageDealer
         if (damagable != null) { DealDamage(damagable); }
     }
 
+    public float damage
+    {
+        get => creepData.damage;
+        set => creepData.damage = value;
+    }
+
+    public float health
+    {
+        get => creepData.health;
+        set => creepData.health = value;
+    }
+
     public void DealDamage(IDamagable target, float amount)
     {
         
@@ -59,10 +71,5 @@ public class NavCreepController : MonoBehaviour, IDamageDealer
     public void DealDamage(IDamagable target)
     {
         target.TakeDamage(this);
-    }
-
-    public float GetDamage()
-    {
-        return creepData.damage;
     }
 }

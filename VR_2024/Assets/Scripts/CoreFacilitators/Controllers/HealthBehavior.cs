@@ -44,27 +44,26 @@ public class HealthBehavior : MonoBehaviour, IDamagable
         maxHealth = newMax;
     }
 
-    public void LoseHealth(float amount)
+    public void AddAmountToHealth(float amount)
     {
-        health -= amount;
-        if (health > 0) onHealthLost.Invoke();
-        CheckHealthEvents();
-    }
-    
-    public void GainHealth(float amount)
-    {
+        var previousHealth = health;
         health += amount;
-        onHealthGained.Invoke();
+        var change = health - previousHealth;
+        if (change > 0) onHealthGained.Invoke();
+        else if (health > 0) onHealthLost.Invoke();
         CheckHealthEvents();
     }
 
     public void TakeDamage(float amount)
     {
-        LoseHealth(amount);
+        if (amount > -1) amount *= -1;
+        AddAmountToHealth(amount);
     }
 
     public void TakeDamage(IDamageDealer dealer)
     {
-        LoseHealth(dealer.GetDamage());
+        var damage = dealer.damage;
+        if (damage > -1) damage *= -1;
+        AddAmountToHealth(damage);
     }
 }
