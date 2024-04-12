@@ -184,8 +184,8 @@ Transform:
   m_GameObject: {fileID: 114279945}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -50, y: 0.9, z: 0}
+  m_LocalScale: {x: 12, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 554399842}
@@ -193,7 +193,7 @@ Transform:
   - {fileID: 1314882175}
   - {fileID: 1142677116}
   - {fileID: 975910585}
-  m_Father: {fileID: 1495064449}
+  m_Father: {fileID: 298959652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &162722215
 PrefabInstance:
@@ -453,6 +453,7 @@ Transform:
   m_Children:
   - {fileID: 1495064449}
   - {fileID: 721119682}
+  - {fileID: 114279946}
   m_Father: {fileID: 80380802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &339178415
@@ -1208,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758bba6c5a10eb840bf779d0dec9fc87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: {fileID: 0}
+  id: {fileID: 11400000, guid: 6ce658b07eebcad46a12960a0839dee3, type: 2}
 --- !u!23 &975910588
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2426,6 +2427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383822661}
   - component: {fileID: 1383822662}
+  - component: {fileID: 1383822663}
   m_Layer: 0
   m_Name: Game Handlers
   m_TagString: Untagged
@@ -2507,6 +2509,21 @@ MonoBehaviour:
   onRestartGame:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1383822663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383822660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endWaitForSeconds: []
+  endWaitForZero: []
+  endWaitForFixedUpdate: []
 --- !u!1 &1445759536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,6 +2594,7 @@ MonoBehaviour:
   spawnRateMin: 0.1
   spawnRateMax: 0.1
   numToSpawn: 1
+  waitingCount: 0
 --- !u!114 &1445759539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2614,6 +2632,7 @@ MonoBehaviour:
   spawnRateMin: 0.1
   spawnRateMax: 0.1
   numToSpawn: 1
+  waitingCount: 0
 --- !u!1001 &1447175013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2748,8 +2767,7 @@ Transform:
   m_LocalPosition: {x: -50, y: -0.1, z: 0}
   m_LocalScale: {x: 12, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 114279946}
+  m_Children: []
   m_Father: {fileID: 298959652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1495064450

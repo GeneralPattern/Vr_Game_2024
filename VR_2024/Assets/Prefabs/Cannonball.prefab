@@ -533,7 +533,19 @@ MonoBehaviour:
       m_Calls: []
   onRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3383906863256626595}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: set_canDealDamage
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &8596837145433627448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +607,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: -1384171436132759502}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-          m_MethodName: StartWaitForFixedUpdateEvent
+          m_MethodName: StartWaitForSecondsEvent
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -631,16 +643,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43ee49d89a0a64f854acc23de55fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endWaitForSeconds: []
-  endWaitForZero: []
-  endWaitForFixedUpdate:
-  - id: deactivate
+  endWaitForSeconds:
+  - id: stopDealingDamage
+    realTime: 0
+    seconds: 0.5
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7281101536470286139}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
+        - m_Target: {fileID: 3383906863256626595}
+          m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+          m_MethodName: set_canDealDamage
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -650,13 +662,15 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - id: stopDealingDamage
+  endWaitForZero: []
+  endWaitForFixedUpdate:
+  - id: deactivate
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3383906863256626595}
-          m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
-          m_MethodName: set_canDealDamage
+        - m_Target: {fileID: 7281101536470286139}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -678,11 +692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277736d8df898774dae62025d1af1ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: 6ee7b525777ae8b4790eccbdd6a77487, type: 2}
   onDurabilityDepleted:
     m_PersistentCalls:
       m_Calls: []
-  durability: 100
-  damage: 0
 --- !u!114 &-7157524752608855785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +708,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fe811fc536d27418854064fd3c4c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSpawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!198 &6902952253728924966
 ParticleSystem:
   m_ObjectHideFlags: 0
