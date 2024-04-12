@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class WeaponController : MonoBehaviour, IDamagable, IDamageDealer
 {
     public WeaponData weaponData;
-    public UnityEvent onDurabilityDepleted;
+    public UnityEvent onDamageDealt, onDurabilityDepleted;
     
     public float damage
     {
@@ -40,13 +40,13 @@ public class WeaponController : MonoBehaviour, IDamagable, IDamageDealer
     
     public void DealDamage(IDamagable target)
     {
-        if (!canDealDamage) return;
-        target.TakeDamage(damage);
+        DealDamage(target, damage);
     }
 
     public void DealDamage(IDamagable target, float amount)
     {
         if (!canDealDamage) return;
+        onDamageDealt.Invoke();
         target.TakeDamage(amount);
     }
 
