@@ -120,7 +120,12 @@ public class AudioPlayer : MonoBehaviour
     {
         if (audioShotManager != null) audioShotManager.ResetAllAudioShots();
     }
-    
+
+    public void ResetAudioShot(string id)
+    {
+        if (audioShotManager != null) audioShotManager.ResetAudioShot(id);
+    }
+
     public void ResetAudioShot(int index)
     {
         if (audioShotManager != null) audioShotManager.ResetAudioShot(index);
