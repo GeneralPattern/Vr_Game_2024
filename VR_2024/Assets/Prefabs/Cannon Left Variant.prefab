@@ -224,6 +224,16 @@ PrefabInstance:
       propertyPath: fireDirection.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: onSuccessfulFire.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 3199813693555142415}
+    - target: {fileID: 5068600369596442604, guid: dd71d34adeacb304384e49f9f9b42e0d,
+        type: 3}
+      propertyPath: onSuccessfulFire.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: set_socketActive
+      objectReference: {fileID: 0}
     - target: {fileID: 8061015196530188333, guid: dd71d34adeacb304384e49f9f9b42e0d,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -254,6 +264,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd71d34adeacb304384e49f9f9b42e0d, type: 3}
+--- !u!114 &3199813693555142415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8125470844937638257, guid: dd71d34adeacb304384e49f9f9b42e0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6677568547793010302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442b021a53b7f7842b3a4024ea288edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8642659067600640446 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3124259638478956480, guid: dd71d34adeacb304384e49f9f9b42e0d,
