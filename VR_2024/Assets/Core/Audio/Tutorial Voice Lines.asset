@@ -46,6 +46,17 @@ MonoBehaviour:
     onComplete:
       m_PersistentCalls:
         m_Calls: []
+  - id: Fire the cannon
+    clip: {fileID: 8300000, guid: f1fcc1ca590779b4dac3b88184dd09cb, type: 3}
+    played: 0
+    playOnAwake: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    delay: 0
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
   - id: Instruct to go grab sword
     clip: {fileID: 8300000, guid: 6a63b02b990f8d9488f8ff68e6cef1dd, type: 3}
     played: 0
@@ -68,13 +79,13 @@ MonoBehaviour:
     onComplete:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
-          m_Mode: 0
+        - m_Target: {fileID: 11400000, guid: 2833df83d5181a64f93d85c6a6f0e553, type: 2}
+          m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
+          m_MethodName: RaiseAction
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

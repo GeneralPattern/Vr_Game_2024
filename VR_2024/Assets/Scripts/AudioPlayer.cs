@@ -76,7 +76,7 @@ public class AudioPlayer : MonoBehaviour
         if (audioShot.onComplete != null)
         {
             _onComplete = audioShot.onComplete;
-            _clipLength = new WaitForSeconds(audioShot.clip.length);
+            _clipLength = new WaitForSeconds(audioShot.clip.length + audioShot.delay);
             _waitForEndCoroutine ??= StartCoroutine(WaitForClipEnd(_clipLength));
         }
     }
