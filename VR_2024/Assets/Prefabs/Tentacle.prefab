@@ -10426,6 +10426,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3776185038809056598}
+    - targetCorrespondingSourceObject: {fileID: 257695296109518129, guid: 18f3c82500183274796002d61174efda,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5256154735986682448}
     - targetCorrespondingSourceObject: {fileID: 6648685567819846052, guid: 18f3c82500183274796002d61174efda,
         type: 3}
       insertIndex: -1
@@ -16221,6 +16225,33 @@ MonoBehaviour:
         m_CallState: 2
   currentHealth: 0
   maxHealth: 0
+--- !u!54 &5256154735986682448
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876296554457531007}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!4 &967964023852980853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -9019485516240796357, guid: 18f3c82500183274796002d61174efda,
