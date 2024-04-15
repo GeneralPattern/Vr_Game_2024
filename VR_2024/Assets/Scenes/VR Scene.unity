@@ -13115,7 +13115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 663851991}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 1.5
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -13219,7 +13219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 663851991}
-  m_TurnAmount: 45
+  m_TurnAmount: 25
   m_DebounceTime: 0.5
   m_EnableTurnLeftRight: 1
   m_EnableTurnAround: 1
@@ -25429,7 +25429,7 @@ MonoBehaviour:
   spawnDelay: 6
   spawnRateMin: 12
   spawnRateMax: 15
-  numToSpawn: 10
+  numToSpawn: 5
   waitingCount: 0
 --- !u!1001 &951091061
 PrefabInstance:
