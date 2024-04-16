@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,33 +9,51 @@ public class CannonManager : MonoBehaviour
     
     public UnityEvent onSuccessfulFire;
     
-    [ReadOnly] public int ammo;
+    public GameObject ammoPrefab;
     public float fireForce;
     public Vector3 fireDirection;
     public Transform firePoint;
     public SocketMatchInteractor ammoSocket;
-    private bool _respawnAvailable;
-
+    
+    private List <GameObject> _currentAmmoList;
+    private bool _isLoaded;
+    private GameObject _ammoObj;
     private Coroutine _addForceCoroutine; 
 
     private void Awake()
     {
         _wffu = new WaitForFixedUpdate();
-        ammo = 0;
         _addForceCoroutine = null;
     }
 
     public void Fire()
     {
-        var ammoObj = ammoSocket.RemoveAndMoveSocketObject(firePoint.position, firePoint.rotation);
-        if(ammoObj == null) {Debug.LogWarning("NO AMMO IN CANNON " + gameObject.name); return;}
-        var ammoRb = ammoObj.GetComponent<Rigidbody>();
+        // var ammoObj = ammoSocket.RemoveAndMoveSocketObject(firePoint.position, firePoint.rotation);
+        if(_ammoObj == null) {Debug.LogWarning("NO AMMO IN CANNON " + gameObject.name); return;}
+        if (!_isLoaded) {Debug.LogWarning($"{gameObject.name} HAS NO AMMO."); return;}
         
-        if (ammo < 1) {Debug.LogWarning("Ammo Count: " + ammo); return;}
-        if (_addForceCoroutine != null){ return;}
+        var ammoRb = _ammoObj.GetComponent<Rigidbody>();
+        
+        if (_addForceCoroutine != null){ _ammoObj.SetActive(false); return;}
+        _ammoObj.SetActive(true);
         onSuccessfulFire.Invoke();
         _addForceCoroutine = StartCoroutine(AddForceToAmmo(ammoRb));
-        DecrementAmmo();
+        UnloadCannon();
+    }
+
+    private GameObject GetAmmo()
+    {
+        _currentAmmoList ??= new List<GameObject>();
+        foreach (var ammoObj in _currentAmmoList)
+        {
+            if (ammoObj.activeSelf) continue;
+            ammoObj.transform.position = firePoint.position;
+            ammoObj.transform.rotation = firePoint.rotation;
+            return ammoObj;
+        }
+        var newAmmo = Instantiate(ammoPrefab, firePoint.position, firePoint.rotation);
+        _currentAmmoList.Add(newAmmo);
+        return newAmmo;
     }
     
     private IEnumerator AddForceToAmmo(Rigidbody ammoRb)
@@ -48,13 +67,14 @@ public class CannonManager : MonoBehaviour
         _addForceCoroutine = null; 
     }
 
-    public void IncrementAmmo()
+    public void LoadCannon()
     {
-        ammo++;
+        _isLoaded = true;
+        _ammoObj = GetAmmo();
     }
 
-    public void DecrementAmmo()
+    private void UnloadCannon()
     {
-        ammo--;
+        _isLoaded = false;
     }
 }
