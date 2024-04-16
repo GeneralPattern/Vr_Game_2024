@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TentacleCount
   m_EditorClassIdentifier: 
   zeroOnEnable: 0
-  value: 0
+  value: 5
