@@ -12530,6 +12530,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7706864394191785125, guid: abf8b605003353242817448799ca52e6,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 850a9f535799ca0419bd5402c6246817, type: 3}
     - target: {fileID: 7832782886764716061, guid: abf8b605003353242817448799ca52e6,
         type: 3}
       propertyPath: playOnAwake
@@ -13482,7 +13487,7 @@ CharacterController:
   m_Height: 1
   m_Radius: 0.175
   m_SlopeLimit: 75
-  m_StepOffset: 0.3
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
@@ -24678,7 +24683,8 @@ AudioSource:
   m_GameObject: {fileID: 839980030}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9074045042704775081, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 13c6d8cd16c5f464d9256ea023c81185, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
@@ -28123,7 +28129,8 @@ AudioSource:
   m_GameObject: {fileID: 1243948037}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7390000564273996342, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -28426,8 +28433,9 @@ AudioSource:
   m_GameObject: {fileID: 1244882420}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a4759963786685a41bc451b7500b69ac, type: 3}
+  OutputAudioMixerGroup: {fileID: 669078311154223415, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 5d94d9f1581a1994fb1918516d5eda41, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.194
   m_Pitch: 1
@@ -28976,10 +28984,10 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 895191965835066569, guid: f5edb0348e338e24ea74e2fb00982d8f, type: 3}
 --- !u!54 &1287690817
@@ -29582,7 +29590,8 @@ AudioSource:
   m_GameObject: {fileID: 1374250707}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1929676633392927507, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 77144cb5675c0fb469b8866721c58d7c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.29
@@ -29678,7 +29687,8 @@ AudioSource:
   m_GameObject: {fileID: 1374250707}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1929676633392927507, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: bae2aa9d266859a4ab686e7a28b42aa3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -29774,7 +29784,8 @@ AudioSource:
   m_GameObject: {fileID: 1374250707}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1929676633392927507, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d01377c021732b143b5f71ecfc30de57, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -29942,11 +29953,11 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_PokeDepth: 0.1
-  m_PokeWidth: 0.0075
-  m_PokeSelectWidth: 0.015
-  m_PokeHoverRadius: 0.015
-  m_PokeInteractionOffset: 0.005
+  m_PokeDepth: 0.15
+  m_PokeWidth: 0.01
+  m_PokeSelectWidth: 0.02
+  m_PokeHoverRadius: 0.02
+  m_PokeInteractionOffset: 0.01
   m_PhysicsLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -30678,7 +30689,8 @@ AudioSource:
   m_GameObject: {fileID: 1469124353}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7390000564273996342, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -31301,7 +31313,8 @@ AudioSource:
   m_GameObject: {fileID: 1491972933}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 669078311154223415, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 43e9aa1775df52d4f8b12e7460eaa25d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -33159,7 +33172,8 @@ AudioSource:
   m_GameObject: {fileID: 1691595965}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8950025584271345801, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: dfe7a1cfbeb5bd84f8909a7c7e2e1061, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -34544,7 +34558,8 @@ AudioSource:
   m_GameObject: {fileID: 1917778385}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5118882064390212307, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d5ac93fcdc3ea0e49a754ef13d4332ba, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
@@ -34655,7 +34670,8 @@ AudioSource:
   m_GameObject: {fileID: 1917778385}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5118882064390212307, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d3bb17139028253419f17c1ce81ce6e6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
@@ -35001,7 +35017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioShotManager: {fileID: 11400000, guid: f3b6cc65db565a04d95dd38dbcaaf2af, type: 2}
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: -6073963964718969515, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
 --- !u!114 &1965670636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35356,11 +35373,11 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_PokeDepth: 0.1
-  m_PokeWidth: 0.0075
-  m_PokeSelectWidth: 0.015
-  m_PokeHoverRadius: 0.015
-  m_PokeInteractionOffset: 0.005
+  m_PokeDepth: 0.15
+  m_PokeWidth: 0.01
+  m_PokeSelectWidth: 0.02
+  m_PokeHoverRadius: 0.02
+  m_PokeInteractionOffset: 0.01
   m_PhysicsLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -35712,7 +35729,8 @@ AudioSource:
   m_GameObject: {fileID: 2096492386}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8950025584271345801, guid: e277e69d8c87af14ba83427fbcdddc7d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fd4441aa03e63b94c8f7e8b995a91bbb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.38
