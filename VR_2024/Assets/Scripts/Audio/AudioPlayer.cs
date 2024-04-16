@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -7,9 +6,9 @@ using UnityEngine.Events;
 public class AudioPlayer : MonoBehaviour
 {
     public AudioShotManager audioShotManager;
-    
     public AudioMixerGroup mixerGroup;
-    private AudioSource audioSource;
+    
+    private AudioSource _audioSource;
     private UnityEvent _onComplete;
     private Coroutine _waitForEndCoroutine, _waitForStartCoroutine;
     private WaitForSeconds _clipLength, _delay;
@@ -22,13 +21,8 @@ public class AudioPlayer : MonoBehaviour
 
     private void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-
-        audioSource.outputAudioMixerGroup = mixerGroup;
+        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.outputAudioMixerGroup = mixerGroup;
         
         PlayAwakeAudio();
     }
@@ -36,9 +30,9 @@ public class AudioPlayer : MonoBehaviour
     void ConfigureAudioSource(int priority, float volume, float pitch)
     {
         StopAudio();
-        audioSource.priority = priority;
-        audioSource.volume = volume;
-        audioSource.pitch = pitch;
+        _audioSource.priority = priority;
+        _audioSource.volume = volume;
+        _audioSource.pitch = pitch;
     }
     
     private void PlayAwakeAudio()
@@ -47,7 +41,7 @@ public class AudioPlayer : MonoBehaviour
         {
             if (!audioShot.playOnAwake) continue;
             ConfigureAudioSource(audioShot.priority, audioShot.volume, audioShot.pitch);
-            audioSource.PlayOneShot(audioShot.clip);
+            _audioSource.PlayOneShot(audioShot.clip);
         }
     }
 
@@ -59,10 +53,12 @@ public class AudioPlayer : MonoBehaviour
     
     public void PlayAudioShot(int index)
     {
-        if (audioShotManager == null || audioSource == null) return;
+        if (audioShotManager == null || _audioSource == null) return;
+        
         _shotIndex = index;
         var audioShot = audioShotManager.audioShots[index];
         if (audioShot.clip == null || audioShot.played) return;
+        
         ConfigureAudioSource(audioShot.priority, audioShot.volume, audioShot.pitch);
         if (audioShot.delay > 0)
         {
@@ -71,7 +67,7 @@ public class AudioPlayer : MonoBehaviour
         }
         else
         {
-            audioShotManager.PlayAudio(audioSource, index);
+            audioShotManager.PlayAudio(_audioSource, index);
         }
         if (audioShot.onComplete != null)
         {
@@ -85,7 +81,7 @@ public class AudioPlayer : MonoBehaviour
     {
         yield return delay;
         _waitForStartCoroutine = null;
-        audioShotManager.PlayAudio(audioSource, index);
+        audioShotManager.PlayAudio(_audioSource, index);
     }
 
     private IEnumerator WaitForClipEnd(WaitForSeconds clipLength)
@@ -97,7 +93,7 @@ public class AudioPlayer : MonoBehaviour
     
     public void StopAudio()
     {
-        if (audioSource != null) audioSource.Stop();
+        if (_audioSource != null) _audioSource.Stop();
         if (_waitForStartCoroutine != null)
         {
             StopCoroutine(_waitForStartCoroutine);
@@ -113,7 +109,7 @@ public class AudioPlayer : MonoBehaviour
     
     public void PauseAudio()
     {
-        if (audioSource != null) audioSource.Pause();
+        if (_audioSource != null) _audioSource.Pause();
     }
 
     public void ResetAllAudioShots()

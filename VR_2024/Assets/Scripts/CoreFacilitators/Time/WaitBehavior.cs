@@ -40,35 +40,61 @@ public class WaitBehavior : MonoBehaviour
     private IntData _intData;
     private readonly WaitForSeconds _wfms = new (0.1f);
     private readonly WaitForSeconds _wfs = new (1);
-    private readonly WaitForSecondsRealtime  _wfmrts = new (0.1f);
-    private readonly WaitForSecondsRealtime  _wfrts = new (1);
+    private readonly WaitForSecondsRealtime _wfmrts = new (0.1f);
+    private readonly WaitForSecondsRealtime _wfrts = new (1);
     private readonly WaitForFixedUpdate _wffu = new ();
 
+    private bool CheckActive()
+    {
+        return gameObject.activeInHierarchy;
+        
+    }
+    
     public void StartWaitForSecondsEvent(string eventID)
     {
+        if (!CheckActive()) return;
         var seconds = endWaitForSeconds.Find(x => x.id == eventID).seconds;
         StartCoroutine(WaitForSecondsEvent(seconds, eventID));
     }
 
     public void StartWaitForSecondsEvent(float seconds, string eventID)
     {
+        if (!CheckActive()) return;
         StartCoroutine(WaitForSecondsEvent(seconds, eventID));
+    }
+
+    public void StopWaitForSecondsEvent(string eventID)
+    {
+        Debug.Log("StopWaitForSecondsEvent");
+        StopCoroutine(WaitForSecondsEvent(endWaitForSeconds.Find(x => x.id == eventID).seconds, eventID));
     }
 
     public void StartWaitForZeroIntDataEvent(string eventID)
     {
+        if (!CheckActive()) return;
         var data = endWaitForZero.Find(x => x.id == eventID).data;
         StartCoroutine(WaitForZeroIntDataEvent(data, eventID));
     }
 
     public void StartWaitForZeroIntDataEvent(IntData data, string eventID)
     {
+        if (!CheckActive()) return;
         StartCoroutine(WaitForZeroIntDataEvent(data, eventID));
+    }
+
+    public void StopWaitForZeroIntDataEvent(string eventID)
+    {
+        StopCoroutine(WaitForZeroIntDataEvent(endWaitForZero.Find(x => x.id == eventID).data, eventID));
     }
 
     public void StartWaitForFixedUpdateEvent(string eventID)
     {
         StartCoroutine(WaitForFixedUpdateEvent(eventID));
+    }
+
+    public void StopWaitForFixedUpdateEvent(string eventID)
+    {
+        StopCoroutine(WaitForFixedUpdateEvent(eventID));
     }
 
     private IEnumerator WaitForSecondsEvent(float seconds, string eventID)
@@ -141,5 +167,15 @@ public class WaitBehavior : MonoBehaviour
             item.onWaitFinished.Invoke();
             break;
         }
+    }
+    
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+    
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

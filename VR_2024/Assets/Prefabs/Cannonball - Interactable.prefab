@@ -237,12 +237,11 @@ GameObject:
   - component: {fileID: 8596837145433627448}
   - component: {fileID: 6345085156865375072}
   - component: {fileID: -1384171436132759502}
-  - component: {fileID: 3383906863256626595}
   - component: {fileID: -7157524752608855785}
   - component: {fileID: 6902952253728924966}
   - component: {fileID: 8582956441087774782}
   m_Layer: 10
-  m_Name: Cannonball
+  m_Name: Cannonball - Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,21 +529,45 @@ MonoBehaviour:
   toggleGrabbersMeshVisibility: 1
   onGrab:
     m_PersistentCalls:
-      m_Calls: []
-  onRelease:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3383906863256626595}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
-        m_MethodName: set_canDealDamage
-        m_Mode: 6
+      - m_Target: {fileID: -7157524752608855785}
+        m_TargetAssemblyTypeName: PooledObjectBehavior, Assembly-CSharp
+        m_MethodName: SetSpawnDelay
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 3
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -7157524752608855785}
+        m_TargetAssemblyTypeName: PooledObjectBehavior, Assembly-CSharp
+        m_MethodName: TriggerRespawn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1384171436132759502}
+        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+        m_MethodName: StartWaitForSecondsEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: despawn
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &8596837145433627448
 MonoBehaviour:
@@ -565,18 +588,6 @@ MonoBehaviour:
     triggerEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -7157524752608855785}
-          m_TargetAssemblyTypeName: PooledObjectBehavior, Assembly-CSharp
-          m_MethodName: TriggerRespawn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
         - m_Target: {fileID: -1384171436132759502}
           m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
           m_MethodName: StartWaitForFixedUpdateEvent
@@ -587,22 +598,6 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: deactivate
-            m_BoolArgument: 1
-          m_CallState: 2
-  - id: {fileID: 11400000, guid: 9f5ff81a699609342b5b360edd1a0b78, type: 2}
-    triggerEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: -1384171436132759502}
-          m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
-          m_MethodName: StartWaitForSecondsEvent
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: stopDealingDamage
             m_BoolArgument: 1
           m_CallState: 2
 --- !u!114 &6345085156865375072
@@ -632,23 +627,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endWaitForSeconds:
-  - id: stopDealingDamage
-    realTime: 0
-    seconds: 0.5
+  - id: despawn
+    realTime: 1
+    seconds: 30
     onWaitFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3383906863256626595}
-          m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
-          m_MethodName: set_canDealDamage
+        - m_Target: {fileID: -1384171436132759502}
+          m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+          m_MethodName: StartWaitForFixedUpdateEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: deactivate
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: allowGrab
+    realTime: 0
+    seconds: 1
+    onWaitFinished:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1655934223155502546}
+          m_TargetAssemblyTypeName: GrabInteraction, Assembly-CSharp
+          m_MethodName: set_canGrab
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
+            m_StringArgument: deactivate
+            m_BoolArgument: 1
           m_CallState: 2
   endWaitForZero: []
   endWaitForFixedUpdate:
@@ -668,37 +681,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &3383906863256626595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281101536470286139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277736d8df898774dae62025d1af1ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 6ee7b525777ae8b4790eccbdd6a77487, type: 2}
-  onDamageDealt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: a66c23384237cfc46922b1868d9e3f74, type: 2}
-        m_TargetAssemblyTypeName: GameAction, Assembly-CSharp
-        m_MethodName: RaiseAction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDurabilityDepleted:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-7157524752608855785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,9 +696,9 @@ MonoBehaviour:
   onSpawn:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3383906863256626595}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
-        m_MethodName: set_canDealDamage
+      - m_Target: {fileID: 1655934223155502546}
+        m_TargetAssemblyTypeName: GrabInteraction, Assembly-CSharp
+        m_MethodName: set_canGrab
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -724,6 +706,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -1384171436132759502}
+        m_TargetAssemblyTypeName: WaitBehavior, Assembly-CSharp
+        m_MethodName: StartWaitForSecondsEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: allowGrab
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!198 &6902952253728924966

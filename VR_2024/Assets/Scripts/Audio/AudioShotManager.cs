@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
@@ -21,14 +20,6 @@ public class AudioShotManager : ScriptableObject
 
     public List<AudioShot> audioShots;
     private Coroutine _waitForEndCoroutine;
-
-    public (int, float, float) GetAudioShotValues(int index)
-    {
-        if (index < 0 || index >= audioShots.Count) return (0, 0, 0);
-
-        var shot = audioShots[index];
-        return (shot.priority, shot.volume, shot.pitch);
-    }
 
     public void PlayAudio(AudioSource audioSource, string id)
     {

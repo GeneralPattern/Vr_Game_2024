@@ -18,7 +18,7 @@ MonoBehaviour:
     played: 0
     playOnAwake: 0
     priority: 128
-    volume: 1
+    volume: 4.48
     pitch: 1
     delay: 0
     onComplete:

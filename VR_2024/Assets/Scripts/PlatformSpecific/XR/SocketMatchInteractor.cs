@@ -18,10 +18,14 @@ public class SocketMatchInteractor : XRSocketInteractor
     private List<PossibleMatch> triggerID;
     
     public bool allowDebug;
+    public bool disableObjectOnSocket;
+
+    public ID socketID;
     
     public UnityEvent onObjectSocketed;
     public UnityEvent onObjectUnsocketed;
     
+    private IDBehavior _idBehavior;
     private WaitForFixedUpdate _wffu = new WaitForFixedUpdate();
     
     private XRGrabInteractable _socketedObject;
@@ -31,6 +35,12 @@ public class SocketMatchInteractor : XRSocketInteractor
     
     private new void Awake()
     {
+        if (socketID)
+        {
+            _idBehavior = gameObject.AddComponent<IDBehavior>();
+            _idBehavior.id = socketID;
+        }
+        
         _socketTrigger = GetComponent<Collider>();
         if (_socketTrigger == null)
         {
@@ -96,7 +106,17 @@ public class SocketMatchInteractor : XRSocketInteractor
     protected override bool StartSocketSnapping(XRGrabInteractable interactable)
     {
         _socketedObject = interactable;
-        return base.StartSocketSnapping(interactable);
+        if (!disableObjectOnSocket) return base.StartSocketSnapping(interactable);
+        StartCoroutine(DisableObject(interactable.gameObject));
+        return false;
+    }
+    
+    private IEnumerator DisableObject(GameObject obj)
+    {
+        yield return _wffu;
+        yield return _wffu;
+        yield return _wffu;
+        obj.SetActive(false);
     }
     
     protected override bool EndSocketSnapping(XRGrabInteractable interactable)
@@ -106,7 +126,7 @@ public class SocketMatchInteractor : XRSocketInteractor
     
     public void RemoveAndMoveSocketObject(Transform copyTransform)
     {
-        if (_socketedObject == null){Debug.LogWarning("SOCKETED OBJECT APPEARS TO BE NULL"); return;}
+        if (_socketedObject == null){Debug.LogWarning("SOCKET OBJECT APPEARS TO BE NULL"); return;}
         var obj = _socketedObject.gameObject;
         _socketTrigger.enabled = false;
         if (_removeAndMoveCoroutine != null) return;
@@ -115,7 +135,7 @@ public class SocketMatchInteractor : XRSocketInteractor
 
     public GameObject RemoveAndMoveSocketObject(Vector3 position, Quaternion rotation)
     {
-        if (_socketedObject == null){Debug.LogWarning("SOCKETED OBJECT APPEARS TO BE NULL"); return null;}
+        if (_socketedObject == null){Debug.LogWarning("SOCKET OBJECT APPEARS TO BE NULL"); return null;}
         var obj = _socketedObject.gameObject;
         _socketTrigger.enabled = false;
         if (_removeAndMoveCoroutine != null) return null;

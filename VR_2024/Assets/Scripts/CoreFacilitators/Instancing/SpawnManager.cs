@@ -155,7 +155,7 @@ public class SpawnManager : MonoBehaviour, INeedButton
         _waitForSpawnDelay = new WaitForSeconds(spawnDelay);
     }
     
-    public void SetSpawnRate()
+    private void SetSpawnRate()
     {
         if (!randomizeSpawnRate)
         {
@@ -210,6 +210,13 @@ public class SpawnManager : MonoBehaviour, INeedButton
         numToSpawn = numToSpawn > 0 ? numToSpawn : 1;
         if (spawnedCount > 0) spawnedCount = 0;
         _delaySpawnRoutine ??= StartCoroutine(DelaySpawn());
+    }
+    
+    public void StopSpawn()
+    {
+        if (_spawnRoutine == null) return;
+        StopCoroutine(_spawnRoutine);
+        _spawnRoutine = null;
     }
 
     private IEnumerator DelaySpawn()

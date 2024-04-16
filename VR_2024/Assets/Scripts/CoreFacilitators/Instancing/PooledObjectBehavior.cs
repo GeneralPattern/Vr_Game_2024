@@ -10,11 +10,13 @@ public class PooledObjectBehavior : MonoBehaviour
     public bool finalSpawn { get; set; }
     public bool allowDebug { get; set; }
     
-    private bool _justInstantiated;
+    private bool _justInstantiated, _bypassDisable, _respawnTriggered;
 
     private void Awake()
     {
         _justInstantiated = false;
+        _bypassDisable = false;
+        _respawnTriggered = false;
     }
 
     public void SetSpawnDelay(float respawnTime)
@@ -29,11 +31,15 @@ public class PooledObjectBehavior : MonoBehaviour
 
     public void TriggerRespawn()
     {
+        if (_respawnTriggered) return;
+        _respawnTriggered = true;
+        _bypassDisable = true;
         if (spawnManager == null)
         {
             Debug.LogWarning("SpawnManager is null" + name + " SpawnedObjectBehavior.");
             return;
         }
+        spawnManager.NotifyOfDeath(spawnerID);
         spawnManager.StartSpawn(1);
     }
 
@@ -45,6 +51,7 @@ public class PooledObjectBehavior : MonoBehaviour
             return;
         }
         spawned = true;
+        _bypassDisable = false;
         onSpawn.Invoke();
     }
 
@@ -57,8 +64,14 @@ public class PooledObjectBehavior : MonoBehaviour
 
     private void OnDisable()
     {
+        _respawnTriggered = false;
         if (allowDebug) Debug.Log($"OnDisable of {name} called");
-        if (!spawned) return;;
+        if (!spawned) return;
+        if (_bypassDisable)
+        {
+            _bypassDisable = false;
+            return;
+        }
         spawnManager.NotifyOfDeath(spawnerID);
         spawned = false;
     }

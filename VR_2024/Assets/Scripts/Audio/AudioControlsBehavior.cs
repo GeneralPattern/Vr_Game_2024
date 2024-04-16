@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class AudioBehavior : MonoBehaviour
+public class AudioControlsBehavior : MonoBehaviour
 {
     public string volume = "VolumeParameter";
     public AudioMixer mixer;
@@ -25,15 +25,9 @@ public class AudioBehavior : MonoBehaviour
     private void HandleToggleValueChanged(bool enableSound)
     {
 
-        if (disabledToggleEvent)
-        {
-            return;
-        }
+        if (disabledToggleEvent) return;
         
-        if(enableSound)
-        {
-            slider.value = PlayerPrefs.GetFloat(volume, slider.value);
-        }
+        if(enableSound) slider.value = PlayerPrefs.GetFloat(volume, slider.value);
         else
         {
             PlayerPrefs.SetFloat(volume, slider.value);
@@ -44,6 +38,12 @@ public class AudioBehavior : MonoBehaviour
     private void OnDisable()
     {
         PlayerPrefs.SetFloat(volume, slider.value);
+    }
+
+    private void OnDestroy()
+    {
+        slider.onValueChanged.RemoveListener(HandleSliderValueChanged);
+        toggle.onValueChanged.RemoveListener(HandleToggleValueChanged);
     }
 
     private void HandleSliderValueChanged(float value)
