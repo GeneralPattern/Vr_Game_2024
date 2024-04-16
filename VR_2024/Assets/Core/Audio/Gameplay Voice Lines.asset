@@ -127,7 +127,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - id: Moved to fight
-    clip: {fileID: 8300000, guid: 8dfc44e847bd0e847b54f874c7e05c8b, type: 3}
+    clip: {fileID: 8300000, guid: 8a232de5e2e692848985f464e2fc6e08, type: 3}
     played: 0
     playOnAwake: 0
     priority: 128
