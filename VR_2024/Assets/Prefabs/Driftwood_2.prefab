@@ -150,8 +150,8 @@ MonoBehaviour:
   motionType: 1
   positionWaveType: 0
   positionAxis: 2
-  positionAmplitude: 0.08
-  positionFrequency: 0.3
+  positionAmplitude: 0.07
+  positionFrequency: 0.25
   positionOffset: 0
   rotationAxis: 0
   rotationSpeed: 0
