@@ -133,22 +133,22 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7174563863901101119}
-    m_Position: {x: 390, y: 100, z: 0}
+    m_Position: {x: 400, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1504329717475888621}
-    m_Position: {x: 390, y: 200, z: 0}
+    m_Position: {x: 400, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6082568305771118410}
-    m_Position: {x: 390, y: 20, z: 0}
+    m_Position: {x: 400, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6847262154618455128}
-    m_Position: {x: 390, y: -60, z: 0}
+    m_Position: {x: 400, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4321050949433680366}
-    m_Position: {x: 380, y: 330, z: 0}
+    m_Position: {x: 400, y: -240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1258264863356694396}
-    m_Position: {x: 410, y: 270, z: 0}
+    m_Position: {x: 400, y: -60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 512781304165626112}
@@ -158,9 +158,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 100, z: 0}
-  m_EntryPosition: {x: 0, y: 320, z: 0}
-  m_ExitPosition: {x: 790, y: 110, z: 0}
+  m_AnyStatePosition: {x: 140, y: -180, z: 0}
+  m_EntryPosition: {x: 140, y: -230, z: 0}
+  m_ExitPosition: {x: 700, y: -180, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4321050949433680366}
 --- !u!1101 &-2354113847433083864
@@ -266,7 +266,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Take 001
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -280,7 +280,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: b1bdd5cd9f198f548b16b0d6d8723f22,
+  m_Motion: {fileID: 1827226128182048838, guid: 877bd3eed25fc5d4b95306a807809c16,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
