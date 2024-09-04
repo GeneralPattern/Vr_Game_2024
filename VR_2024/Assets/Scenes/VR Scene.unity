@@ -3202,6 +3202,18 @@ MonoBehaviour:
             m_StringArgument: Level 4
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1348302323}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!65 &204662755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3217,7 +3229,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -35114,7 +35126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1348302324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36273,6 +36285,18 @@ MonoBehaviour:
             m_StringArgument: Level 2
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1555787624}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!65 &1378947314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36288,7 +36312,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -36663,7 +36687,7 @@ Transform:
   m_GameObject: {fileID: 1394524392}
   serializedVersion: 2
   m_LocalRotation: {x: 0.59337616, y: 0.384584, z: -0.38458392, w: 0.5933761}
-  m_LocalPosition: {x: 2.041, y: 4.338, z: 13.439}
+  m_LocalPosition: {x: 1.992, y: 4.338, z: 13.841}
   m_LocalScale: {x: 0.024288382, y: 0.19394007, z: 0.024288382}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37744,7 +37768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1459759286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38332,6 +38356,18 @@ MonoBehaviour:
             m_StringArgument: Level 3
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1459759285}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!65 &1484758185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38347,7 +38383,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -39020,7 +39056,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -39089,7 +39125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: a0f40e365f065d641b16cb990fb7923f, type: 2}
-  debug: 0
+  debug: 1
   triggerEnterMatches:
   - id: {fileID: 11400000, guid: 67c8edc176063d544a35010006a3ca45, type: 2}
     triggerEvent:
@@ -39106,6 +39142,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: Level 1
             m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 173592040}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
 --- !u!1001 &1549422874
 PrefabInstance:
@@ -39315,7 +39363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1555787625
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43031,7 +43079,7 @@ GameObject:
   - component: {fileID: 1885093325}
   - component: {fileID: 1885093324}
   - component: {fileID: 1885093323}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43248,7 +43296,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f5edb0348e338e24ea74e2fb00982d8f,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
